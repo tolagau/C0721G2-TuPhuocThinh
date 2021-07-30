@@ -1,0 +1,16 @@
+Mô ta thuật toán tìm giá trị lớn nhất trong một dẫy số
+
+Begin
+	Input N"là số lượng dẫy số"
+	Input a1, a2, a3..., an
+		max = a1
+		i = 1
+		While(n < = i)
+		IF max < ai 
+		Do
+		   max = ai
+		   i = i + 1
+		   END Do
+		Display max
+		
+END		
