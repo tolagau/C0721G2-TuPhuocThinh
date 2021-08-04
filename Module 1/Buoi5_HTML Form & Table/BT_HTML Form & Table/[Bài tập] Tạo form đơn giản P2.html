@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tạo form</title>
+    <style>
+        table{
+            background: #ffc4ae;
+        }
+    </style>
+</head>
+<body>
+<h1 style="background: darkblue">ĐĂNG KÝ HỌC VIÊN</h1>
+<Form acction="http://google.com/" method="get">
+    <table>
+        <tr>
+            <td>Họ và tên</td>
+            <td><input type="text"/>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Ngày sinh</td>
+            <td><input type="text"/></td>
+        </tr>
+        <tr>
+            <td>Giới tính</td>
+            <td><label><input type="radio" name="Giới Tính"></label> Nam <label>
+                <input type="radio" name="Giới Tính"></label> Nữ
+        </tr>
+        <tr>
+            <td>Địa chỉ</td>
+            <td><textarea row="20" col="10" name="diachi"></textarea></td>
+
+        </tr>
+        <tr>
+            <td>Lớp</td>
+            <td><select> <option value="Chọn lớp" ranger="200px"> Chọn Lớp </option>
+                <option value="Chọn lớp" row="10" col="5"> Lớp B </option>
+                <option value="Chọn lớp" row="10" col="5"> Lớp C </option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text>"</td>
+        </tr>
+        <tr>
+            <td>Điện thoại</td>
+            <td><input type="text>"</td>
+        </tr>
+        <tr>
+            <td><!---nội dung---></td>
+            <td><input type="submit" value="Đăng ký lại">  <input type="submit" value="Nhập lại"></td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>
