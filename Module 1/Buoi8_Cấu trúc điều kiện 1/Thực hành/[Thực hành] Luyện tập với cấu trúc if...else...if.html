@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let nhapNguoiDung = prompt("Nhập tên người dùng:");
+
+        if (nhapNguoiDung == "Admin"){
+            alert("Xin chào Admin, mời bạn nhập mật khẩu")
+            let nhapPass = prompt("Nhập pass");
+            if (nhapPass == "Admin"){
+                alert("Xin chào Admin~~~");
+            }else if (nhapPass == ""){
+                alert("Mời nhập lại");
+            }else {
+                alert("Bạn nhập sai")
+            }
+        }else if (nhapNguoiDung == ""){
+            alert("Mời nhập lại")
+        }else alert('Bạn không phải là Admin:');
+
+    </script>
+</body>
+</html>
