@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello mấy cưng</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Số thứ 1</th>
+        <th></th>
+        <th>Số thứ 2</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td><input id="soThu1"></td>
+
+        <td>
+            <select id="phepTinh">
+                <option>Phép cộng(+)</option>
+                <option>Phép trừ(-)</option>
+                <option>Phép nhân(*)</option>
+                <option>Phép chia(/)</option>
+                <option>Phép thuật Winx</option>
+            </select>
+        </td>
+        <td><input id="soThu2"></td>
+        <td><button onclick="tinhToan()">Tính</button></td>
+    </tr>
+
+</table>
+<script>
+    function tinhToan() {
+    let soThu1 = document.getElementById("soThu1").value;
+    let phepTinh = document.getElementById("phepTinh").value;
+    let soThu2 = document.getElementById("soThu2").value;
+   if (phepTinh == "Phép cộng(+)"){
+        alert(soThu1*1 + soThu2*1);
+   }else if (phepTinh == "Phép trừ(-)"){
+       alert(soThu1 - soThu2);
+   }else if (phepTinh == "Phép nhân(*)"){
+       alert(soThu1 * soThu2);
+   }else alert(soThu1 / soThu2);
+    }
+</script>
+</body>
+</html>
