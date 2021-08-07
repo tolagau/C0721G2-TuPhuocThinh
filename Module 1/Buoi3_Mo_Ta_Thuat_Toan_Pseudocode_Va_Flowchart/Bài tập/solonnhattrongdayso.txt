@@ -4,7 +4,7 @@ Begin
 	Input N"là số lượng dẫy số"
 	Input a1, a2, a3..., an
 		max = a1
-		i = 1
+		i = 2
 		While(n < = i)
 		IF max < ai 
 		Do
