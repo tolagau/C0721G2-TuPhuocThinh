@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ờ máy dìn gót dóp</title>
+</head>
+<body>
+<script>
+    let diemGK =  parseInt(prompt("diemGK"))
+
+    let diemKT = parseInt(prompt("diemKT"))
+
+    let diemCK = parseInt(prompt("diemCK"))
+
+    let diemTrungbinh1;
+    diemTrungbinh1 = (diemCK + diemKT + diemGK)/3;
+
+    if (diemTrungbinh1 >= 8) {
+        alert("Học sinh giỏi");
+
+    } else if (diemTrungbinh1 >= 7) {
+        alert("Học sinh tiên tiến");
+
+    } else if (diemTrungbinh1 >= 5) {
+        alert("Học sinh trung bình");
+
+    } else alert("Học sinh yếu");
+</script>
+</body>
+</html>

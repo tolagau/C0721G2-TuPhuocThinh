@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Sự kiện chuột</title>
+</head>
+<body>
+<img src="tamhinh.jpg" style="width:100px" id="imageMove"><br>
+<h4>Click button bellow to move the image to right</h4>
+<button onclick="moveRight()">Clickme</button>
+<script>
+    let imgObj = null;
+    function init() {
+        imgObj = document.getElementById('imageMove');
+        imgObj.style.position = 'relative';
+        imgObj.style.left = 0;
+    }
+    function moveRight() {
+        init();
+        imgObj.style.left = parseInt(imgObj.style.left) + 30 + 'px';
+    }
+    window.onload = init;
+</script>
+</body>
+</html>

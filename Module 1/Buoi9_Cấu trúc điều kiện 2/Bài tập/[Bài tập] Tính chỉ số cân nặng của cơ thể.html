@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello mấy cưng</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td><input id="canNang"></td>
+        <td><input id="chieuCao"></td>
+        <td><input id="hienThi" type="text" readonly></td>
+        <td><button type="submit" id="thucHien" onclick="tinhToan()">Quy đổi</button> </td>
+    </tr>
+    <tr>
+        <td>Nhập cân nặng</td>
+        <td>Nhập chiều cao</td>
+        <td>Đánh giá</td>
+    </tr>
+</table>
+    <script>
+        function tinhToan() {
+            let bMi;
+            let canNang = document.getElementById("canNang").value;
+            let chieuCao = document.getElementById("chieuCao").value;
+            bMi = canNang / Math.pow(chieuCao,2);
+            if (bMi < 18)
+                document.getElementById("hienThi").value = "Underweight"
+            else if (bMi < 25.0)
+                document.getElementById("hienThi").value = "Normal"
+              //  alert("Normal")
+            //document.write("Normal");
+            else if (bMi < 30.0)
+                document.getElementById("hienThi").value = "Overweight"
+            else
+                document.getElementById("hienThi").value = "Obese"
+        }
+    </script>
+</body>
+</html>

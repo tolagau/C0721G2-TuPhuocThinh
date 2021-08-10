@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello mấy cưng</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td><input type="text" id="nhapThang"></td>
+        <td>
+            <button type="submit" id="thucHien" onclick="tinhToan()">Tính số ngày</button>
+        </td>
+
+    </tr>
+    <tr>
+        <td><input type="text" id="hienThi"></td>
+    </tr>
+</table>
+<script>
+    function tinhToan() {
+        let nhapThang = parseInt(document.getElementById("nhapThang").value);
+        switch (nhapThang) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                document.getElementById("hienThi").value = "Tháng có 31 ngày";
+                break;
+            case 4:
+                case 6:
+                    case 9:
+                        case 11:
+                            document.getElementById("hienThi").value = "Tháng có 30 ngày"
+                break;
+                case 2:
+                    document.getElementById("hienThi").value ="Tháng 2 có 28 hoặc 29 ngày"; break;
+                default:document.getElementById("hienThi").value = "Tháng bạn nhập không có trong năm ^_^"
+        }
+    }
+</script>
+</body>
+</html>

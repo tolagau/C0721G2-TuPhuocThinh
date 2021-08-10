@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let thoiGianGoi =  parseInt(prompt("thoiGianGoi"));
+        let tinhTien;
+        if (thoiGianGoi >= 500) {
+            tinhTien = thoiGianGoi * 1500
+            alert("Số tiền bạn cần phải trả là: "+tinhTien );
+        } else if (thoiGianGoi < 500) {
+            tinhTien = thoiGianGoi * 1300
+            alert("Số tiền bạn cần phải trả là: "+tinhTien );
+        } else if (thoiGianGoi < 400) {
+            tinhTien = thoiGianGoi * 1100
+            alert("Số tiền bạn cần phải trả là: "+ tinhTien );
+        } else {
+            tinhTien = thoiGianGoi * 1000
+            alert("Số tiền bạn cần phải trả là: " + tinhTien);
+        }
+    </script>
+</body>
+</html>
