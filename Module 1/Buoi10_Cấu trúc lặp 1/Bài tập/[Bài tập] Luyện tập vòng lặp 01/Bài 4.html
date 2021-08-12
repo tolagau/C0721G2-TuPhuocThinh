@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let count = 2;
+    let a = 1;
+    let b = 2;
+    while (count < 5) {
+        let c = a + b;
+        a = b;
+        b = c;
+        console.log(c)
+        count++
+        if (c % 5 == 0) {
+       document.write(c + " ");
+    }
+    }
+
+</script>
+</body>
+</html>
