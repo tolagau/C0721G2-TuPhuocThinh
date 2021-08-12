@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d892a51b-5e1b-4a17-889b-6e367d28e1bb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Buoi10_Cấu trúc lặp 1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Hiển thị các số nguyên tố đầu tiên.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 01/Bài 8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 02/Bài 1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 02/Bài 2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 02/Bài 3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Luyện tập vòng lặp 02/Bài 4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bài tập/[Bài tập] Sinh bảng cửu chương.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thực hành/[Thực hành] Sử dụng vòng lặp do-while.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thực hành/[Thực hành] Sử dụng vòng lặp for B1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thực hành/[Thực hành] Sử dụng vòng lặp for B2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thực hành/[Thực hành] Sử dụng vòng lặp lồng nhau.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thực hành/[Thực hành] Sử dụng vòng lặp while B1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Thực hành/[Thực hành] Sử dụng vòng lặp while B2.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1wdgLTJ7YPOqybfQWhA9WLEs6Z9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Buoi12+13_Mang" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d892a51b-5e1b-4a17-889b-6e367d28e1bb" name="Default Changelist" comment="" />
+      <created>1628793823822</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1628793823822</updated>
+      <workItem from="1628793826295" duration="377000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1628794203921">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1628794203921" />
+  </component>
+</project>
