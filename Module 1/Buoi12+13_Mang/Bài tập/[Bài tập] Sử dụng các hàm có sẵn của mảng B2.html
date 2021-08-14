@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let daySo = prompt("Nhập dẫy số:");
+    let chuoi = daySo.toString();
+    let mang = [];
+    for (let i = 0; i < chuoi.length; i++) {
+        if ((chuoi[i] % 2 == 0) && (chuoi[i+1] % 2 == 0)) {
+            mang.push("-", chuoi[i]);
+        } else {
+            mang.push(chuoi[i])
+        }
+    }
+    document.write(mang.toString())
+</script>
+</body>
+</html>

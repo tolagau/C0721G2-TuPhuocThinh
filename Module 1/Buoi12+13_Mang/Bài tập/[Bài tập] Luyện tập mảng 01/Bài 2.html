@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let mang = [12, 20, 21, 5, 8, 10, 90, 19];
+        let x;
+        let viTri = 0;
+        x = mang[0];
+        for (let i = 0; i < mang.length; i++) {
+            if (mang[i] > x ) {
+                x = mang[i];
+                viTri = i;
+            }
+        }
+        document.write(x + " " + viTri+" " );
+    </script>
+</body>
+</html>

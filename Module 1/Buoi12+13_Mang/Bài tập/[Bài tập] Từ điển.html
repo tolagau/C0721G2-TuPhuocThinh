@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mang1 = [Green, Blue, Red, Yellow, Black];
+    let mang2 = [Xanh lá cây, Xanh nước biết, Đỏ, Vàng, Đen];
+    let nhap = prompt("Nhập:");
+    let hienThi = [];
+    for (i = 0; i < mang1.length;i++){
+        if (nhap == mang1[i]){
+            hienThi = mang2[i];
+            document.write(hienThi);
+        }else alert("Không có trong từ điển")
+    }
+</script>
+</body>
+</html>

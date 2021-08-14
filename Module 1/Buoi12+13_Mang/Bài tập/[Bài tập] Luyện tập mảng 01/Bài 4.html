@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mang = [];
+    for (let i = 0; i < 5; i++) {
+        let nhapMang = parseInt(prompt("Nhập giá trị của mảng:"))
+        mang[i] = nhapMang;
+    }
+    document.write("Giá trị của mảng bạn vừa nhập" + mang + "<br>");
+    let dau = 0;
+    let cuoi = mang.length - 1;
+    while (dau < cuoi) {
+        let a = mang[dau];
+        mang[dau] = mang[cuoi];
+        mang[cuoi] = a;
+        dau++;
+        cuoi--;
+    }
+    document.write("Giá trị đảo ngược lại là " + mang);
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let nhapChuoi = prompt("Nhập chuỗi lý tự")
+    let UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    let result = [];
+    for (let i = 0; i < nhapChuoi.length; i++) {
+        if (UPPER.indexOf(nhapChuoi[i]) !== -1) {
+            result.push(nhapChuoi[i].toLowerCase());
+        } else if (LOWER.indexOf(nhapChuoi[i]) !== -1) {
+            result.push(nhapChuoi[i].toUpperCase());
+        } else {
+            result.push(nhapChuoi[i]);
+        }
+    }
+    console.log(result.join(''));
+</script>
+</body>
+</html>
