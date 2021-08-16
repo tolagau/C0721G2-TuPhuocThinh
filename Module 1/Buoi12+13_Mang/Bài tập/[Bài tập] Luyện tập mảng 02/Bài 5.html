@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mang1 = [];
+    let mang2 = [];
+    let sosanh = true;
+    for (let i = 0; i < 10; i++) {
+        let nhapMang = parseInt(prompt("Nhập giá trị của mảng:"))
+        mang1[i] = nhapMang;
+    }
+    document.write("Giá trị của mảng bạn vừa nhập" + mang1 + "<br>");
+    for (let i = 0; i < 10; i++) {
+        let nhapMang1 = parseInt(prompt("Nhập giá trị của mảng:"))
+        mang2[i] = nhapMang1;
+        document.write("Giá trị của mảng bạn vừa nhập" + mang2 + "<br>");
+    }
+   if (mang1 != mang2){
+       document.write("2 mảng k gioongss nhau: ")
+   }else
+   {
+       for (let i = 0;i<mang1.length;i++){
+           for (let j = 0; j<mang2.length;j++){
+               if (mang1[i]==mang2[j]){
+                   sosanh=true;
+
+               }else sosanh=false;
+           }
+       }
+   }
+   if (sosanh){
+       document.write("2 mảng giống nhau: ")
+   }else document.write("2 mảng khác nhau")
+
+</script>
+</body>
+</html>

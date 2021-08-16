@@ -7,19 +7,25 @@
 <body>
 <script>
     let mang = [];
-    let luu = [];
+    let soSanh = false;
     for (let i = 0; i < 5; i++) {
         let nhapMang = parseInt(prompt("Nhập giá trị của mảng:"))
         mang[i] = nhapMang;
     }
     document.write("Giá trị của mảng bạn vừa nhập" + mang + "<br>");
-    for (let i = 0; i < 5; i++) {
-        if (mang[i] < 0) {
-          luu.push(mang[i])
+    let nhapSo = parseInt(prompt("Nhập số để so sánh: "));
+    for (let i = 0; i < mang.length; i++) {
+        if (nhapSo != mang[i]) {
+            soSanh = true;
+            break;
         }
-    }document.write("Các số bé hơn 0: " + luu );
-
-
+    }
+    if (soSanh) {
+        document.write("in the array")
+    } else {
+        mmang.splice(mang[i],1, )
+        document.write("not in the array");
+    }
 </script>
 </body>
 </html>

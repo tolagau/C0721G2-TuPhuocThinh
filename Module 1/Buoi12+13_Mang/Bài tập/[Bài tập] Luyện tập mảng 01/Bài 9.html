@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let manga =[];
+        let mangb = [];
+        let mangc = [];
+        for(let i=0; i<3;i++){
+            manga[i] = prompt("Nhap mang a:")
+        }
+        alert(manga);
+        for(let i=0; i<3;i++){
+            mangb[i] = prompt("Nhap mamg b:")
+        }
+        alert(mangb)
+        for(let i=0; i<5; i++){
+            mangc[i] = prompt("Nhap mamg c:")
+        }
+        alert(mangc)
+        let d = mangb.concat(mangc,manga);
+        alert(d)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let mang = [];
+        let soSanh;
+        for (let i = 0; i < 10; i++) {
+            let nhapMang = parseInt(prompt("Nhập giá trị của mảng:"))
+            mang[i] = nhapMang;
+        }
+        document.write("Giá trị của mảng bạn vừa nhập" + mang + "<br>");
+        for (let i = 0 ; i<mang.length;i++){
+            for (let j = 0;j<mang.length;j++){
+                if (mang[i]<mang[j]){
+                    soSanh = mang[j];
+                    mang[i]=mang[j];
+                    soSanh=mang[i];
+                }
+            }
+        } document.write(mang);
+    </script>
+</body>
+</html>
