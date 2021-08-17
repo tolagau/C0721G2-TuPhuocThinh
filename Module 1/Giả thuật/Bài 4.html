@@ -7,13 +7,18 @@
 <body>
     <script>
         let nhapSo = parseInt(prompt("Nhập số:"));
-        let s = 0;
-        if (nhapSo == 0){
+        let s = 15;
+        if (nhapSo == 0) {
             alert("Mời nhập lại")
-        }else {
-            for (let i = 1; i <=nhapSo;i++){
-
-            }document.write("")
+        } else {
+            for (let i = 1; i <= nhapSo; i++) {
+                let giaiThua = 1;
+                for (let j = 1; j <= i; j++) {
+                    giaiThua = giaiThua * j;
+                }
+                s = s + (-1) ** i / giaiThua;
+            }
+            document.write(s);
         }
     </script>
 </body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let nhapSo = parseInt(prompt("Nhập số:"));
+    let s = 1;
+    if (nhapSo == 0) {
+        alert("Mời nhập lại")
+    } else {
+        for (let i = 1; i <= nhapSo; i++) {
+            let giaiThua = 1;
+            for (let j = 1; j <= i; j + 2) {
+                giaiThua = giaiThua * j;
+            }
+            s = s + (1) ** i / giaiThua;
+        }
+        document.write(s);
+    }
+</script>
+</body>
+</html>

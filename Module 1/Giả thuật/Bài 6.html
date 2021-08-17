@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let mang =prompt("Nhap vao mang");
+        let b = [];
+        for(let i=0; i<mang.length;i++){
+            if(mang[i]=== "-"){
+                b.push('_');
+            } else {
+                b.push(mang[i]);
+            }
+        }
+        alert(b.join());
+    </script>
+</body>
+</html>
