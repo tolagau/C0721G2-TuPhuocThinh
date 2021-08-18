@@ -5,20 +5,32 @@
     <title>hello</title>
 </head>
 <body>
-    <script>
-        function processConfirm(answer) {
-            let result = "";
-            if (answer) {
-                result = "Excellent. We'll play a nice game of chess.";
-            } else {
-                result = "Maybe later then.";
-            }
-            return result;
+<script>
+    function isPrime(number) {
+        let result ="";
+        let flag = true;
+        if (number < 2) {
+            flag = false;
+            return result = false;
         }
-        let confirmAnswer = confirm("Shall we play a game?");
-        let theAnswer = processConfirm(confirmAnswer);
-        alert(theAnswer);
-
-    </script>
+        else {
+            for(let i = 2; i<number; i++) {
+                if (number%i ==0 && i!=2) {
+                    flag = false
+                    return result = false;;
+                }
+            }
+        }
+        if (flag) {
+            return result = true
+        }
+    }
+    document.write(isPrime(3)+ '<br>')
+    for(let i=0; i<=10000; i++) {
+        if (isPrime(i)) {
+            document.write(i +",")
+        }
+    }
+</script>
 </body>
 </html>

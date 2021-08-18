@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <p>
+        <label>Chuyển đổi giữa feet và meters</label>
+        <input id="nhapso" type="number"/>
+        <select id="luachon">
+            <option value="feet">Feet</option>
+            <option value="meters">Meters</option>
+        </select>
+
+        <input type="button" value="Chuyển đổi" onclick="chuyenDoi()"/>
+    </p>
+    <p id="ketqua"></p>
+    <script>
+        function chuyenDoi(){
+            let luachon = document.getElementById("luachon").value;
+            let giatri = document.getElementById("nhapso").value;
+            let ketqua =0;
+            if (luachon.value == "feet"){
+                ketqua = giatri * 0.305;
+
+                document.getElementById("ketqua").innerHTML = "Kết quả = "+ketqua+" meters"
+            }else{
+                ketqua = giatri * 3.279;
+
+                document.getElementById("ketqua").innerHTML = "Kết quả = "+ketqua+" feet"
+            }
+        }
+
+
+    </script>
+</form>
+</body>
+</html>
