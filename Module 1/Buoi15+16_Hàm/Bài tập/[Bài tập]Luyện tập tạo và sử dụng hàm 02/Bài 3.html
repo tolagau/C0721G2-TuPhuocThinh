@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let giaiThua = parseInt(prompt("Nhập số cần tính giai thừa"));
+    let ketQua = 1;
+
+    function tinhToan(so) {
+        for (let i = 1; i <= so; i++) {
+            ketQua = ketQua   * i ;
+        }return ketQua;
+    }
+    document.write("Kết quả là " + tinhToan(giaiThua));
+</script>
+</body>
+</html>

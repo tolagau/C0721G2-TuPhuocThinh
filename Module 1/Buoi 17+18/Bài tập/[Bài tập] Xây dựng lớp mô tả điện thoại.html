@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Phone {
+        constructor(namePhone, pin, status) {
+            this.namePhone = namePhone;
+            this.pin = pin;
+            this.status = status;
+            this.thuDen = [];
+            this.daGui = [];
+            this.soanThao = [];
+        }
+
+        isStatusPhone() {
+            this.pin--;
+            return this.status;
+        }
+
+        onPhone() {
+            this.status = true;
+            this.pin--;
+        }
+
+        offPhone() {
+            this.pin--;
+            this.status = false;
+        }
+
+        sacPinPhone() {
+            while (this.pin <= 100) {
+                this.pin = this.pin + 0.01;
+            }
+        }
+
+        soanMess(phone) {
+            if (this.status == true) {
+                let mess = prompt("Mời bàn nhập tin nhắn: ");
+                this.pin--;
+                //Yêu cầu là hiển thị 1 dòng thông báo là bạn có muốn gửi tin
+                //nhắn hiện tại hay không?
+
+                if (confirm("Bạn có muốn gửi tin nhắn không? ") == true) {
+
+                    this.daGui.push("Đã gửi tin đến tên điện thoại: " + phone.namePhone + ",với lời nhắn: " + mess);
+                    console.log(this.daGui)
+                    //this.inboxMess(phone.namePhone, mess);
+                    phone.thuDen.push("Tên điện thoại: " + this.namePhone + " đã gửi tin" +
+                        "lời nhắn: " + mess)
+                } else {
+                    this.soanThao.push(mess);
+                    console.log("Xem soan thao1 " + this.soanThao);
+                }
+            } else alert("Điện thoại đang tắt");
+
+        }
+
+        // inboxMess(phoneName, mess) {
+        //     if (this.status == true) {
+        //         this.thuDen.push("Tên điện thoại: " + phoneName + " đã gửi tin" +
+        //             "lời nhắn: " + mess)
+        //         console.log(this.thuDen);
+        //         console.log(phoneName);
+        //         console.log(mess);
+        //         this.pin--;
+        //     } else alert("Điện thoại đang tắt");
+        //
+        // }
+
+        sentMess(phone) {
+            if (this.status == true) {
+                let data = "";
+                for (let i = 0; i < this.soanThao.length; i++) {
+                    data += i + ": " + this.soanThao[i];
+                }
+                let index = parseInt(prompt(data));
+                this.daGui.push("Đã gửi tin đến tên điện thoại: " + phone.namePhone + ",với lời nhắn: " + this.soanThao[index]);
+                console.log(this.daGui);
+                //Từ khóa this sẽ cho phép chúng ta truyền đi đối tượng hiện tại vào
+                // phương thức
+                phone.thuDen.push(this.namePhone + this.soanThao[index]);
+                this.soanThao.splice(index, 1);
+                console.log("Xem soan thao2" + this.soanThao);
+
+            } else alert("Điện thoại đang tắt");
+        }
+
+        xemTndagui() {
+            for (let i = 0; i < this.daGui.length; i++) {
+                console.log("Tin nhawns ddax gui" + this.daGui[i]);
+            }
+        }
+
+        xemHTD() {
+            for (let i = 0; i < this.thuDen.length; i++) {
+                console.log("hop thu den t2" + this.thuDen[i]);
+            }
+        }
+
+        //yêu cầu hoàn thiện
+        //Viết phương thức xem tin nhắn đã gửi và hộp thư đến?
+        //Các chức năng không thể hoạt động nếu điện thoại chưa bật.
+        //Yêu cầu là hiển thị 1 dòng thông báo là bạn có muốn gửi tin nhắn hiện tại hay không?
+    }
+
+    let dienThoai1 = new Phone("Nokia N95", 10, true);
+    let dienThoai2 = new Phone("Samsung S10", 10, true);
+    dienThoai1.soanMess(dienThoai2);
+    dienThoai2.xemHTD();
+    dienThoai1.xemTndagui();
+    dienThoai1.soanMess(dienThoai2);
+    dienThoai1.sentMess(dienThoai2);
+   //dienThoai1.xemHTD();
+    dienThoai2.xemHTD();
+    dienThoai1.xemTndagui();
+    </script>
+</body>
+</html>

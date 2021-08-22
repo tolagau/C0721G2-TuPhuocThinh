@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class HinhChuNhat {
+        constructor(chieuDai, chieuRong) {
+            this.chieuDai = chieuDai;
+            this.chieuRong = chieuRong;
+        }
+
+        getchieuDai() {
+            return this.chieuDai;
+        }
+
+        getchieuRong() {
+            return this.chieuRong;
+        }
+
+        getDienTich() {
+            return this.chieuDai * this.chieuRong;
+        }
+
+        getChuVi() {
+            return (this.chieuDai + this.chieuRong) * 2
+        }
+
+        setchieuDai(chieuDai) {
+             this.chieuDai = chieuDai ;
+        }
+
+        setchieuRong(chieuRong) {
+             this.chieuRong = chieuRong;
+        }
+
+    }
+
+    let chuNhat = new HinhChuNhat(10, 20);
+    let dienTich = chuNhat.getDienTich();
+    let chuVi = chuNhat.getChuVi();
+    document.write("Diện tích: " + dienTich + " " + "Chu vi: " + chuVi + "<br>");
+    chuNhat.setchieuDai(3);
+    chuNhat.setchieuRong(5);
+    dienTich = chuNhat.getDienTich()
+    chuVi = chuNhat.getChuVi()
+    document.write("Diện tích: " + dienTich + " " + "Chu vi: " + chuVi + "<br>");
+</script>
+</body>
+</html>

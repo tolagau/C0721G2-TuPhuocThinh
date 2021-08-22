@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let banKinh = parseInt(prompt("Nhập vào bán kính hình tròn"));
+        let ketQua =0;
+        function dienTich() {
+            ketQua = banKinh ** 2 * 3.14;
+            return ketQua;
+        }
+        dienTich()
+        function chuVi() {
+            ketQua = banKinh*2 * 3.14;
+            return ketQua;
+        }
+        chuVi()
+        document.write("Diện tích hình tròn: " + " "+ dienTich() + " "+"Bán kính hình tròn: " + " "+ chuVi());
+    </script>
+</body>
+</html>

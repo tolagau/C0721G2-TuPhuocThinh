@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class NhietDo {
+        constructor(doC, doF) {
+            this.doC = doC;
+            this.doF = doF;
+        }
+
+        getCsangF() {
+            return 9 / 5 * this.doC + 32;
+        }
+
+        getFsangK() {
+            return this.doF - 32;
+        }
+    }
+
+    let a = new NhietDo(25)
+    alert("Độ C sang độ F: " + a.getCsangF())
+    alert("Độ F sang Độ K: " + (a.getCsangF() - 32))
+</script>
+</body>
+</html>

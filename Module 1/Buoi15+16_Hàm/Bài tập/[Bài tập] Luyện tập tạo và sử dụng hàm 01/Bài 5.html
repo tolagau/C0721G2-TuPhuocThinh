@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        let tenSao = ['Polaris', 'Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe','Regulus'];
+        let chomSao = ['Ursa' ,'Minor', 'Tarurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major', 'Leo'];
+        function soSanh(name) {
+            for (let i = 0; i < tenSao.length; i++){
+                if (tenSao[i] == name){
+                    return alert(" Tên ngôi sao" + " "+ name +" "+ "Thuộc chòm sao " + chomSao );
+                }
+            }
+            return alert("sai")
+        }
+        let nhapTen = prompt("Nhập tên");
+        soSanh(nhapTen);
+
+    </script>
+</body>
+</html>
