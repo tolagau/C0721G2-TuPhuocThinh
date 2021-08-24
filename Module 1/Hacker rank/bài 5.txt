@@ -1,0 +1,67 @@
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', function(inputStdin) {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+/*
+ * Complete the 'plusMinus' function below.
+ *
+ * The function accepts INTEGER_ARRAY arr as parameter.
+ */
+
+function plusMinus(arr) {
+    // Write your code here
+    let posNum = 0;
+    let negNum = 0;
+    let zero = 0;
+    let ratPos = 0;
+    let ratNeg =0;
+    let ratZero =0;
+
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] > 0) {
+            posNum++;
+        }
+        else if(arr[i] <0) {
+            negNum++;
+        }
+
+        else{
+            zero++;
+        }
+
+
+    }
+    ratPos = posNum/arr.length;
+    ratNeg = negNum/arr.length;
+    ratZero = zero/arr.length;
+    console.log(ratPos)
+    console.log(ratNeg)
+    console.log(ratZero)
+
+}
+
+function main() {
+    const n = parseInt(readLine().trim(), 10);
+
+    const arr = readLine().replace(/\s+$/g, '').split(' ').map(arrTemp => parseInt(arrTemp, 10));
+
+    plusMinus(arr);
+}
