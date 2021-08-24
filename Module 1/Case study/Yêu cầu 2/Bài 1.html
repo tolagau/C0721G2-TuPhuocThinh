@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let nhapluong = parseInt(prompt("Nhập số tiền lương chưa thuế:"));
+        let luongSauthue;
+        if (nhapluong >= 15000000){
+            luongSauthue = nhapluong * 0.2;
+            luongSauthue = nhapluong - luongSauthue;
+        }else if (nhapluong >= 7000000 && nhapluong <15000000){
+            luongSauthue = nhapluong * 0.1;
+            luongSauthue = nhapluong - luongSauthue;
+        }else {
+            luongSauthue = nhapluong * 0.05;
+            luongSauthue = nhapluong - luongSauthue;
+        }
+        alert("Thu nhập sau khi đóng thuế là: " + luongSauthue);
+    </script>
+</body>
+</html>

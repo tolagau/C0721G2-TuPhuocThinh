@@ -8,7 +8,7 @@
 <script>
     class Apple {
         constructor(weight) {
-            this.weight = 10;
+            this.weight = weight;
         }
 
         decrease() {
@@ -39,7 +39,7 @@
         isMale() {
             if (this.gender == "Male") {
                 return true;
-            } else return false;
+            } else {return false};
         }
 
         setGender(gender) {
@@ -60,7 +60,7 @@
         }
 
         say(String) {
-
+            console.log(this.name + " " + String)
         }
 
         getName(name) {
@@ -80,7 +80,13 @@
         }
 
     }
-
+    let apple = new Apple(10);
+    let human1 = new Human("Adam", true, 80);
+    let human2 = new Human("Eva", false, 50);
+    for (i = 1; i <100; i++) {
+        human1.eat(apple);
+        human2.eat(apple);
+    }
 </script>
 </body>
 </html>

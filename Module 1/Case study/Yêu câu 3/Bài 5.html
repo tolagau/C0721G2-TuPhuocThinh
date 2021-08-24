@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let menu = ["Cafe","Cam vắt", "Nước ép cà rốt", "Nước ép cà chua ", "Nước lọc","Nước dừa"];
+        let giaTien = [10,20,30,40,50,60];
+        alert("Mời chọn đồ uống: "+ menu);
+        let chonMon;
+            do {
+                chonMon = parseInt(prompt("Mời chọn món: ")); //3
+                alert("Giá tiền của món bạn chọn: "+giaTien[chonMon]);
+                let soLuong = parseInt(prompt("Mời nhập số lượng món: "));
+                let thanhTien = giaTien[chonMon] * soLuong;
+                               alert("Số lượng món bạn chọn là : "+ soLuong +"<br>"+"Giá tiền phải thanh toán là: " +thanhTien);
+            }while (chonMon < 7)
+
+
+    </script>
+</body>
+</html>

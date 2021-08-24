@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let mang = [1,2,3,4];
+        // for (let i = 0; i < 10; i++) {
+        //     let nhapMang = parseInt(prompt("Nhập giá trị của mảng:"))
+        //     mang[i] = nhapMang;
+        // }
+        let arr = [];
+       // document.write("Giá trị của mảng bạn vừa nhập" + mang + "<br>");
+        for (let i = 0; i < mang.length;i++){
+            switch (mang[i]) {
+                case 1: arr.push("Một");break;
+                case 2:  arr.push("Hai");break;
+                case 3: arr.push("Ba");break;
+                case 4: arr.push("Bốn"); break;
+            }
+        }
+        console.log(arr);
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Congtacvabongden</title>
+</head>
+<body>
+<script>
+    class SwitchButton{
+        constructor(status,lamp) {
+            this.status = false;
+            this.lamp = null;
+        }
+        connectToLamp(ElectricLamp){
+            this.lamp = ElectricLamp;
+        }
+        switchOff(){
+            this.status = false;
+            this.lamp.turnOff();
+        }
+        switchOn(){
+            this.status = true;
+            this.lamp.turnOn();
+        }
+    }
+    class ElectricLamp{
+        constructor() {
+            this.status = false;
+        }
+        turnOn(){
+            this.status = true;
+        }
+        turnOff(){
+            this.status = false;
+        }
+    }
+    var a = new ElectricLamp()
+    var b = new SwitchButton()
+    b.connectToLamp(a);
+    alert(a.status);
+    b.switchOn()
+    alert("Bật")
+    b.switchOff()
+    alert("Tắt")
+    b.switchOn()
+    alert("Bật")
+    b.switchOff()
+    alert("Tắt")
+    b.switchOn()
+    alert("Bật")
+    b.switchOff()
+    alert("Tắt")
+    b.switchOn()
+    alert("Bật")
+    b.switchOff()
+    alert("Tắt")
+    b.switchOn()
+    alert("Bật")
+    b.switchOff()
+    alert("Tắt")
+
+
+</script>
+
+</body>
+</html>

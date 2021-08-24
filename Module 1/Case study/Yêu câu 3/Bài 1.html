@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let manga = [1,2,3,4,5,6,7,8,9,10];
+        let prefixSums = [];
+        let sum = 0;
+        for (let i = 0; i<manga.length;i++){
+            sum += manga[i];
+            prefixSums.push(sum);
+        }
+        document.write("[" + prefixSums + "]");
+
+    </script>
+</body>
+</html>
