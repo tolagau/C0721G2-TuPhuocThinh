@@ -5,11 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-    <script>
-        let chuoi = [];
-        for (let i = 0; i < chuoi.length;i++){
+<script>
+    let str = "Tu    pHuOc    THInH";
 
-        }
-    </script>
+    let a = str.replace(/(^\w|\s\w)(\S*)/g, (_, m1, m2) => m1.toUpperCase() + m2.toLowerCase());
+    // ^\w : ký tự đầu tiên của chuỗi
+    // | hoặc là
+    // \s\w ký tự đầu tiên sau khoảng trắng
+    // (^\w|\s\w) chụp mẫu
+    // g cờ: khớp tất cả các lần xuất hiện.
+
+    a = a.trim().replace(/\s+/g, ' ');
+    console.log(a);
+</script>
 </body>
 </html>

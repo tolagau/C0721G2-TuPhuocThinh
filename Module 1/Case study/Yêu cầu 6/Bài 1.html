@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <button id="muaVe" onclick="xuLyMuaVe()">Mua vé</button>
+    <button id="ranDom" onclick="xuLyRandom()">Random Vé</button>
+    <button id="ketQua" onclick="xuLyKetQua()">Xem kết quả</button>
+</form>
+<script>
+    class VeSo {
+        constructor(so1, so2, so3, so4, so5, so6) {
+            this.so1 = so1;
+            this.so2 = so2;
+            this.so3 = so3;
+            this.so4 = so4;
+            this.so5 = so5;
+            this.so6 = so6;
+        }
+
+        getSo1() {
+            return this.so1;
+        }
+
+        getSo2() {
+            return this.so2;
+        }
+
+        getSo3() {
+            return this.so3;
+        }
+
+        getSo4() {
+            return this.so4;
+        }
+
+        getSo5() {
+            return this.so5;
+        }
+
+        getSo6() {
+            return this.so6;
+        }
+    }
+
+    class XuLyVeSo {
+        constructor(ketQua) {
+            this.ketQua = ketQua;
+            this.allVeso = [];
+        }
+
+        setAllVeso(veSo) {
+            this.allVeso.push(veSo);
+        }
+
+        soSanh() {
+            let count = 0;
+            let mang = [];
+            for (let i = 0; i < this.allVeso.length; i++) {
+                for (let j = 0; j < this.ketQua.length; j++) {
+                    console.log(this.allVeso[0].getSo1());
+                    if (this.ketQua[i] == this.allVeso[j].getSo1()) {
+                        count++;
+                    }
+                    if (this.ketQua[i] == this.allVeso[j].getSo2()) {
+                        count++;
+                    }
+                    if (this.ketQua[i] == this.allVeso[j].getSo3()) {
+                        count++;
+                    }
+                    if (this.ketQua[i] == this.allVeso[j].getSo4()) {
+                        count++;
+                    }
+                    if (this.ketQua[i] == this.allVeso[j].getSo5()) {
+                        count++;
+                    }
+                    if (this.ketQua[i] == this.allVeso[j].getSo6()) {
+                        count++;
+                    }
+
+                }
+                switch (count) {
+                    case 6:
+                        // console.log("Bạn trúng giải nhất");
+                        mang[0]++;
+                        break;
+                    case 5:
+                        // console.log("Bạn trúng gải 2");
+                        mang[1]++;
+                        break;
+                    case 4:
+                        // console.log("Bạn trúng giải 3");
+                        mang[2]++;
+                        break;
+                }
+                if (mang[i] > 0) {
+                    console.log("Giải 1" + "Có" + mang[0])
+                }
+                if (mang[i] > 0) {
+                    console.log("Giải 2" + "Có giải nhì" + mang[1])
+                }
+                if (mang[i] > 0) {
+                    console.log("Giải 3" + "Có mấy " + mang[2])
+                }
+
+            }
+
+
+        }
+    }
+
+    let ketQua = [1, 2, 3, 4, 5, 6];
+    let xulyveso = new XuLyVeSo(ketQua);
+    //  let soLan = parseInt(prompt("Nhập số lần bạn muốn mua vé: "));
+    // // for (let i = 0; i < soLan; i++) {
+    //      let so1 = parseInt(prompt("Nhập cặp1 số 0 - 99: "));
+    //      let so2 = parseInt(prompt("Nhập cặp2 số 1 - 100: "));
+    //      let so3 = parseInt(prompt("Nhập cặp3 số 1 - 100: "));
+    //      let so4 = parseInt(prompt("Nhập cặp4 số 1 - 100: "));
+    //      let so5 = parseInt(prompt("Nhập cặp5 số 1 - 100: "));
+    //      let so6 = parseInt(prompt("Nhập cặp số6 1 - 100: "));
+    //      let veSo = new VeSo(so1, so2, so2, so3, so4, so5, so6);
+    //      xulyveso.setAllVeso(veSo);
+    //      console.log(veSo);
+    //      console.log(xulyveso);
+    // // }
+    let veSo1 = new VeSo(1, 2, 3, 4, 5, 6);
+    let veSo2 = new VeSo(7, 2, 3, 4, 5, 6);
+    let veSo3 = new VeSo(7, 8, 3, 4, 5, 6,);
+
+    xulyveso.setAllVeso(veSo1);
+    xulyveso.setAllVeso(veSo2);
+    xulyveso.setAllVeso(veSo3);
+    console.log(xulyveso);
+    xulyveso.soSanh();
+
+</script>
+</body>
+</html>

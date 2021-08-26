@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getSum(m, n) {
+        let arr = [];
+        for (let i = 0; i < m; i++) {
+            arr[i] = []
+            for (let j = 0; j < n; j++) {
+                let value = parseInt(prompt("nhập phần tử tại vị trí " + i + j));
+                arr[i][j] = value;
+            }
+        }
+        console.log(arr);
+        let flag = true;
+        let sum = 0;
+        for (let i = 0; i < m; i++) {
+            for (let j = 0; j < n; j++) {
+                if (arr[i][j] < 2) {
+                    flag = false;
+                } else {
+                    for (let x = 2; x < arr[i][j].length; x++) {
+                        if (arr[i][j] % 2 == 0) {
+                            flag = false
+                            break;
+                        } else {
+                            flag = true;
+                        }
+                    }
+
+                }
+                if (flag || arr[i][j] == 2) {
+                    sum++
+            }
+            }
+        }
+        console.log(sum);
+        return sum;
+
+    }
+
+    console.log(getSum(2, 3));
+
+</script>
+</body>
+</html>
