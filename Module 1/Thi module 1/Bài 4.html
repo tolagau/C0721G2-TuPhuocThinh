@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<label>Mã điện thoại</label>
+<input id="ma">
+<label>Tên điện thoại </label>
+<input id="ten">
+<label>Hãng điện thoại </label>
+<input id="hang">
+<label>Giá điện thoại </label>
+<input id="gia">
+<button onclick="themDT()">Thêm mới</button>
+<div id="hienthi"></div>
+<body>
+<script>
+    class DienThoai {
+        constructor(maDT, tenDT, hangDT, gia) {
+            this.maDT = maDT;
+            this.tenDT = tenDT;
+            this.hangDT = hangDT;
+            this.gia = gia;
+        }
+
+        getmaDT() {
+            return this.maDT;
+        }
+
+        gettenDT() {
+            return this.tenDT;
+        }
+
+        gethangDT() {
+            return this.hangDT;
+        }
+
+        getgia() {
+            return this.gia;
+        }
+
+        setmaDT(value) {
+            this.maDT = value;
+        }
+
+        settenDT(value) {
+            this.tenDT = value;
+        }
+
+        sethangDT(value) {
+            this.hangDT = value;
+        }
+
+        setgia(value) {
+            this.gia = value;
+        }
+    }
+
+    function themDT() {
+        let maDT = document.getElementById("ma").value;
+        document.getElementById("ma").value = "";
+        let tenDT = document.getElementById("ten").value;
+        document.getElementById("ten").value = "";
+        let hangDT = document.getElementById("hang").value;
+        document.getElementById("hang").value = "";
+        let giaDT = document.getElementById("gia").value;
+        document.getElementById("gia").value = "";
+        dienThoai.push(new DienThoai(maDT, tenDT, hangDT, parseInt(giaDT)));
+        hienThi();
+    }
+
+    function hienThi() {
+        let duLieu = "";
+        duLieu += "<table border='1'>";
+        duLieu += "<tr><th>Mã điện thoại</th><th>Tên điện thoại</th><th>Hãng điện thoại</th><th>Giá điện thoại</th></tr>";
+        for (let i = 0; i < dienThoai.length; i++) {
+            duLieu += "<tr>"
+            duLieu += "<td>" + dienThoai[i].maDT + "</td>";
+            duLieu += "<td>" + dienThoai[i].tenDT + "</td>";
+            duLieu += "<td>" + dienThoai[i].hangDT + "</td>";
+            duLieu += "<td>" + dienThoai[i].gia + "</td>";
+            duLieu += "</tr>"
+        }
+        duLieu += "</table>";
+        document.getElementById("hienthi").innerHTML = duLieu;
+        sapXep(dienThoai[i].tenDT)
+    }
+
+    function sapXep(mang) {
+        mang.sort()
+
+    }
+
+    let dienThoai = [];
+    dienThoai.push(new DienThoai("001", "Iphone Xs Max", "Apple", 10000));
+    dienThoai.push(new DienThoai("003", "Samsung S21", "Samsung", 11000));
+    dienThoai.push(new DienThoai("004", "Huawei 5G", "Huawei", 5000));
+    dienThoai.push(new DienThoai("002", "Nokia N95", "Nokia", 15000));
+    dienThoai.push(new DienThoai("006", "Nokia M900", "Nokia", 18000));
+    dienThoai.push(new DienThoai("005", "Iphone 8", "Apple", 7000));
+    hienThi();
+
+</script>
+</body>
+</html>

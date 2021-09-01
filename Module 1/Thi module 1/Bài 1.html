@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mangSo = [];
+    for (let i = 0; i < 20; i++) {
+        let nhapMang = parseInt(prompt("Nhập giá trị của mảng:" + i));
+        mangSo[i] = nhapMang;
+    }
+    document.write("Giá trị của mảng bạn vừa nhập" + mangSo + "<br>");
+    let tongSoChan = 0;
+    let tongSoLe = 0;
+    let ketQua = 0;
+    for (let i = 0; i < mangSo.length; i++) {
+        if (mangSo[i] % 2 == 0) {
+            tongSoChan += mangSo[i];
+        }
+    }
+       for (let i = 0; i < mangSo.length; i++) {
+        if (mangSo[i] % 2 != 0) {
+            tongSoLe += mangSo[i];
+        }
+    }
+    ketQua = tongSoChan - tongSoLe;
+       document.write("kết quả theo đề bài là: " + ketQua);
+</script>
+</body>
+</html>
