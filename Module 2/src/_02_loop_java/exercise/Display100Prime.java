@@ -2,7 +2,7 @@ package _02_loop_java.exercise;
 
 public class Display100Prime {
     public static void main(String[] args) {
-        int cout = 0;
+
         int n = 2;
         String temp = "";
         while (n < 100) {
@@ -15,7 +15,6 @@ public class Display100Prime {
             }
             if (flag) {
                 temp += n + ",";
-                cout++;
             }
             n++;
         }
