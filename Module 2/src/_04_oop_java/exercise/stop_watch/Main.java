@@ -12,9 +12,18 @@ public class Main {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int) Math.floor(((Math.random() * 100000) + 1));
         }
-        Arrays.sort(arr);
-        System.out.printf(Arrays.toString(arr)+"\n");
-        watch.stop();
-        System.out.println("Elapsed "+watch.getElapsedTime());
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[i]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            watch.stop();
+            System.out.printf(Arrays.toString(arr) + "\n");
+
+            System.out.println("Elapsed " + watch.getElapsedTime());
+        }
     }
 }

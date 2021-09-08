@@ -1,9 +1,9 @@
 package _04_oop_java.exercise.class_fan;
 
 public class ClassFan {
-    final int SLOW = 1;
-    final int MEDIUM = 2;
-    final int FAST = 3;
+    public static final int SLOW = 1;
+   public static final int MEDIUM = 2;
+   public static final int FAST = 3;
     int speed = SLOW;
     boolean onOf = false;
     double radius = 5;
@@ -16,17 +16,7 @@ public class ClassFan {
         this.color = color;
     }
 
-    public int getSLOW() {
-        return SLOW;
-    }
 
-    public int getMEDIUM() {
-        return MEDIUM;
-    }
-
-    public int getFAST() {
-        return FAST;
-    }
 
     public int getSpeed() {
         return speed;
