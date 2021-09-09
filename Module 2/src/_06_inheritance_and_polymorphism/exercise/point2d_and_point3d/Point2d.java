@@ -1,4 +1,4 @@
-package _06_inheritance_and_polymorphism.point2d_and_point3d;
+package _06_inheritance_and_polymorphism.exercise.point2d_and_point3d;
 
 public class Point2d {
     private float x = 0.0f;
@@ -35,8 +35,8 @@ public class Point2d {
 
     public float[] getXY() {
         float[] arr = new float[2];
-        x = arr[0];
-        y = arr[1];
+        arr[0] = x;
+        arr[1] = y;
         return arr;
     }
 

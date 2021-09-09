@@ -1,8 +1,9 @@
 package _06_inheritance_and_polymorphism.exercise.circle_and_cylinder;
 
-public class Cylinder extends Circle{
+public class Cylinder extends Circle {
     private double height = 1.0;
-    public Cylinder(){
+
+    public Cylinder() {
 
     }
 
@@ -22,15 +23,16 @@ public class Cylinder extends Circle{
     public void setHeight(double height) {
         this.height = height;
     }
-    public double volume(){
-        return height*Math.pow(getRadius(),getRadius())*Math.PI;
+
+    public double volume() {
+        return height * Math.pow(getRadius(), 2) * Math.PI;
     }
 
     @Override
     public String toString() {
         return "Cylinder{" +
                 "height=" + height +
-                "Volume="+ volume()+
+                "Volume=" + volume() +
                 '}';
     }
 }
