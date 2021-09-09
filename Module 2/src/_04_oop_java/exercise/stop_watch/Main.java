@@ -10,7 +10,7 @@ public class Main {
         int[] arr = new int[100000];
         System.out.println("Creat array");
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) Math.floor(((Math.random() * 100000) + 1));
+            arr[i] = (int) ((Math.random() * 100000));
         }
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
@@ -20,10 +20,10 @@ public class Main {
                     arr[j] = temp;
                 }
             }
-            watch.stop();
-            System.out.printf(Arrays.toString(arr) + "\n");
-
-            System.out.println("Elapsed " + watch.getElapsedTime());
         }
+
+        System.out.printf(Arrays.toString(arr) + "\n");
+        watch.stop();
+        System.out.println("Elapsed " + watch.getElapsedTime());
     }
 }
