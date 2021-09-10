@@ -56,11 +56,10 @@ public class MoveablePoint extends Point {
                 '}';
     }
 
-    public float[] move() {
+    public MoveablePoint move() {
+        this.setX(this.getX()+xSpeed);
+        this.setY(this.getY()+ySpeed);
+        return this;
 
-        float a = getSpeed()[0] + super.getXY()[0];
-        float b = getSpeed()[1] + super.getXY()[1];
-        float[] arr = {a, b};
-        return arr;
     }
 }
