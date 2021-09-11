@@ -1,13 +1,12 @@
 package _06_inheritance_and_polymorphism.exercise.circle_and_cylinder;
 
 public class Circle {
-    private double radius = 1.0;
-    private String color = "red";
-    private double area =0.0;
+    public double radius = 1.0;
+    public String color = "red";
+    public double area =0.0;
 
     public Circle() {
     }
-
     public Circle(double radius, String color) {
         this.radius = radius;
         this.color = color;

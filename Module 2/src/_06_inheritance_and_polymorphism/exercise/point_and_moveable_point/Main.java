@@ -8,7 +8,7 @@ public class Main {
         move.setXY(10, 13);
         System.out.println(move.getXY()[0] + " " + move.getXY()[1]);
         System.out.println(move.getSpeed()[0] + " " + move.getSpeed()[1]);
-        System.out.println(move.move()[0] + " " + move.move()[1]);
+       // System.out.println(MoveablePoint.move.[0] + " " + MoveablePoint.move[1]);
         System.out.println(move.toString());
     }
 }
