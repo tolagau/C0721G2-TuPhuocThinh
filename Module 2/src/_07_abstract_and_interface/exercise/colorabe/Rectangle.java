@@ -1,6 +1,6 @@
 package _07_abstract_and_interface.exercise.colorabe;
 
-public class Rectangle extends Shape implements IColorabe {
+public class Rectangle extends Shape  {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -52,8 +52,5 @@ public class Rectangle extends Shape implements IColorabe {
                 + super.toString();
     }
 
-    @Override
-    public void howToColor() {
 
-    }
 }

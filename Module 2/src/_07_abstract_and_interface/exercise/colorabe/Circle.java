@@ -1,6 +1,6 @@
 package _07_abstract_and_interface.exercise.colorabe;
 
-public class Circle extends Shape implements IColorabe{
+public class Circle extends Shape {
     private double radius = 1.0;
 
     public Circle() {
@@ -38,8 +38,5 @@ public class Circle extends Shape implements IColorabe{
                 + ", which is a subclass of "
                 + super.toString();
     }
-    @Override
-    public void howToColor() {
 
-    }
 }

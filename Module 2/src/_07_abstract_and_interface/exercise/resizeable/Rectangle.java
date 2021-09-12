@@ -1,6 +1,6 @@
 package _07_abstract_and_interface.exercise.resizeable;
 
-public class Rectangle extends Shape implements IResizeable{
+public class Rectangle extends Shape implements IResizeable {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -54,7 +54,7 @@ public class Rectangle extends Shape implements IResizeable{
 
     @Override
     public void resize(double percent) {
-        setLength(getLength()*(percent/100));
-        setWidth(getWidth()*(percent/100));
+        setWidth(getWidth() *(1+percent/100));
+        setLength(getLength()*(1+percent/100));
     }
 }

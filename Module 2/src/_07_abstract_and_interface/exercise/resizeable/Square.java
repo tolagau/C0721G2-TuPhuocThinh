@@ -22,16 +22,6 @@ public class Square extends Rectangle implements IResizeable {
     }
 
     @Override
-    public void setWidth(double width) {
-        setSide(width);
-    }
-
-    @Override
-    public void setLength(double length) {
-        setSide(length);
-    }
-
-    @Override
     public String toString() {
         return "A Square with side="
                 + getSide()
@@ -40,7 +30,7 @@ public class Square extends Rectangle implements IResizeable {
     }
 
     public void resize(double percent) {
-        setSide(getLength() * (percent / 100));
-        setSide(getWidth() * (percent / 100));
+        setSide(getLength() * (1 + percent / 100));
+        setSide(getWidth() * (1 + percent / 100));
     }
 }
