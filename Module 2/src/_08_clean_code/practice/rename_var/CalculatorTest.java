@@ -1,5 +1,6 @@
 package _08_clean_code.practice.rename_var;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class CalculatorTest {
         int expected = 2;
 
         int result = Calculator.calculate(firstOperand, secondOperand, operator);
-        assertEquals(expected, result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
@@ -32,7 +33,7 @@ public class CalculatorTest {
         int expected = 1;
 
         int result = Calculator.calculate(firstOperand, secondOperand, operator);
-        assertEquals(expected, result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class CalculatorTest {
         int expected = 4;
 
         int result = Calculator.calculate(firstOperand, secondOperand, operator);
-        assertEquals(expected, result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
@@ -56,7 +57,7 @@ public class CalculatorTest {
         int expected = 2;
 
         int result = Calculator.calculate(firstOperand, secondOperand, operator);
-        assertEquals(expected, result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
@@ -66,7 +67,7 @@ public class CalculatorTest {
         int secondOperand = 0;
         char operator = DIVISION;
 
-        assertThrows(RuntimeException.class,
+        Assertions.assertThrows(RuntimeException.class,
                 () -> {
                     Calculator.calculate(firstOperand, secondOperand, operator);
                 });
@@ -79,7 +80,7 @@ public class CalculatorTest {
         int secondOperand = 0;
         char operator = '=';
 
-        assertThrows(RuntimeException.class,
+        Assertions.assertThrows(RuntimeException.class,
                 () -> {
                     Calculator.calculate(firstOperand, secondOperand, operator);
                 });
