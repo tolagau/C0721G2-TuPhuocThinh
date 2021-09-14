@@ -19,6 +19,7 @@ public class Circle {
 
     public void setRadius(double radius) {
         this.radius = radius;
+        this.area = this.radius * this.radius * Math.PI;
     }
 
     public String getColor() {
