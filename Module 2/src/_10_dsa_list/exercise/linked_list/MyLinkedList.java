@@ -18,7 +18,7 @@ public class MyLinkedList<E> {
     private Node head;
     private int numberNode = 0;
 
-    public MyLinkedList() {
+    public MyLinkedList(int i) {
     }
 
     public int size() {
@@ -26,13 +26,13 @@ public class MyLinkedList<E> {
     }
 
     //trả về data theo index
-    public Object get(int index) {
-        Node temp = head;
-        for (int i = 0; i < index; i++) {
-            temp = temp.next;
-        }
-        return temp.data;
-    }
+//    public Object get(int index) {
+//        Node temp = head;
+//        for (int i = 0; i < index; i++) {
+//            temp = temp.next;
+//        }
+//        return temp.data;
+//    }
 
     //phương thức kiểm tra 1 phần tử có tồn tại trong ds hay không?
     public boolean contains(E element) {
@@ -132,7 +132,7 @@ public class MyLinkedList<E> {
         if (numberNode == 0) {
             throw new NullPointerException();
         }
-        MyLinkedList<E> temp = new MyLinkedList<E>();
+        MyLinkedList<E> temp = new MyLinkedList<E>(10);
         Node tempNode = head;
         temp.addFirst((E) tempNode.data);
         tempNode = tempNode.next;
