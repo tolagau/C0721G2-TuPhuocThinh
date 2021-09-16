@@ -26,7 +26,6 @@ public class ReverseIntAndStr {
         }
         return newString;
     }
-
     public static void main(String[] args) {
         int[] array = {1,5,3,5,6,7,23,4};
         reverseInt(array);
@@ -34,4 +33,5 @@ public class ReverseIntAndStr {
         String string = "TuThinh";
         System.out.println(reverseStr(string));
     }
+
 }
