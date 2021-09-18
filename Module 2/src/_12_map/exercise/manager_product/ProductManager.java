@@ -25,7 +25,7 @@ public class ProductManager extends Product {
         listSP.add(sp6);
     }
 
-    public static void add() {
+    public static void them() {
         System.out.printf("Nhập mã sản phẩm");
         int maSP = Integer.parseInt(scanner.nextLine());
         System.out.printf("Nhập tên sản phẩm");
@@ -44,7 +44,7 @@ public class ProductManager extends Product {
         }
     }
 
-    public static void delete() {
+    public static void xoa() {
         hienThi();
         System.out.printf("Nhập sản phẩm cần xóa theo id");
         int maSP = Integer.parseInt(scanner.nextLine());
@@ -55,13 +55,11 @@ public class ProductManager extends Product {
         }
     }
 
-    public static void edit() {
+    public static void sua() {
         hienThi();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập id sản phầm cần chỉnh sửa");
         int idEdit = Integer.parseInt(scanner.nextLine());
-        System.out.println("ID mới");
-        int maSP = Integer.parseInt(scanner.nextLine());
         System.out.println("Tên mới");
         String tenSP = scanner.nextLine();
         System.out.println("Giá tiền mới");
@@ -69,16 +67,17 @@ public class ProductManager extends Product {
         System.out.println("Hãng sản xuất mới");
         String hangSX = scanner.nextLine();
         for (int i = 0; i < listSP.size(); i++) {
-            if (listSP.get(i).getMaSP() == maSP) {
-                listSP.get(i).setMaSP(maSP);
+            if (listSP.get(i).getMaSP() == idEdit) {
+              //  listSP.get(i).setMaSP(maSP);
                 listSP.get(i).setTienSP(tienSP);
                 listSP.get(i).setTenSP(tenSP);
                 listSP.get(i).setHangSX(hangSX);
             }
         }
+        hienThi();
     }
 
-    public static void search() {
+    public static void timKiem() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập tên sản phẩm");
         String tenSP = scanner.nextLine();

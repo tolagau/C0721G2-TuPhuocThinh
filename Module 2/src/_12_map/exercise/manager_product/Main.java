@@ -18,18 +18,18 @@ public class Main {
                     "6. Sắp xếp tăng \n" +
                     "7 Sắp xếp giảm \n" +
                     "8. Thoát \n");
-            System.out.println("Enter your selection");
+            System.out.println("Mời nhập lựa chọn: ");
             int choose = Integer.parseInt(scanner.nextLine());
             switch (choose){
                 case 1: ProductManager.hienThi();
                 break;
-                case 2: ProductManager.add();
+                case 2: ProductManager.them();
                 break;
-               case 3: ProductManager.delete();
+               case 3: ProductManager.xoa();
                break;
-                case 4: productManager.edit();
+                case 4: productManager.sua();
                 break;
-                case 5: productManager.search();
+                case 5: productManager.timKiem();
                 break;
                 case 6: productManager.sapXepTang();
                 break;
