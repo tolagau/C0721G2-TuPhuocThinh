@@ -82,7 +82,7 @@ public class ProductManager extends Product {
         System.out.println("Nhập tên sản phẩm");
         String tenSP = scanner.nextLine();
         for (int i = 0; i < listSP.size(); i++) {
-            if (listSP.get(i).getTenSP().equals(tenSP)) {
+            if (listSP.get(i).getTenSP().contains(tenSP)) {
                 System.out.println(listSP.get(i));
             }
         }
