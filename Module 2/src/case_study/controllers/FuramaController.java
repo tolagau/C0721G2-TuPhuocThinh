@@ -1,8 +1,13 @@
 package case_study.controllers;
 
+import case_study.models.Employee;
+import case_study.services.BookingServiceImpl;
+import case_study.services.EmployeeServiceImpl;
+
 import java.util.Scanner;
 
 public class FuramaController {
+    static EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     public static void hamPhu(String str) {
         System.out.println(str);
     }
@@ -23,7 +28,8 @@ public class FuramaController {
             choose = Integer.parseInt(scanner.nextLine());
             switch (choose) {
                 case 1: {
-                    do {
+                    boolean flag1 = true;
+                    while (flag1){
                         hamPhu("Employee Mangement            ");
                         hamPhu("*----------------------------*");
                         hamPhu("1. Display list employees     ");
@@ -32,7 +38,17 @@ public class FuramaController {
                         hamPhu("4. Return main menu           ");
                         hamPhu("Mời nhập lựa chọn             ");
                         choose1 = Integer.parseInt(scanner.nextLine());
-                    } while (choose1 < 1 || choose1 > 4);
+                        switch (choose1){
+                            case 1: employeeService.hienThi();
+                            break;
+                            case 2: employeeService.them();
+                            break;
+                           case 3:employeeService.sua();
+                           break;
+                            case 4: flag1 = false;
+                        }
+                    }
+                    break;
                 }
                 case 2: {
                     do {

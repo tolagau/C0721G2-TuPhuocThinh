@@ -1,36 +1,16 @@
 package case_study.models;
 
 public class Customer extends Person{
-    private int maKH;
     private String loaiKH;
     private String diaChi;
-
-    public Customer(String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email) {
-        super(hoTen, ngaySinh, gioiTinh, soCMND, soDT, email);
-    }
 
     public Customer() {
     }
 
-    public Customer(String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email, int maKH, String loaiKH, String diaChi) {
-        super(hoTen, ngaySinh, gioiTinh, soCMND, soDT, email);
-        this.maKH = maKH;
+    public Customer(int ma, String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email, String loaiKH, String diaChi) {
+        super(ma, hoTen, ngaySinh, gioiTinh, soCMND, soDT, email);
         this.loaiKH = loaiKH;
         this.diaChi = diaChi;
-    }
-
-    public Customer(int maKH, String loaiKH, String diaChi) {
-        this.maKH = maKH;
-        this.loaiKH = loaiKH;
-        this.diaChi = diaChi;
-    }
-
-    public int getMaKH() {
-        return maKH;
-    }
-
-    public void setMaKH(int maKH) {
-        this.maKH = maKH;
     }
 
     public String getLoaiKH() {
@@ -47,5 +27,20 @@ public class Customer extends Person{
 
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "Mã nhân viên=" + getMa() +
+                ", Họ tên nhân viên='" + getHoTen() +
+                ", Ngày sinh='" + getNgaySinh() +
+                ", Giới tính='" + getGioiTinh() +
+                ", Số CMND=" + getSoCMND() +
+                ", Số điện thoại=" + getSoDT() +
+                ", email='" + getEmail() +
+                "Loại khách hàng='" + loaiKH + '\'' +
+                ", Địa chỉ='" + diaChi + '\'' +
+                '}';
     }
 }
