@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class EmployeeServiceImpl extends Employee implements IEmployeeService {
     Scanner scanner = new Scanner(System.in);
     private static ArrayList<Employee> listEmployee = new ArrayList<>();
-
     static {
         Employee emp1 = new Employee(1001, "Nguyễn Văn A", "15/02/1998", "Nam",
                 21232578, 91440079, "a.mail@gmail.com", "Cao đẳng", "Nhân viên", 5000000);

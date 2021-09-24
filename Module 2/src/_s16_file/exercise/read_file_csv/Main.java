@@ -1,51 +1,41 @@
 package _s16_file.exercise.read_file_csv;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        BufferedReader br = null;
+        Country country = new Country();
+        ArrayList<Country> list = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập địa chỉ file");
+        String filePath = scanner.nextLine();
         try {
-            String line;
-            br = new BufferedReader(new FileReader("src\\_s16_file\\exercise\\read_file_csv\\test.csv"));
-
-            while ((line = br.readLine()) != null) {
-                printCountry(parseCsvLine(line));
+            File file = new File(filePath);
+            if (!file.exists()) {
+                throw new FileNotFoundException();
             }
-
+            FileReader fileReader = new FileReader(file);
+            String line = "";
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] temp = new String[1];
+                temp = line.split(",");
+                country = new Country(Integer.parseInt(temp[0]), temp[1], temp[2]);
+                list.add(country);
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-    }
-    public static List<String> parseCsvLine(String csvLine) {
-        List<String> result = new ArrayList<>();
-        if (csvLine != null) {
-            String[] splitData = csvLine.split(",");
-            for (int i = 0; i < splitData.length; i++) {
-                result.add(splitData[i]);
-            }
+        System.out.println("Xuất từ file csv: ");
+        for (Country countries : list) {
+            System.out.println(countries.toString());
         }
-        return result;
-    }
-
-    private static void printCountry(List<String> country) {
-        System.out.println(
-                "Country [id= "
-                        + country.get(0)
-                        + ", code= " + country.get(1)
-                        + " , name=" + country.get(2)
-                        + "]");
     }
 }
 
