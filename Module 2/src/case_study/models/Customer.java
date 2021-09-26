@@ -1,6 +1,6 @@
 package case_study.models;
 
-public class Customer extends Person{
+public class  Customer extends Person{
     private String loaiKH;
     private String diaChi;
 
@@ -39,8 +39,8 @@ public class Customer extends Person{
                 ", Số CMND=" + getSoCMND() +
                 ", Số điện thoại=" + getSoDT() +
                 ", email='" + getEmail() +
-                "Loại khách hàng='" + loaiKH + '\'' +
-                ", Địa chỉ='" + diaChi + '\'' +
+                "Loại khách hàng='" + loaiKH +
+                ", Địa chỉ='" + diaChi +
                 '}';
     }
 }

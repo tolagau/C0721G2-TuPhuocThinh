@@ -1,19 +1,10 @@
 package case_study.models;
 
-public class House extends Facility{
+public class House extends Facility {
     private String tieuChuan;
     private int soTang;
 
     public House() {
-    }
-
-    public House(String tieuChuan, int soTang) {
-        this.tieuChuan = tieuChuan;
-        this.soTang = soTang;
-    }
-
-    public House(String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue) {
-        super(tenDV, dienTich, chiPhi, soLuongNguoi, kieuThue);
     }
 
     public House(String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue, String tieuChuan, int soTang) {
@@ -36,5 +27,18 @@ public class House extends Facility{
 
     public void setSoTang(int soTang) {
         this.soTang = soTang;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "tenDV='" + getTenDV() +
+                ", dienTich=" + getDienTich() +
+                ", chiPhi=" + getChiPhi() +
+                ", soLuongNguoi=" + getSoLuongNguoi() +
+                ", kieuThue='" + getKieuThue() +
+                "tieuChuan='" + tieuChuan +
+                ", soTang=" + soTang +
+                '}';
     }
 }

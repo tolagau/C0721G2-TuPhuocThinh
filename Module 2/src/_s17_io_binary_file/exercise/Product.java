@@ -2,7 +2,7 @@ package _s17_io_binary_file.exercise;
 
 import java.io.Serializable;
 
-public class Product implements Serializable {
+public class Product  {
     private int idPro;
     private String namePro;
     private String hangPro;

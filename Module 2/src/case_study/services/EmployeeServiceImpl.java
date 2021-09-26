@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class EmployeeServiceImpl extends Employee implements IEmployeeService {
     Scanner scanner = new Scanner(System.in);
     private static ArrayList<Employee> listEmployee = new ArrayList<>();
+
     static {
         Employee emp1 = new Employee(1001, "Nguyễn Văn A", "15/02/1998", "Nam",
                 21232578, 91440079, "a.mail@gmail.com", "Cao đẳng", "Nhân viên", 5000000);
@@ -64,7 +65,6 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
     @Override
     public void sua() {
         hienThi();
-        boolean check = false;
         System.out.println("---------------------------------");
         System.out.println("Sửa thông tin nhân viên");
         System.out.println("---------------------------------");
@@ -72,30 +72,24 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
         int maEdit = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < listEmployee.size(); i++) {
             if (maEdit == listEmployee.get(i).getMa()) {
-                check = true;
-                break;
-            }
-        }
-        if (check) {
-            System.out.println("Nhập họ tên");
-            String name = scanner.nextLine();
-            System.out.println("Nhập ngày sinh");
-            String ngaySinh = scanner.nextLine();
-            System.out.println("Nhập giới tính");
-            String sex = scanner.nextLine();
-            System.out.println("Nhập số CMND");
-            int cmnd = scanner.nextInt();
-            System.out.println("Nhập số điện thoại");
-            int sdt = scanner.nextInt();
-            System.out.println("Nhập email nhân viên");
-            String email = scanner.nextLine();
-            System.out.println("Nhập trình độ nhân viên");
-            String trinh = scanner.nextLine();
-            System.out.println("NHập vị trí nhân viên");
-            String viTri = scanner.nextLine();
-            System.out.println("Nhập lương nhân viên");
-            int luong = scanner.nextInt();
-           for (int i = 1; i < listEmployee.size(); i++) {
+                System.out.println("Nhập họ tên");
+                String name = scanner.nextLine();
+                System.out.println("Nhập ngày sinh");
+                String ngaySinh = scanner.nextLine();
+                System.out.println("Nhập giới tính");
+                String sex = scanner.nextLine();
+                System.out.println("Nhập số CMND");
+                int cmnd = Integer.parseInt(scanner.nextLine());
+                System.out.println("Nhập số điện thoại");
+                int sdt = Integer.parseInt(scanner.nextLine());
+                System.out.println("Nhập email nhân viên");
+                String email = scanner.nextLine();
+                System.out.println("Nhập trình độ nhân viên");
+                String trinh = scanner.nextLine();
+                System.out.println("NHập vị trí nhân viên");
+                String viTri = scanner.nextLine();
+                System.out.println("Nhập lương nhân viên");
+                int luong = Integer.parseInt(scanner.nextLine());
                 listEmployee.get(i).setHoTen(name);
                 listEmployee.get(i).setNgaySinh(ngaySinh);
                 listEmployee.get(i).setGioiTinh(sex);
@@ -107,8 +101,12 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
                 listEmployee.get(i).setLuong(luong);
             }
         }
+        hienThi();
 
-//        for (int i = 0; i < listEmployee.size(); i++) {
+    }
+
+
+    //        for (int i = 0; i < listEmployee.size(); i++) {
 //            if (maEdit == listEmployee.get(i).getMa()) {
 //                listEmployee.get(i).setHoTen(name);
 //                listEmployee.get(i).setNgaySinh(ngaySinh);
@@ -121,6 +119,6 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
 //                listEmployee.get(i).setLuong(luong);
 //            }
 //        }
-        hienThi();
-    }
+
 }
+

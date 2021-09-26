@@ -2,12 +2,17 @@ package case_study.controllers;
 
 import case_study.models.Employee;
 import case_study.services.BookingServiceImpl;
+import case_study.services.CustomerServiceImpl;
 import case_study.services.EmployeeServiceImpl;
+import case_study.services.FacilityServiceImpl;
 
 import java.util.Scanner;
 
 public class FuramaController {
+    static CustomerServiceImpl customerService = new CustomerServiceImpl();
     static EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+    static FacilityServiceImpl facilityService = new FacilityServiceImpl();
+
     public static void hamPhu(String str) {
         System.out.println(str);
     }
@@ -29,7 +34,7 @@ public class FuramaController {
             switch (choose) {
                 case 1: {
                     boolean flag1 = true;
-                    while (flag1){
+                    while (flag1) {
                         hamPhu("Employee Mangement            ");
                         hamPhu("*----------------------------*");
                         hamPhu("1. Display list employees     ");
@@ -38,20 +43,25 @@ public class FuramaController {
                         hamPhu("4. Return main menu           ");
                         hamPhu("Mời nhập lựa chọn             ");
                         choose1 = Integer.parseInt(scanner.nextLine());
-                        switch (choose1){
-                            case 1: employeeService.hienThi();
-                            break;
-                            case 2: employeeService.them();
-                            break;
-                           case 3:employeeService.sua();
-                           break;
-                            case 4: flag1 = false;
+                        switch (choose1) {
+                            case 1:
+                                employeeService.hienThi();
+                                break;
+                            case 2:
+                                employeeService.them();
+                                break;
+                            case 3:
+                                employeeService.sua();
+                                break;
+                            case 4:
+                                flag1 = false;
                         }
                     }
                     break;
                 }
                 case 2: {
-                    do {
+                    boolean flag1 = true;
+                    while (flag1) {
                         hamPhu("Customer Management               ");
                         hamPhu("*--------------------------------*");
                         hamPhu("1. Display list customer          ");
@@ -60,11 +70,25 @@ public class FuramaController {
                         hamPhu("4. Return main menu               ");
                         hamPhu("Mời nhập lựa chọn                 ");
                         choose1 = Integer.parseInt(scanner.nextLine());
-
-                    } while (choose1 < 1 || choose1 > 4);
+                        switch (choose1) {
+                            case 1:
+                                customerService.hienThi();
+                                break;
+                            case 2:
+                                customerService.them();
+                                break;
+                            case 3:
+                                customerService.sua();
+                                break;
+                            case 4:
+                                flag1 = false;
+                        }
+                    }
+                    break;
                 }
                 case 3: {
-                    do {
+                    boolean flag1 = true;
+                    while (flag1) {
                         hamPhu("Facility Management                   ");
                         hamPhu("*------------------------------------*");
                         hamPhu("1. Display list facility              ");
@@ -73,7 +97,21 @@ public class FuramaController {
                         hamPhu("4. Return main menu                   ");
                         hamPhu("Mời nhập lựa chọn                     ");
                         choose1 = Integer.parseInt(scanner.nextLine());
-                    } while (choose1 < 1 || choose1 > 4);
+                        switch (choose1) {
+                            case 1:
+                                facilityService.hienThi();
+                                break;
+                            case 2:
+                                facilityService.them();
+                                break;
+                            case 3:
+
+                                break;
+                            case 4:
+                                flag1 = false;
+                        }
+                    }
+                    break;
                 }
                 case 4: {
                     do {
@@ -100,7 +138,8 @@ public class FuramaController {
                         choose1 = Integer.parseInt(scanner.nextLine());
                     } while (choose1 < 1 || choose1 > 4);
                 }
-                case 6: System.exit(0);
+                case 6:
+                    System.exit(0);
 
             }
         }

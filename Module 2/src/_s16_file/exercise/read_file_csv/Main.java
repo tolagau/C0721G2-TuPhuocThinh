@@ -21,7 +21,7 @@ public class Main {
             String line = "";
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
-                String[] temp = new String[1];
+                String[] temp;
                 temp = line.split(",");
                 country = new Country(Integer.parseInt(temp[0]), temp[1], temp[2]);
                 list.add(country);
