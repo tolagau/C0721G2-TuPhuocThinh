@@ -26,6 +26,7 @@ public class FacilityServiceImpl extends Facility implements IService {
         facilityList.put(facility5, 1);
         facilityList.put(facility6, 1);
     }
+
     public static String themTieuChuan(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập tiêu chuẩn của phòng");

@@ -16,9 +16,9 @@ public class TestMap {
         System.out.println("Hiển thị danh sách hashmap");
         System.out.println(hashMap + " ");
         //Tree map
-        Map<String, Integer> treeMap = new TreeMap<>(hashMap);
-        System.out.println("Hiển thị các mục nhập theo thứ tự tăng dần của khóa");
-        System.out.println(treeMap);
+//        Map<String, Integer> treeMap = new TreeMap<>(hashMap);
+//        System.out.println("Hiển thị các mục nhập theo thứ tự tăng dần của khóa");
+//        System.out.println(treeMap);
         //LinkedHashMap
         Map<String, Integer> linkedHashMap = new LinkedHashMap<>(16, 0.75f, true);
         linkedHashMap.put("Smith", 30);
