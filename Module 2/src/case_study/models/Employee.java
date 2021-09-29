@@ -1,9 +1,10 @@
 package case_study.models;
 
-public class Employee extends Person{
+public class Employee extends Person {
     private String trinhDo;
     private String viTri;
     private double luong;
+
     public Employee() {
     }
 
@@ -52,5 +53,11 @@ public class Employee extends Person{
                 ", Vị trí='" + viTri +
                 ", Lương=" + luong +
                 '}';
+    }
+
+    public String getEmploy() {
+        return getMa() + "," + getHoTen() + "," + getNgaySinh() + "," +
+                getGioiTinh() + "," + getSoCMND() + "," + getSoDT() + "," +
+                getEmail() + "," + trinhDo + "," + viTri + "," + luong;
     }
 }

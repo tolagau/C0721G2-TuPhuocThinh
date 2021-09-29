@@ -4,26 +4,50 @@ import case_study.models.Customer;
 import case_study.models.Employee;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
+import static case_study.utils.ReadAndWrite.readFile;
+import static case_study.utils.ReadAndWrite.writeFile;
+
 public class CustomerServiceImpl extends Customer implements IService {
+    private static final String CUSTUMER_PATH = "src\\case_study\\data\\customer.csv";
     Scanner scanner = new Scanner(System.in);
     private static LinkedList<Customer> listCustomer = new LinkedList<>();
-    static {
-        Customer  cus1 = new Customer(101,"Từ Thịnh","15/82","Nam",21242333,987654321,"a.mail@gmail","Diamond","Quảng ngãi");
-        listCustomer.add(cus1);
+    public static void writeCus(List<Customer> listCus, String filePath, boolean append) {
+        List<String> str = new ArrayList<>();
+        for (Customer listStr : listCus) {
+            str.add(listStr.getIF());
+        }
+        writeFile(str, CUSTUMER_PATH, true);
+    }
+
+    public static List<Customer> readCus(String filePath) {
+        List<String> str = readFile(CUSTUMER_PATH);
+        List<Customer> customerList = new ArrayList<>();
+        for (String listStr : str) {
+            String[] temp = listStr.split(",");
+            Customer customer = new Customer(Integer.parseInt(temp[0]), temp[1], temp[2], temp[3],
+                    Integer.parseInt(temp[4]), Integer.parseInt(temp[5]),
+                    temp[6], temp[7],temp[8]);
+            customerList.add(customer);
+        }
+        return customerList;
     }
 
     @Override
     public void hienThi() {
-        for (int i = 0; i < listCustomer.size(); i++) {
-            System.out.println(listCustomer.get(i));
+        List<Customer> customerList = readCus(CUSTUMER_PATH);
+        for (int i = 0; i < customerList.size(); i++) {
+            System.out.println(customerList.get(i));
         }
     }
 
     @Override
     public void them() {
+        List<Customer> customerList = readCus(CUSTUMER_PATH);
         hienThi();
         System.out.println("Thêm khách hàng mới");
         System.out.println("---------------------------");
@@ -36,9 +60,9 @@ public class CustomerServiceImpl extends Customer implements IService {
         System.out.println("Nhập giới tính khách hàng");
         String sex = scanner.nextLine();
         System.out.println("Nhập số CMND khách hàng");
-        int cmnd = scanner.nextInt();
+        int cmnd = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập số điện thoại khách hàng");
-        int sdt = scanner.nextInt();
+        int sdt = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập email khách hàng");
         String email = scanner.nextLine();
         System.out.println("Nhập loại khách hàng");
@@ -46,12 +70,15 @@ public class CustomerServiceImpl extends Customer implements IService {
         System.out.println("NHập địa chỉ khách hàng");
         String diaChi = scanner.nextLine();
         Customer customer = new Customer(ma, name, ngaySinh, sex, cmnd, sdt, email, loaiKH, diaChi);
-        listCustomer.add(customer);
+        customerList.add(customer);
+        writeCus(customerList,CUSTUMER_PATH,true);
         hienThi();
+
     }
 
     @Override
     public void sua() {
+        List<Customer> listCustomer = readCus(CUSTUMER_PATH);
         hienThi();
         System.out.println("---------------------------------");
         System.out.println("Sửa thông tin khách hàng");

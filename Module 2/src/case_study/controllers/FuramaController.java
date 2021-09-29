@@ -105,7 +105,7 @@ public class FuramaController {
                                 facilityService.them();
                                 break;
                             case 3:
-
+                                facilityService.displayMaintenance();
                                 break;
                             case 4:
                                 flag1 = false;

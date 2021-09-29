@@ -22,17 +22,18 @@ public class FacilityServiceImpl extends Facility implements IService {
         facilityList.put(facility1, 1);
         facilityList.put(facility2, 1);
         facilityList.put(facility3, 1);
-        facilityList.put(facility4, 1);
-        facilityList.put(facility5, 1);
-        facilityList.put(facility6, 1);
+        facilityList.put(facility4, 5);
+        facilityList.put(facility5, 6);
+        facilityList.put(facility6, 5);
     }
 
-    public static String themTieuChuan(){
+    public static String themTieuChuan() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập tiêu chuẩn của phòng");
         String tieuChuan = scanner.nextLine();
         return tieuChuan;
     }
+
     public static double themHoBoi() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập diện tích hồ bơi");
@@ -53,12 +54,20 @@ public class FacilityServiceImpl extends Facility implements IService {
         String dv = scanner.nextLine();
         return dv;
     }
-//    public static String displayMaintenance(){
-//
-//    }
+
+    public void displayMaintenance() {
+
+        for (Map.Entry<Facility, Integer> duyetMap : facilityList.entrySet()) {
+            if (duyetMap.getValue() >= 5) {
+                System.out.printf("Dịch vụ cần bảo trì: " + duyetMap.getKey().toString() +"\n");
+            }
+        }
+
+    }
+
     @Override
     public void hienThi() {
-        for(Map.Entry<Facility, Integer> duyetMap: facilityList.entrySet() ){
+        for (Map.Entry<Facility, Integer> duyetMap : facilityList.entrySet()) {
             System.out.println(duyetMap.toString());
         }
     }
@@ -98,6 +107,7 @@ public class FacilityServiceImpl extends Facility implements IService {
                 facilityList.put(facility3, 1);
         }
     }
+
     @Override
     public void sua() {
 

@@ -4,36 +4,50 @@ import case_study.models.Employee;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+
+import static case_study.utils.ReadAndWrite.readFile;
+import static case_study.utils.ReadAndWrite.writeFile;
 
 public class EmployeeServiceImpl extends Employee implements IEmployeeService {
     Scanner scanner = new Scanner(System.in);
-    private static ArrayList<Employee> listEmployee = new ArrayList<>();
 
-    static {
-        Employee emp1 = new Employee(1001, "Nguyễn Văn A", "15/02/1998", "Nam",
-                21232578, 91440079, "a.mail@gmail.com", "Cao đẳng", "Nhân viên", 5000000);
-        Employee emp2 = new Employee(1002, "Lê Thị B", "01/03/1995", "Nữ",
-                21235678, 78440079, "b.mail@gmail.com", "THạc sĩ", "Quản Lý", 10000000);
-        Employee emp3 = new Employee(1003, "Đinh văn C", "15/02/1998", "Nam",
-                21232578, 91440079, "c.mail@gmail.com", "Trung cấp", "Phục vụ", 3000000);
-        Employee emp4 = new Employee(1004, "Võ Văn D", "15/02/1998", "Nam",
-                21232578, 91440079, "d.mail@gmail.com", "Cao đẳng", "Nhân viên", 5000000);
-        listEmployee.add(emp1);
-        listEmployee.add(emp2);
-        listEmployee.add(emp3);
-        listEmployee.add(emp4);
+    private static final String EMPLOYEE_PATH = "src\\case_study\\data\\employee.csv";
+
+    public static void writeEmploy(List<Employee> listEmp, String filePath, boolean append) {
+        List<String> str = new ArrayList<>();
+        for (Employee listStr : listEmp) {
+            str.add(listStr.getEmploy());
+        }
+        writeFile(str, EMPLOYEE_PATH, true);
     }
+
+    public static List<Employee> readEmploy(String filePath) {
+        List<String> str = readFile(EMPLOYEE_PATH);
+        List<Employee> employeeList = new ArrayList<>();
+        for (String listStr : str) {
+            String[] temp = listStr.split(",");
+            Employee employee = new Employee(Integer.parseInt(temp[0]), temp[1], temp[2], temp[3],
+                    Integer.parseInt(temp[4]), Integer.parseInt(temp[5]),
+                    temp[6], temp[7], temp[8], Double.parseDouble(temp[9]));
+            employeeList.add(employee);
+        }
+        return employeeList;
+    }
+
 
     @Override
     public void hienThi() {
-        for (int i = 0; i < listEmployee.size(); i++) {
-            System.out.println(listEmployee.get(i));
+        List<Employee> employeeList = readEmploy(EMPLOYEE_PATH);
+        for (int i = 0; i < employeeList.size(); i++) {
+            System.out.println(employeeList.get(i));
         }
     }
 
     @Override
     public void them() {
+        ArrayList<Employee> listEmployee = new ArrayList<>();
         hienThi();
         System.out.println("Thêm nhân viên mới");
         System.out.println("---------------------------");
@@ -46,9 +60,9 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
         System.out.println("Nhập giới tính");
         String sex = scanner.nextLine();
         System.out.println("Nhập số CMND");
-        int cmnd = scanner.nextInt();
+        int cmnd = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập số điện thoại");
-        int sdt = scanner.nextInt();
+        int sdt = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập email nhân viên");
         String email = scanner.nextLine();
         System.out.println("Nhập trình độ nhân viên");
@@ -56,22 +70,24 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
         System.out.println("NHập vị trí nhân viên");
         String viTri = scanner.nextLine();
         System.out.println("Nhập lương nhân viên");
-        int luong = scanner.nextInt();
+        int luong = Integer.parseInt(scanner.nextLine());
         Employee employee = new Employee(ma, name, ngaySinh, sex, cmnd, sdt, email, trinh, viTri, luong);
         listEmployee.add(employee);
+        writeEmploy(listEmployee, EMPLOYEE_PATH, true);
         hienThi();
     }
 
     @Override
     public void sua() {
+        List<Employee> employeeList = readEmploy(EMPLOYEE_PATH);
         hienThi();
         System.out.println("---------------------------------");
         System.out.println("Sửa thông tin nhân viên");
         System.out.println("---------------------------------");
         System.out.println("Nhập mã nhân viên cần chỉnh sửa: ");
         int maEdit = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < listEmployee.size(); i++) {
-            if (maEdit == listEmployee.get(i).getMa()) {
+        for (int i = 0; i < employeeList.size(); i++) {
+            if (maEdit == employeeList.get(i).getMa()) {
                 System.out.println("Nhập họ tên");
                 String name = scanner.nextLine();
                 System.out.println("Nhập ngày sinh");
@@ -90,18 +106,20 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
                 String viTri = scanner.nextLine();
                 System.out.println("Nhập lương nhân viên");
                 int luong = Integer.parseInt(scanner.nextLine());
-                listEmployee.get(i).setHoTen(name);
-                listEmployee.get(i).setNgaySinh(ngaySinh);
-                listEmployee.get(i).setGioiTinh(sex);
-                listEmployee.get(i).setSoCMND(cmnd);
-                listEmployee.get(i).setSoDT(sdt);
-                listEmployee.get(i).setEmail(email);
-                listEmployee.get(i).setTrinhDo(trinh);
-                listEmployee.get(i).setViTri(viTri);
-                listEmployee.get(i).setLuong(luong);
+                employeeList.get(i).setHoTen(name);
+                employeeList.get(i).setNgaySinh(ngaySinh);
+                employeeList.get(i).setGioiTinh(sex);
+                employeeList.get(i).setSoCMND(cmnd);
+                employeeList.get(i).setSoDT(sdt);
+                employeeList.get(i).setEmail(email);
+                employeeList.get(i).setTrinhDo(trinh);
+                employeeList.get(i).setViTri(viTri);
+                employeeList.get(i).setLuong(luong);
             }
         }
+        writeEmploy(employeeList,EMPLOYEE_PATH,false);
         hienThi();
+
 
     }
 

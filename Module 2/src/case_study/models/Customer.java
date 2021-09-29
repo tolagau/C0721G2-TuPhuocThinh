@@ -1,6 +1,6 @@
 package case_study.models;
 
-public class  Customer extends Person{
+public class Customer extends Person {
     private String loaiKH;
     private String diaChi;
 
@@ -42,5 +42,14 @@ public class  Customer extends Person{
                 "Loại khách hàng='" + loaiKH +
                 ", Địa chỉ='" + diaChi +
                 '}';
+    }
+
+    public String getIF() {
+        return
+                +getMa() + "," + getHoTen() + "," + getNgaySinh()
+                        + "," + getGioiTinh() + "," + getSoCMND()
+                        + "," + getSoDT() + "," + getEmail()
+                        + "," + loaiKH + "," + diaChi;
+
     }
 }
