@@ -1,39 +1,18 @@
 package models;
 
-public class Employee extends Person{
-    private int maNV;
+public class Employee extends Person {
     private String trinhDo;
     private String viTri;
     private double luong;
 
-    public Employee(String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email) {
-        super(hoTen, ngaySinh, gioiTinh, soCMND, soDT, email);
-    }
-
     public Employee() {
     }
 
-    public Employee(String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email, int maNV, String trinhDo, String viTri, double luong) {
-        super(hoTen, ngaySinh, gioiTinh, soCMND, soDT, email);
-        this.maNV = maNV;
+    public Employee(int ma, String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email, String trinhDo, String viTri, double luong) {
+        super(ma, hoTen, ngaySinh, gioiTinh, soCMND, soDT, email);
         this.trinhDo = trinhDo;
         this.viTri = viTri;
         this.luong = luong;
-    }
-
-    public Employee(int maNV, String trinhDo, String viTri, double luong) {
-        this.maNV = maNV;
-        this.trinhDo = trinhDo;
-        this.viTri = viTri;
-        this.luong = luong;
-    }
-
-    public int getMaNV() {
-        return maNV;
-    }
-
-    public void setMaNV(int maNV) {
-        this.maNV = maNV;
     }
 
     public String getTrinhDo() {
@@ -58,5 +37,27 @@ public class Employee extends Person{
 
     public void setLuong(double luong) {
         this.luong = luong;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "Mã nhân viên=" + getMa() +
+                ", Họ tên nhân viên='" + getHoTen() +
+                ", Ngày sinh='" + getNgaySinh() +
+                ", Giới tính='" + getGioiTinh() +
+                ", Số CMND=" + getSoCMND() +
+                ", Số điện thoại=" + getSoDT() +
+                ", email='" + getEmail() +
+                "Trình độ='" + trinhDo +
+                ", Vị trí='" + viTri +
+                ", Lương=" + luong +
+                '}';
+    }
+
+    public String getEmploy() {
+        return getMa() + "," + getHoTen() + "," + getNgaySinh() + "," +
+                getGioiTinh() + "," + getSoCMND() + "," + getSoDT() + "," +
+                getEmail() + "," + trinhDo + "," + viTri + "," + luong +"\n";
     }
 }

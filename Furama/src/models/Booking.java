@@ -4,6 +4,8 @@ public class Booking{
     private int maBKing;
     private String ngayBatDau;
     private String ngayKetThuc;
+    private Customer customer;
+    private Facility facility;
     private int maKh;
     private String tenDV;
     private String loaiDV;
@@ -11,13 +13,31 @@ public class Booking{
     public Booking() {
     }
 
-    public Booking(int maBKing, String ngayBatDau, String ngayKetThuc, int maKh, String tenDV, String loaiDV) {
+    public Booking(int maBKing, String ngayBatDau, String ngayKetThuc,Customer customer1, Facility facility1, int maKh, String tenDV, String loaiDV) {
         this.maBKing = maBKing;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
+        this.customer = customer1;
+        this.facility = facility1;
         this.maKh = maKh;
         this.tenDV = tenDV;
         this.loaiDV = loaiDV;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Facility getFacility() {
+        return facility;
+    }
+
+    public void setFacility(Facility facility) {
+        this.facility = facility;
     }
 
     public int getMaBKing() {
@@ -66,5 +86,19 @@ public class Booking{
 
     public void setLoaiDV(String loaiDV) {
         this.loaiDV = loaiDV;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "maBKing=" + maBKing +
+                ", ngayBatDau='" + ngayBatDau + '\'' +
+                ", ngayKetThuc='" + ngayKetThuc + '\'' +
+                ", customer=" + customer.getMa() +
+                ", facility=" + facility.getTenDV() +
+                ", maKh=" + maKh +
+                ", tenDV='" + tenDV + '\'' +
+                ", loaiDV='" + loaiDV + '\'' +
+                '}';
     }
 }

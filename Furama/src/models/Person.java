@@ -1,6 +1,7 @@
 package models;
 
 public abstract class Person {
+    private int ma;
     private String hoTen;
     private String ngaySinh;
     private String gioiTinh;
@@ -8,7 +9,9 @@ public abstract class Person {
     private int soDT;
     private String email;
 
-    public Person(String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email) {
+
+    public Person(int ma,String hoTen, String ngaySinh, String gioiTinh, int soCMND, int soDT, String email) {
+        this.ma = ma;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
@@ -18,6 +21,14 @@ public abstract class Person {
     }
 
     public Person() {
+    }
+
+    public int getMa() {
+        return ma;
+    }
+
+    public void setMa(int ma) {
+        this.ma = ma;
     }
 
     public String getHoTen() {
@@ -66,5 +77,18 @@ public abstract class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "ma=" + ma +
+                ", hoTen='" + hoTen + '\'' +
+                ", ngaySinh='" + ngaySinh + '\'' +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                ", soCMND=" + soCMND +
+                ", soDT=" + soDT +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
