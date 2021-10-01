@@ -41,4 +41,7 @@ public class House extends Facility {
                 ", soTang=" + soTang +
                 '}';
     }
+    public String getInfoHo(){
+        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() +","+ tieuChuan +","+soTang;
+    }
 }

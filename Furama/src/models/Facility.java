@@ -70,4 +70,8 @@ public abstract class Facility {
                 ", kieuThue='" + kieuThue + '\'' +
                 '}';
     }
+
+    public String getInfo() {
+        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue();
+    }
 }

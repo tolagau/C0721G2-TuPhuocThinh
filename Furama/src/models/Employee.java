@@ -58,6 +58,6 @@ public class Employee extends Person {
     public String getEmploy() {
         return getMa() + "," + getHoTen() + "," + getNgaySinh() + "," +
                 getGioiTinh() + "," + getSoCMND() + "," + getSoDT() + "," +
-                getEmail() + "," + trinhDo + "," + viTri + "," + luong +"\n";
+                getEmail() + "," + trinhDo + "," + viTri + "," + luong;
     }
 }

@@ -30,7 +30,7 @@ public class ReadAndWrite {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (String line : listStr) {
                 bufferedWriter.write(line);
-                bufferedWriter.newLine();
+               bufferedWriter.newLine();
             }
             bufferedWriter.close();
         } catch (IOException e) {

@@ -2,6 +2,7 @@ package services;
 
 import models.Employee;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,7 @@ import static utils.ReadAndWrite.writeFile;
 
 public class EmployeeServiceImpl extends Employee implements IEmployeeService {
     Scanner scanner = new Scanner(System.in);
-
+    private List<Employee> listEmployee = readEmploy(EMPLOYEE_PATH);
     private static final String EMPLOYEE_PATH = "src\\data\\employee.csv";
 
     public static void writeEmploy(List<Employee> listEmp, String filePath, boolean append) {
@@ -35,18 +36,16 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
         return employeeList;
     }
 
-
     @Override
     public void hienThi() {
-        List<Employee> employeeList = readEmploy(EMPLOYEE_PATH);
-        for (int i = 0; i < employeeList.size(); i++) {
-            System.out.println(employeeList.get(i));
+        listEmployee = readEmploy(EMPLOYEE_PATH);
+        for (int i = 0; i < listEmployee.size(); i++) {
+            System.out.println(listEmployee.get(i));
         }
     }
 
     @Override
     public void them() {
-        ArrayList<Employee> listEmployee = new ArrayList<>();
         hienThi();
         System.out.println("Thêm nhân viên mới");
         System.out.println("---------------------------");
@@ -72,21 +71,22 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
         int luong = Integer.parseInt(scanner.nextLine());
         Employee employee = new Employee(ma, name, ngaySinh, sex, cmnd, sdt, email, trinh, viTri, luong);
         listEmployee.add(employee);
+        File file = new File(EMPLOYEE_PATH);
+        file.delete();
         writeEmploy(listEmployee, EMPLOYEE_PATH, true);
         hienThi();
     }
 
     @Override
     public void sua() {
-        List<Employee> employeeList = readEmploy(EMPLOYEE_PATH);
         hienThi();
         System.out.println("---------------------------------");
         System.out.println("Sửa thông tin nhân viên");
         System.out.println("---------------------------------");
         System.out.println("Nhập mã nhân viên cần chỉnh sửa: ");
         int maEdit = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < employeeList.size(); i++) {
-            if (maEdit == employeeList.get(i).getMa()) {
+        for (int i = 0; i < listEmployee.size(); i++) {
+            if (maEdit == listEmployee.get(i).getMa()) {
                 System.out.println("Nhập họ tên");
                 String name = scanner.nextLine();
                 System.out.println("Nhập ngày sinh");
@@ -105,18 +105,20 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
                 String viTri = scanner.nextLine();
                 System.out.println("Nhập lương nhân viên");
                 int luong = Integer.parseInt(scanner.nextLine());
-                employeeList.get(i).setHoTen(name);
-                employeeList.get(i).setNgaySinh(ngaySinh);
-                employeeList.get(i).setGioiTinh(sex);
-                employeeList.get(i).setSoCMND(cmnd);
-                employeeList.get(i).setSoDT(sdt);
-                employeeList.get(i).setEmail(email);
-                employeeList.get(i).setTrinhDo(trinh);
-                employeeList.get(i).setViTri(viTri);
-                employeeList.get(i).setLuong(luong);
+                listEmployee.get(i).setHoTen(name);
+                listEmployee.get(i).setNgaySinh(ngaySinh);
+                listEmployee.get(i).setGioiTinh(sex);
+                listEmployee.get(i).setSoCMND(cmnd);
+                listEmployee.get(i).setSoDT(sdt);
+                listEmployee.get(i).setEmail(email);
+                listEmployee.get(i).setTrinhDo(trinh);
+                listEmployee.get(i).setViTri(viTri);
+                listEmployee.get(i).setLuong(luong);
             }
         }
-        writeEmploy(employeeList, EMPLOYEE_PATH, false);
+        File file = new File(EMPLOYEE_PATH);
+        file.delete();
+        writeEmploy(listEmployee, EMPLOYEE_PATH, false);
         hienThi();
     }
 }

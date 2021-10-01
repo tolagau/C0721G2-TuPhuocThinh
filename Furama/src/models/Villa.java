@@ -52,4 +52,7 @@ public class Villa extends Facility {
                 ", soTang=" + soTang +
                 '}';
     }
+    public String getInfoVl(){
+        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() +","+ tieuChuan +","+dienTichHoBoi +","+soTang;
+    }
 }

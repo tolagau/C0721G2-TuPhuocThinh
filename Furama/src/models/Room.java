@@ -29,4 +29,7 @@ public class Room extends Facility{
                 "dichVuDiKem='" + dichVuDiKem +
                 '}';
     }
+    public String getInfoRoom(){
+        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() +","+ dichVuDiKem;
+    }
 }

@@ -2,10 +2,12 @@ package services;
 
 import models.Customer;
 
-import java.util.ArrayList;
+import java.io.File;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
 
 import static utils.ReadAndWrite.readFile;
 import static utils.ReadAndWrite.writeFile;
@@ -13,9 +15,10 @@ import static utils.ReadAndWrite.writeFile;
 public class CustomerServiceImpl extends Customer implements IService {
     private static final String CUSTUMER_PATH = "src\\data\\customer.csv";
     Scanner scanner = new Scanner(System.in);
-    private static LinkedList<Customer> listCustomer = new LinkedList<>();
+    public List<Customer> linkedListCus = (LinkedList<Customer>) readCus(CUSTUMER_PATH);
+
     public static void writeCus(List<Customer> listCus, String filePath, boolean append) {
-        List<String> str = new ArrayList<>();
+        List<String> str = new LinkedList<>();
         for (Customer listStr : listCus) {
             str.add(listStr.getIF());
         }
@@ -24,12 +27,12 @@ public class CustomerServiceImpl extends Customer implements IService {
 
     public static List<Customer> readCus(String filePath) {
         List<String> str = readFile(CUSTUMER_PATH);
-        List<Customer> customerList = new ArrayList<>();
+        List<Customer> customerList = new LinkedList<>();
         for (String listStr : str) {
             String[] temp = listStr.split(",");
             Customer customer = new Customer(Integer.parseInt(temp[0]), temp[1], temp[2], temp[3],
                     Integer.parseInt(temp[4]), Integer.parseInt(temp[5]),
-                    temp[6], temp[7],temp[8]);
+                    temp[6], temp[7], temp[8]);
             customerList.add(customer);
         }
         return customerList;
@@ -37,15 +40,13 @@ public class CustomerServiceImpl extends Customer implements IService {
 
     @Override
     public void hienThi() {
-        List<Customer> customerList = readCus(CUSTUMER_PATH);
-        for (int i = 0; i < customerList.size(); i++) {
-            System.out.println(customerList.get(i));
+        for (int i = 0; i < linkedListCus.size(); i++) {
+            System.out.println(linkedListCus.get(i));
         }
     }
 
     @Override
     public void them() {
-        List<Customer> customerList = readCus(CUSTUMER_PATH);
         hienThi();
         System.out.println("Thêm khách hàng mới");
         System.out.println("---------------------------");
@@ -68,23 +69,24 @@ public class CustomerServiceImpl extends Customer implements IService {
         System.out.println("NHập địa chỉ khách hàng");
         String diaChi = scanner.nextLine();
         Customer customer = new Customer(ma, name, ngaySinh, sex, cmnd, sdt, email, loaiKH, diaChi);
-        customerList.add(customer);
-        writeCus(customerList,CUSTUMER_PATH,false);
+        linkedListCus.add(customer);
+        File file = new File(CUSTUMER_PATH);
+        file.delete();
+        writeCus(linkedListCus, CUSTUMER_PATH, true);
         hienThi();
 
     }
 
     @Override
     public void sua() {
-        List<Customer> listCustomer = readCus(CUSTUMER_PATH);
         hienThi();
         System.out.println("---------------------------------");
         System.out.println("Sửa thông tin khách hàng");
         System.out.println("---------------------------------");
         System.out.println("Nhập mã khách hàng cần chỉnh sửa: ");
         int maEdit = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < listCustomer.size(); i++) {
-            if (maEdit == listCustomer.get(i).getMa()){
+        for (int i = 0; i < linkedListCus.size(); i++) {
+            if (maEdit == linkedListCus.get(i).getMa()) {
                 System.out.println("Nhập họ tên khách hàng");
                 String name = scanner.nextLine();
                 System.out.println("Nhập ngày sinh khách hàng");
@@ -101,16 +103,19 @@ public class CustomerServiceImpl extends Customer implements IService {
                 String loaiKH = scanner.nextLine();
                 System.out.println("NHập địa chỉ khách hàng");
                 String diaChi = scanner.nextLine();
-                listCustomer.get(i).setHoTen(name);
-                listCustomer.get(i).setNgaySinh(ngaySinh);
-                listCustomer.get(i).setGioiTinh(sex);
-                listCustomer.get(i).setSoCMND(cmnd);
-                listCustomer.get(i).setSoDT(sdt);
-                listCustomer.get(i).setEmail(email);
-                listCustomer.get(i).setLoaiKH(loaiKH);
-                listCustomer.get(i).setDiaChi(diaChi);
+                linkedListCus.get(i).setHoTen(name);
+                linkedListCus.get(i).setNgaySinh(ngaySinh);
+                linkedListCus.get(i).setGioiTinh(sex);
+                linkedListCus.get(i).setSoCMND(cmnd);
+                linkedListCus.get(i).setSoDT(sdt);
+                linkedListCus.get(i).setEmail(email);
+                linkedListCus.get(i).setLoaiKH(loaiKH);
+                linkedListCus.get(i).setDiaChi(diaChi);
             }
         }
+        File file = new File(CUSTUMER_PATH);
+        file.delete();
+        writeCus(linkedListCus, CUSTUMER_PATH, true);
         hienThi();
     }
 }
