@@ -72,6 +72,6 @@ public abstract class Facility {
     }
 
     public String getInfo() {
-        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue();
+        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() + ",";
     }
 }

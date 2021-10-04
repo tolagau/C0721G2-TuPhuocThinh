@@ -4,10 +4,8 @@ public class Booking {
     private int maBKing;
     private String ngayBatDau;
     private String ngayKetThuc;
-    private int customer;
-    private String facility;
-    private int maKh;
-    private String tenDV;
+    private Customer customer;
+    private Facility facility;
     private String loaiDV;
 
     public Booking() {
@@ -19,24 +17,24 @@ public class Booking {
         this.maBKing = maBKing;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
-        this.customer = customer1.getMa();
-        this.facility = facility1.getTenDV();
+        this.customer = customer1;
+        this.facility = facility1;
         this.loaiDV = loaiDV;
     }
 
-    public int getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(int customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public String getFacility() {
+    public Facility getFacility() {
         return facility;
     }
 
-    public void setFacility(String facility) {
+    public void setFacility(Facility facility) {
         this.facility = facility;
     }
 
@@ -78,16 +76,13 @@ public class Booking {
                 "maBKing=" + maBKing +
                 ", ngayBatDau='" + ngayBatDau +
                 ", ngayKetThuc='" + ngayKetThuc +
-                ", customer=" + customer +
-                ", facility=" + facility +
+                ", customer=" + customer.getMa() +
+                ", facility=" + facility.getTenDV() +
                 ", loaiDV='" + loaiDV +
                 '}';
     }
 
     public String getIFBook() {
-        return
-                maBKing + "," + ngayBatDau + "," + ngayKetThuc + ", "
-                        + customer + ", " + facility + ", " + loaiDV;
+        return maBKing + "," + ngayBatDau + "," + ngayKetThuc + ","+ customer.getMa() + "," + facility.getTenDV() + "," + loaiDV;
     }
-
 }

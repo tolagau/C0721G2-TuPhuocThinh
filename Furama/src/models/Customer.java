@@ -31,22 +31,11 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "Mã nhân viên=" + getMa() +
-                ", Họ tên nhân viên='" + getHoTen() +
-                ", Ngày sinh='" + getNgaySinh() +
-                ", Giới tính='" + getGioiTinh() +
-                ", Số CMND=" + getSoCMND() +
-                ", Số điện thoại=" + getSoDT() +
-                ", email='" + getEmail() +
-                "Loại khách hàng='" + loaiKH +
-                ", Địa chỉ='" + diaChi +
-                '}';
+        return "Customer{Mã khách hàng=" + getMa() + ", Họ tên khách hàng='" + getHoTen() + ", Ngày sinh='" + getNgaySinh() + ", Giới tính='" + getGioiTinh() + ", Số CMND=" + getSoCMND() + ", Số điện thoại=" + getSoDT() + ", email='" + getEmail() + "Loại khách hàng='" + loaiKH + ", Địa chỉ='" + diaChi + '}';
     }
 
     public String getIF() {
-        return
-                +getMa() + "," + getHoTen() + "," + getNgaySinh()
+        return getMa() + "," + getHoTen() + "," + getNgaySinh()
                         + "," + getGioiTinh() + "," + getSoCMND()
                         + "," + getSoDT() + "," + getEmail()
                         + "," + loaiKH + "," + diaChi;

@@ -27,11 +27,11 @@ public class BookingServiceImpl implements IService {
 
     public static TreeSet<Booking> readBook(String filePath) {
         List<String> str = readFile(filePath);
-        TreeSet<Booking> treeSet = new TreeSet<>();
+        TreeSet<Booking> treeSet = new TreeSet<>(new BookingComparator());
         for (String string : str) {
             List<Customer> customer = readCus(CUSTUMER_PATH);
             String[] temp = string.split(",");
-            Customer customer1 = null;
+            Customer customer1 = new Customer();
             for (Customer cus : customer) {
                 if (cus.getMa() == Integer.parseInt(temp[3])) {
                     customer1 = cus;
@@ -46,11 +46,10 @@ public class BookingServiceImpl implements IService {
             facilityList.putAll(mapVL);
             Facility facility = null;
             for (Map.Entry<Facility, Integer> mapFaci : facilityList.entrySet()) {
-                if (mapFaci.getKey().equals(temp[4])) {
+                if (mapFaci.getKey().getTenDV().equals(temp[4])) {
                     facility = mapFaci.getKey();
                 }
             }
-            // Map<Facility,Integer> map = readFici(facilityList);
             Booking booking = new Booking(Integer.parseInt(temp[0]), temp[1], temp[2],
                     customer1, facility, temp[5]);
             treeSet.add(booking);
@@ -61,6 +60,7 @@ public class BookingServiceImpl implements IService {
 
     @Override
     public void hienThi() {
+        listBook = readBook(BOOKING_PATH);
         for (Booking booking : listBook) {
             System.out.println(booking.toString());
         }
@@ -68,7 +68,6 @@ public class BookingServiceImpl implements IService {
 
     @Override
     public void them() {
-
         CustomerServiceImpl customerService = new CustomerServiceImpl();
         List<Customer> listCustomer = readCus("src\\data\\customer.csv");
         customerService.hienThi();
@@ -92,25 +91,26 @@ public class BookingServiceImpl implements IService {
         String kt = scanner.nextLine();
         System.out.println("Nhập mã khách hàng booking");
         int idCus = Integer.parseInt(scanner.nextLine());
-        Customer customer1 = null;
+        Customer customer1 = new Customer();
         for (Customer cus1 : listCustomer) {
             if (cus1.getMa() == idCus) {
                 customer1 = cus1;
             }
         }
-        System.out.println("Mời nhập dịch vụ booking");
+        System.out.println("Mời nhập loại phòng booking");
         String dv = scanner.nextLine();
         Facility facility = null;
         for (Map.Entry<Facility, Integer> mapFaci : facilityList.entrySet()) {
-            if (mapFaci.getKey().equals(dv)) {
+            if (mapFaci.getKey().getTenDV().equals(dv)) {
                 facility = mapFaci.getKey();
+                mapFaci.setValue(mapFaci.getValue()+1);
             }
+
         }
-        System.out.println("Mời nhập dịch vụ booking");
+        System.out.println("Mời nhập loại dịch vụ đi kèm booking");
         String loaiDv = scanner.nextLine();
         Booking booking = new Booking(id, bd, kt, customer1, facility, loaiDv);
-        File file = new File(BOOKING_PATH);
-        file.delete();
+        listBook.add(booking);
         writeBook(listBook,BOOKING_PATH,true);
         hienThi();
     }

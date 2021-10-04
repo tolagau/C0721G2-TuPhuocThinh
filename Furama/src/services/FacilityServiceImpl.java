@@ -10,16 +10,16 @@ import static utils.ReadAndWrite.readFile;
 import static utils.ReadAndWrite.writeFile;
 
 public class FacilityServiceImpl extends Facility implements IService {
-     static final String VL_PATH = "src\\data\\villa.csv";
-     static final String RO_PATH = "src\\data\\room.csv";
-     static final String HO_PATH = "src\\data\\house.csv";
+    public static final String VL_PATH = "src\\data\\villa.csv";
+    public static final String RO_PATH = "src\\data\\room.csv";
+    public static final String HO_PATH = "src\\data\\house.csv";
     File fileVl = new File(VL_PATH);
     File fileRo = new File(RO_PATH);
     File fileHo = new File(HO_PATH);
-     static Map<Facility, Integer> facilityList = new LinkedHashMap<>();
-     static Map<Facility, Integer> mapRO = readFici(RO_PATH);
-     static Map<Facility, Integer> mapHO = readFici(HO_PATH);
-     static Map<Facility, Integer> mapVL = readFici(VL_PATH);
+    public static Map<Facility, Integer> facilityList = new LinkedHashMap<>();
+    public static Map<Facility, Integer> mapRO = readFici(RO_PATH);
+    public static Map<Facility, Integer> mapHO = readFici(HO_PATH);
+    public static Map<Facility, Integer> mapVL = readFici(VL_PATH);
 
 
     public static void writeFici(Map<Facility, Integer> facilityIntegerMap, String filePath, boolean append) {
@@ -137,7 +137,7 @@ public class FacilityServiceImpl extends Facility implements IService {
         double costRent = Double.valueOf(scanner.nextLine());
         System.out.println("Nhập số lượng người ở");
         int personNumber = Integer.parseInt(scanner.nextLine());
-        System.out.println("Nhập loại tiền thuê");
+        System.out.println("Nhập kiểu thuê");
         String typeOfRent = scanner.nextLine();
         switch (choice) {
             case 1:
