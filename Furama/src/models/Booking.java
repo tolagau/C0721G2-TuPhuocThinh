@@ -1,11 +1,11 @@
 package models;
 
-public class Booking{
+public class Booking {
     private int maBKing;
     private String ngayBatDau;
     private String ngayKetThuc;
-    private Customer customer;
-    private Facility facility;
+    private int customer;
+    private String facility;
     private int maKh;
     private String tenDV;
     private String loaiDV;
@@ -13,30 +13,30 @@ public class Booking{
     public Booking() {
     }
 
-    public Booking(int maBKing, String ngayBatDau, String ngayKetThuc,Customer customer1, Facility facility1, int maKh, String tenDV, String loaiDV) {
+    public Booking(int maBKing, String ngayBatDau,
+                   String ngayKetThuc, Customer customer1,
+                   Facility facility1, String loaiDV) {
         this.maBKing = maBKing;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
-        this.customer = customer1;
-        this.facility = facility1;
-        this.maKh = maKh;
-        this.tenDV = tenDV;
+        this.customer = customer1.getMa();
+        this.facility = facility1.getTenDV();
         this.loaiDV = loaiDV;
     }
 
-    public Customer getCustomer() {
+    public int getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(int customer) {
         this.customer = customer;
     }
 
-    public Facility getFacility() {
+    public String getFacility() {
         return facility;
     }
 
-    public void setFacility(Facility facility) {
+    public void setFacility(String facility) {
         this.facility = facility;
     }
 
@@ -64,22 +64,6 @@ public class Booking{
         this.ngayKetThuc = ngayKetThuc;
     }
 
-    public int getMaKh() {
-        return maKh;
-    }
-
-    public void setMaKh(int maKh) {
-        this.maKh = maKh;
-    }
-
-    public String getTenDV() {
-        return tenDV;
-    }
-
-    public void setTenDV(String tenDV) {
-        this.tenDV = tenDV;
-    }
-
     public String getLoaiDV() {
         return loaiDV;
     }
@@ -92,13 +76,18 @@ public class Booking{
     public String toString() {
         return "Booking{" +
                 "maBKing=" + maBKing +
-                ", ngayBatDau='" + ngayBatDau + '\'' +
-                ", ngayKetThuc='" + ngayKetThuc + '\'' +
-                ", customer=" + customer.getMa() +
-                ", facility=" + facility.getTenDV() +
-                ", maKh=" + maKh +
-                ", tenDV='" + tenDV + '\'' +
-                ", loaiDV='" + loaiDV + '\'' +
+                ", ngayBatDau='" + ngayBatDau +
+                ", ngayKetThuc='" + ngayKetThuc +
+                ", customer=" + customer +
+                ", facility=" + facility +
+                ", loaiDV='" + loaiDV +
                 '}';
     }
+
+    public String getIFBook() {
+        return
+                maBKing + "," + ngayBatDau + "," + ngayKetThuc + ", "
+                        + customer + ", " + facility + ", " + loaiDV;
+    }
+
 }

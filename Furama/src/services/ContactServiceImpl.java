@@ -1,4 +1,5 @@
 package services;
 
-public class ContactServiceImpl {
+public class ContactServiceImpl extends BookingServiceImpl{
+
 }

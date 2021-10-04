@@ -10,39 +10,36 @@ import static utils.ReadAndWrite.readFile;
 import static utils.ReadAndWrite.writeFile;
 
 public class FacilityServiceImpl extends Facility implements IService {
+     static final String VL_PATH = "src\\data\\villa.csv";
+     static final String RO_PATH = "src\\data\\room.csv";
+     static final String HO_PATH = "src\\data\\house.csv";
+    File fileVl = new File(VL_PATH);
+    File fileRo = new File(RO_PATH);
+    File fileHo = new File(HO_PATH);
+     static Map<Facility, Integer> facilityList = new LinkedHashMap<>();
+     static Map<Facility, Integer> mapRO = readFici(RO_PATH);
+     static Map<Facility, Integer> mapHO = readFici(HO_PATH);
+     static Map<Facility, Integer> mapVL = readFici(VL_PATH);
 
-    private static Map<Facility, Integer> facilityList = new LinkedHashMap<>();
-    private static final String FICILATI_PATH = "src\\data\\facility.csv";
-    //    static {
-    //        Facility facility1 = new Room("Room", 20.00, 10000000.00, 2, "Day", "Pool");
-//        Facility facility2 = new Room("Room", 20.00, 10000000.00, 2, "Day", "Pool");
-//
-//        Facility facility4 = new House("House1", 50.00, 10000000.00, 6, "Day", "Double", 2);
-//        Facility facility5 = new Villa("Villa", 100.00, 10000000.00, 10, "Day", "Double", 50.00, 3);
-//
-//        facilityList.put(facility1, 1);
-//        facilityList.put(facility2, 1);
-//
-//        facilityList.put(facility4, 5);
-//        facilityList.put(facility5, 6);
-//
-//    }
+
     public static void writeFici(Map<Facility, Integer> facilityIntegerMap, String filePath, boolean append) {
         List<String> str = new ArrayList<>();
-        for (Map.Entry<Facility, Integer> map : facilityList.entrySet()) {
+        for (Map.Entry<Facility, Integer> map : facilityIntegerMap.entrySet()) {
             if (map.getKey() instanceof Room) {
                 str.add(((Room) map.getKey()).getInfoRoom() + "," + map.getValue());
-            } else if (map.getKey() instanceof House) {
+            }
+            if (map.getKey() instanceof House) {
                 str.add(((House) map.getKey()).getInfoHo() + "," + map.getValue());
-            } else {
+            }
+            if (map.getKey() instanceof Villa) {
                 str.add(((Villa) map.getKey()).getInfoVl() + "," + map.getValue());
             }
         }
-        writeFile(str, FICILATI_PATH, true);
+        writeFile(str, filePath, true);
     }
 
     public static Map<Facility, Integer> readFici(String filePath) {
-        List<String> str = readFile(FICILATI_PATH);
+        List<String> str = readFile(filePath);
         Map<Facility, Integer> map = new LinkedHashMap<>();
         for (String string : str) {
             String[] temp;
@@ -53,6 +50,7 @@ public class FacilityServiceImpl extends Facility implements IService {
                             Double.parseDouble(temp[2]), Integer.parseInt(temp[3]), temp[4],
                             temp[5]);
                     map.put(facility, Integer.parseInt(temp[6]));
+
                     break;
                 case 8:
                     Facility facility1 = new House(temp[0], Double.parseDouble(temp[1]),
@@ -103,6 +101,9 @@ public class FacilityServiceImpl extends Facility implements IService {
     }
 
     public void displayMaintenance() {
+        facilityList.putAll(mapHO);
+        facilityList.putAll(mapRO);
+        facilityList.putAll(mapVL);
         for (Map.Entry<Facility, Integer> duyetMap : facilityList.entrySet()) {
             if (duyetMap.getValue() >= 5) {
                 System.out.printf("Dịch vụ cần bảo trì: " + duyetMap.getKey().toString() + "\n");
@@ -112,6 +113,9 @@ public class FacilityServiceImpl extends Facility implements IService {
 
     @Override
     public void hienThi() {
+        facilityList.putAll(mapHO);
+        facilityList.putAll(mapRO);
+        facilityList.putAll(mapVL);
         for (Map.Entry<Facility, Integer> duyetMap : facilityList.entrySet()) {
             System.out.println(duyetMap.toString());
         }
@@ -137,23 +141,27 @@ public class FacilityServiceImpl extends Facility implements IService {
         String typeOfRent = scanner.nextLine();
         switch (choice) {
             case 1:
-                Facility facility1 = new Room(serviceName, usingArea, costRent, personNumber,
+                Facility room = new Room(serviceName, usingArea, costRent, personNumber,
                         typeOfRent, themDV());
-                facilityList.put(facility1, 0);
+                fileRo.delete();
+                mapRO.put(room, 0);
+                writeFici(mapRO, RO_PATH, true);
                 break;
             case 2:
                 Facility facility2 = new House(serviceName, usingArea, costRent, personNumber,
                         typeOfRent, themTieuChuan(), themTang());
-                facilityList.put(facility2, 0);
+                fileHo.delete();
+                mapHO.put(facility2, 0);
+                writeFici(mapHO, HO_PATH, true);
                 break;
             case 3:
                 Facility facility3 = new Villa(serviceName, usingArea, costRent, personNumber,
                         typeOfRent, themTieuChuan(), themHoBoi(), themTang());
-                facilityList.put(facility3, 0);
+                fileVl.delete();
+                mapVL.put(facility3, 0);
+                writeFici(mapVL, VL_PATH, true);
+                break;
         }
-        File file = new File(FICILATI_PATH);
-        file.delete();
-        writeFici(facilityList, FICILATI_PATH, true);
     }
 
     @Override

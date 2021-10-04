@@ -13,7 +13,7 @@ import static utils.ReadAndWrite.readFile;
 import static utils.ReadAndWrite.writeFile;
 
 public class CustomerServiceImpl extends Customer implements IService {
-    private static final String CUSTUMER_PATH = "src\\data\\customer.csv";
+     static final String CUSTUMER_PATH = "src\\data\\customer.csv";
     Scanner scanner = new Scanner(System.in);
     public List<Customer> linkedListCus = (LinkedList<Customer>) readCus(CUSTUMER_PATH);
 
