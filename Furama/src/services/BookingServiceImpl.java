@@ -15,7 +15,7 @@ import static utils.ReadAndWrite.writeFile;
 public class BookingServiceImpl implements IService {
 
     private static TreeSet<Booking> listBook = new TreeSet<>(new BookingComparator());
-    private static final String BOOKING_PATH = "src\\data\\booking.csv";
+     static final String BOOKING_PATH = "src\\data\\booking.csv";
 
     public static void writeBook(TreeSet<Booking> bookings, String filePath, boolean append) {
         List<String> str = new ArrayList<>();
@@ -82,7 +82,7 @@ public class BookingServiceImpl implements IService {
         facilityService.hienThi();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Thêm mới Booking");
-        System.out.printf("--------------------");
+        System.out.println("--------------------");
         System.out.println("Nhập mã booking");
         int id = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập ngày bắt đầu booking");
@@ -103,9 +103,8 @@ public class BookingServiceImpl implements IService {
         for (Map.Entry<Facility, Integer> mapFaci : facilityList.entrySet()) {
             if (mapFaci.getKey().getTenDV().equals(dv)) {
                 facility = mapFaci.getKey();
-                mapFaci.setValue(mapFaci.getValue()+1);
-            }
 
+            }
         }
         System.out.println("Mời nhập loại dịch vụ đi kèm booking");
         String loaiDv = scanner.nextLine();
@@ -114,7 +113,24 @@ public class BookingServiceImpl implements IService {
         writeBook(listBook,BOOKING_PATH,true);
         hienThi();
     }
-
+    public static void tangValue(Facility facility){
+        Map<Facility, Integer> facilityList = new LinkedHashMap<>();
+        Map<Facility, Integer> mapRO = readFici(RO_PATH);
+        Map<Facility, Integer> mapHO = readFici(HO_PATH);
+        Map<Facility, Integer> mapVL = readFici(VL_PATH);
+        facilityList.putAll(mapHO);
+        facilityList.putAll(mapRO);
+        facilityList.putAll(mapVL);
+        for (Facility key : facilityList.keySet()) {
+            if(key instanceof Villa){
+                facilityList.put(key,((Integer)(facilityList.get(key))+1));
+            } else if(key instanceof House){
+                facilityList.put(key,((Integer)(facilityList.get(key))+1));
+            }else if(key instanceof Room){
+                facilityList.put(key,((Integer)(facilityList.get(key))+1));
+            }
+        }
+    }
     @Override
     public void sua() {
     }

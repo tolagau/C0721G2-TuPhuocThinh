@@ -18,6 +18,14 @@ public class Contract {
         this.maKH = maKH;
     }
 
+    public int getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(int maKH) {
+        this.maKH = maKH;
+    }
+
     public int getSoHD() {
         return soHD;
     }
@@ -50,11 +58,18 @@ public class Contract {
         this.tongTienThanhToan = tongTienThanhToan;
     }
 
-    public int getMaKH() {
-        return maKH;
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "soHD=" + soHD +
+                ", mHD=" + mHD +
+                ", tienCocTruoc=" + tienCocTruoc +
+                ", tongTienThanhToan=" + tongTienThanhToan +
+                ", maKH=" + maKH +
+                '}';
     }
 
-    public void setMaKH(int maKH) {
-        this.maKH = maKH;
+    public String getIFCon() {
+        return soHD + "," + mHD + "," + tienCocTruoc + "," + tongTienThanhToan + "," + maKH;
     }
 }

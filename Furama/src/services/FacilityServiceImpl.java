@@ -130,33 +130,33 @@ public class FacilityServiceImpl extends Facility implements IService {
                 " 3: Villa");
         int choice = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập loại phòng");
-        String serviceName = scanner.nextLine();
+        String tenPhong = scanner.nextLine();
         System.out.println("Diện tích sử dụng");
-        double usingArea = Double.valueOf(scanner.nextLine());
+        double dienTich = Double.valueOf(scanner.nextLine());
         System.out.println("Nhập chi phí thuê");
-        double costRent = Double.valueOf(scanner.nextLine());
+        double chiPhi = Double.valueOf(scanner.nextLine());
         System.out.println("Nhập số lượng người ở");
-        int personNumber = Integer.parseInt(scanner.nextLine());
+        int soLNguoi = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập kiểu thuê");
-        String typeOfRent = scanner.nextLine();
+        String kieuThue = scanner.nextLine();
         switch (choice) {
             case 1:
-                Facility room = new Room(serviceName, usingArea, costRent, personNumber,
-                        typeOfRent, themDV());
+                Facility room = new Room(tenPhong, dienTich, chiPhi, soLNguoi,
+                        kieuThue, themDV());
                 fileRo.delete();
                 mapRO.put(room, 0);
                 writeFici(mapRO, RO_PATH, true);
                 break;
             case 2:
-                Facility facility2 = new House(serviceName, usingArea, costRent, personNumber,
-                        typeOfRent, themTieuChuan(), themTang());
+                Facility facility2 = new House(tenPhong, dienTich, chiPhi, soLNguoi,
+                        kieuThue, themTieuChuan(), themTang());
                 fileHo.delete();
                 mapHO.put(facility2, 0);
                 writeFici(mapHO, HO_PATH, true);
                 break;
             case 3:
-                Facility facility3 = new Villa(serviceName, usingArea, costRent, personNumber,
-                        typeOfRent, themTieuChuan(), themHoBoi(), themTang());
+                Facility facility3 = new Villa(tenPhong, dienTich, chiPhi, soLNguoi,
+                        kieuThue, themTieuChuan(), themHoBoi(), themTang());
                 fileVl.delete();
                 mapVL.put(facility3, 0);
                 writeFici(mapVL, VL_PATH, true);

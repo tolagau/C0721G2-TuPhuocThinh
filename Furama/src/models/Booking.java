@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Booking {
     private int maBKing;
     private String ngayBatDau;
@@ -84,5 +86,16 @@ public class Booking {
 
     public String getIFBook() {
         return maBKing + "," + ngayBatDau + "," + ngayKetThuc + ","+ customer.getMa() + "," + facility.getTenDV() + "," + loaiDV;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Booking booking = (Booking) o;
+        return this.getMaBKing() == booking.getMaBKing();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMaBKing());
     }
 }
