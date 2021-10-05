@@ -60,15 +60,15 @@ public class ContactServiceImpl implements IService {
                 newListBooking.poll();
             } else {
                 System.out.println(newListBooking.peek());
-                System.out.println("Enter id contract");
-                int idContract = Integer.parseInt(scanner.nextLine());
-                int idBooking = newListBooking.peek().getMaBKing();
-                System.out.println("Enter deposit");
-                double deposit = Double.parseDouble(scanner.nextLine());
-                System.out.println("Enter total pay");
-                double totalPay = Double.parseDouble(scanner.nextLine());
+                System.out.println("Nhập mã hợp đồng");
+                int maHopDong = Integer.parseInt(scanner.nextLine());
+                int maBooking = newListBooking.peek().getMaBKing();
+                System.out.println("Nhập tiền cọc");
+                double datCoc = Double.parseDouble(scanner.nextLine());
+                System.out.println("Nhập tiền thanh toán");
+                double thanhToan = Double.parseDouble(scanner.nextLine());
                 int idCustomer = newListBooking.poll().getCustomer().getMa();
-                Contract contract = new Contract(idContract, idBooking, deposit, totalPay, idCustomer);
+                Contract contract = new Contract(maHopDong, maBooking, datCoc, thanhToan, idCustomer);
                 File file = new File(CONTRACT_PATH);
                 contracts.add(contract);
                 file.delete();
@@ -82,25 +82,25 @@ public class ContactServiceImpl implements IService {
         Scanner scanner = new Scanner(System.in);
         List< Contract > contractList = readCon(CONTRACT_PATH);
         boolean flag = true;
-        System.out.println("Enter id name of edit contract");
+        System.out.println("Nhập mã hợp đồng cần chỉnh sửat");
         int editId = Integer.parseInt(scanner.nextLine());
         for (Contract contracts : contractList) {
             if (contracts.getmHD() == editId) {
-                System.out.println("Enter new id contract");
-                int idContract = Integer.parseInt(scanner.nextLine());
-                System.out.println("Enter new id booking");
-                int idBooking = Integer.parseInt(scanner.nextLine());
-                System.out.println("Enter new deposit");
-                double deposit = Double.parseDouble(scanner.nextLine());
-                System.out.println("Enter new total pay");
-                double totalPay = Double.parseDouble(scanner.nextLine());
-                System.out.println("Enter new id customer");
+                System.out.println("Nhập mã hợp đồng");
+                int maHopDong = Integer.parseInt(scanner.nextLine());
+                System.out.println("Nhập mã booking");
+                int maBooking = Integer.parseInt(scanner.nextLine());
+                System.out.println("NHập tiền đặt cọc");
+                double datCoc = Double.parseDouble(scanner.nextLine());
+                System.out.println("Nhập tiền thanh toán");
+                double thanhToan = Double.parseDouble(scanner.nextLine());
+                System.out.println("Nhập mã khách hàng");
                 int idCustomer = Integer.parseInt(scanner.nextLine());
-                contracts.setmHD(idContract);
-                contracts.setMaBKing(idBooking);
-                contracts.setDeposit(deposit);
-                contracts.setTotalPay(totalPay);
-                contracts.setIdCostumer(idCustomer);
+                contracts.setmHD(maHopDong);
+                contracts.setMaBking(maBooking);
+                contracts.setTienCocTruoc(datCoc);
+                contracts.setTongTienThanhToan(thanhToan);
+                contracts.setMaKH(idCustomer);
                 contracts.toString();
                 break;
             } else {

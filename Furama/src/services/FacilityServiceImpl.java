@@ -1,5 +1,6 @@
 package services;
 
+import utils.WrongFormatException;
 import models.*;
 
 import java.io.File;
@@ -8,6 +9,7 @@ import java.util.*;
 
 import static utils.ReadAndWrite.readFile;
 import static utils.ReadAndWrite.writeFile;
+import static utils.Regex.*;
 
 public class FacilityServiceImpl extends Facility implements IService {
     public static final String VL_PATH = "src\\data\\villa.csv";
@@ -81,15 +83,38 @@ public class FacilityServiceImpl extends Facility implements IService {
 
     public static double themHoBoi() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập diện tích hồ bơi");
-        double hoBoi = Double.parseDouble(scanner.nextLine());
+        double hoBoi = 0.0;
+        boolean flag;
+        do {
+            try {
+                flag = true;
+                System.out.println("Nhập diện tích hồ bơi: ");
+                hoBoi = Double.parseDouble(scanner.nextLine());
+                checkDienTich(hoBoi);
+            } catch (WrongFormatException | NumberFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (flag);
         return hoBoi;
     }
 
+
     public static int themTang() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập số tầng");
-        int tang = Integer.parseInt(scanner.nextLine());
+        int tang = 0;
+        boolean flag;
+        do {
+            try {
+                flag = true;
+                System.out.println("Nhập số tầng");
+                tang = Integer.parseInt(scanner.nextLine());
+                checkTang(tang);
+            } catch (WrongFormatException | NumberFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (flag);
         return tang;
     }
 
@@ -125,20 +150,74 @@ public class FacilityServiceImpl extends Facility implements IService {
     @Override
     public void them() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Chọn hạng mục cần thêm: \n1:Room,\n" +
-                " 2: House,\n" +
-                " 3: Villa");
-        int choice = Integer.parseInt(scanner.nextLine());
-        System.out.println("Nhập loại phòng");
-        String tenPhong = scanner.nextLine();
-        System.out.println("Diện tích sử dụng");
-        double dienTich = Double.valueOf(scanner.nextLine());
-        System.out.println("Nhập chi phí thuê");
-        double chiPhi = Double.valueOf(scanner.nextLine());
-        System.out.println("Nhập số lượng người ở");
-        int soLNguoi = Integer.parseInt(scanner.nextLine());
-        System.out.println("Nhập kiểu thuê");
-        String kieuThue = scanner.nextLine();
+        boolean flag;
+        int choice = 1;
+        do {
+            try {
+                flag = true;
+                System.out.println("Chọn hạng mục cần thêm: \n1:Room,\n" +
+                        " 2: House,\n" +
+                        " 3: Villa");
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (!flag);
+        String tenPhong = null;
+        do {
+            try {
+                System.out.println("Nhập loại phòng");
+                tenPhong = scanner.nextLine();
+                checkName(tenPhong);
+            } catch (NumberFormatException | WrongFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (!flag);
+        double dienTich = 0;
+        do {
+            try {
+                System.out.println("Diện tích sử dụng");
+                dienTich = Double.valueOf(scanner.nextLine());
+                checkDienTich(dienTich);
+            } catch (NumberFormatException | WrongFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (!flag);
+        double chiPhi = 0;
+        do {
+            try {
+                System.out.println("Nhập chi phí thuê");
+                chiPhi = Double.valueOf(scanner.nextLine());
+                checkChiPhi(chiPhi);
+            } catch (NumberFormatException | WrongFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (!flag);
+        int soLNguoi = 0;
+        do {
+            try {
+                System.out.println("Nhập số lượng người ở");
+                soLNguoi = Integer.parseInt(scanner.nextLine());
+                checkConNguoi(soLNguoi);
+            } catch (NumberFormatException | WrongFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (!flag);
+        String kieuThue = null;
+        do {
+            try {
+                System.out.println("Nhập kiểu thuê");
+                kieuThue = scanner.nextLine();
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        } while (!flag);
         switch (choice) {
             case 1:
                 Facility room = new Room(tenPhong, dienTich, chiPhi, soLNguoi,
