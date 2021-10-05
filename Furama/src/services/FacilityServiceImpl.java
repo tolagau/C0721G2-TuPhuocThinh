@@ -169,7 +169,7 @@ public class FacilityServiceImpl extends Facility implements IService {
             try {
                 System.out.println("Nhập loại phòng");
                 tenPhong = scanner.nextLine();
-                checkName(tenPhong);
+                checkFaci(tenPhong);
             } catch (NumberFormatException | WrongFormatException e) {
                 e.printStackTrace();
                 flag = false;

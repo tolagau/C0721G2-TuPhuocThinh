@@ -79,6 +79,8 @@ public class ContactServiceImpl implements IService {
 
     @Override
     public void sua() {
+        BookingServiceImpl  bookingService = new BookingServiceImpl();
+        bookingService.hienThi();
         Scanner scanner = new Scanner(System.in);
         List< Contract > contractList = readCon(CONTRACT_PATH);
         boolean flag = true;
@@ -97,7 +99,7 @@ public class ContactServiceImpl implements IService {
                 System.out.println("Nhập mã khách hàng");
                 int idCustomer = Integer.parseInt(scanner.nextLine());
                 contracts.setmHD(maHopDong);
-                contracts.setMaBking(maBooking);
+                contracts.setSoHD(maBooking);
                 contracts.setTienCocTruoc(datCoc);
                 contracts.setTongTienThanhToan(thanhToan);
                 contracts.setMaKH(idCustomer);

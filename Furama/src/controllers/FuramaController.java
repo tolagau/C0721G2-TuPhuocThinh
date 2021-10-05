@@ -1,9 +1,6 @@
 package controllers;
 
-import services.BookingServiceImpl;
-import services.CustomerServiceImpl;
-import services.EmployeeServiceImpl;
-import services.FacilityServiceImpl;
+import services.*;
 
 import java.util.Scanner;
 
@@ -12,6 +9,7 @@ public class FuramaController {
     static EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     static FacilityServiceImpl facilityService = new FacilityServiceImpl();
     static BookingServiceImpl bookingService = new BookingServiceImpl();
+    static ContactServiceImpl contactService = new ContactServiceImpl();
 
     public static void hamPhu(String str) {
         System.out.println(str);
@@ -120,8 +118,8 @@ public class FuramaController {
                         hamPhu("*--------------------------------*");
                         hamPhu("1. Add new booking                ");
                         hamPhu("2. Display list booking           ");
-                        hamPhu("3. Create new constracts          ");
-                        hamPhu("4. Display list contracts         ");
+                        hamPhu("3. Display list contracts         ");
+                        hamPhu("4. Create new constracts          ");
                         hamPhu("5. Edit contracts                 ");
                         hamPhu("6. Return main menu               ");
                         hamPhu("Mời nhập lựa chọn                 ");
@@ -132,6 +130,15 @@ public class FuramaController {
                                 break;
                             case 2:
                                 bookingService.hienThi();
+                                break;
+                            case 3:
+                                contactService.hienThi();
+                                break;
+                            case 4:
+                                contactService.them();
+                                break;
+                            case 5:
+                                contactService.sua();
                                 break;
                             case 6:
                                 flag1 = false;
@@ -156,7 +163,6 @@ public class FuramaController {
             }
         }
     }
-
     public static void main(String[] args) {
         displayMenu();
     }
