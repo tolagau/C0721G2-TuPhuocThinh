@@ -116,7 +116,7 @@ public class EmployeeServiceImpl extends Employee implements IEmployeeService {
                 listEmployee.get(i).setLuong(luong);
             }
         }
-        File file = new File(EMPLOYEE_PATH);
+            File file = new File(EMPLOYEE_PATH);
         file.delete();
         writeEmploy(listEmployee, EMPLOYEE_PATH, false);
         hienThi();

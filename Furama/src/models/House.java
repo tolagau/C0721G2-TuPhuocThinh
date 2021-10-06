@@ -7,8 +7,17 @@ public class House extends Facility {
     public House() {
     }
 
-    public House(String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue, String tieuChuan, int soTang) {
-        super(tenDV, dienTich, chiPhi, soLuongNguoi, kieuThue);
+    public House(String idDV, String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue) {
+        super(idDV, tenDV, dienTich, chiPhi, soLuongNguoi, kieuThue);
+    }
+
+    public House(String tieuChuan, int soTang) {
+        this.tieuChuan = tieuChuan;
+        this.soTang = soTang;
+    }
+
+    public House(String idDV, String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue, String tieuChuan, int soTang) {
+        super(idDV, tenDV, dienTich, chiPhi, soLuongNguoi, kieuThue);
         this.tieuChuan = tieuChuan;
         this.soTang = soTang;
     }
@@ -32,6 +41,7 @@ public class House extends Facility {
     @Override
     public String toString() {
         return "House{" +
+                "maFaci='" + getIdDV() +
                 "tenDV='" + getTenDV() +
                 ", dienTich=" + getDienTich() +
                 ", chiPhi=" + getChiPhi() +
@@ -41,7 +51,8 @@ public class House extends Facility {
                 ", soTang=" + soTang +
                 '}';
     }
-    public String getInfoHo(){
-        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() +","+ tieuChuan +","+soTang;
+
+    public String getInfoHo() {
+        return getIdDV() + "," + getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() + "," + tieuChuan + "," + soTang;
     }
 }

@@ -5,8 +5,13 @@ public class Room extends Facility{
 
     public Room() {
     }
-    public Room(String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue, String dichVuDiKem) {
-        super(tenDV, dienTich, chiPhi, soLuongNguoi, kieuThue);
+
+    public Room(String idDV, String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue) {
+        super(idDV, tenDV, dienTich, chiPhi, soLuongNguoi, kieuThue);
+    }
+
+    public Room(String idDV, String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue, String dichVuDiKem) {
+        super(idDV, tenDV, dienTich, chiPhi, soLuongNguoi, kieuThue);
         this.dichVuDiKem = dichVuDiKem;
     }
 
@@ -21,6 +26,7 @@ public class Room extends Facility{
     @Override
     public String toString() {
         return "Room{" +
+                "maDV='" + getIdDV() +
                 "tenDV='" + getTenDV() +
                 ", dienTich=" + getDienTich() +
                 ", chiPhi=" + getChiPhi() +
@@ -30,6 +36,7 @@ public class Room extends Facility{
                 '}';
     }
     public String getInfoRoom(){
-        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() +","+ dichVuDiKem;
+        return getIdDV() + "," +getTenDV() + "," + getDienTich() + "," + getChiPhi() + ","
+                + getSoLuongNguoi() + "," + getKieuThue() +","+ dichVuDiKem;
     }
 }

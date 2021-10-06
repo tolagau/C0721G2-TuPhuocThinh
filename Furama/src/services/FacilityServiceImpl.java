@@ -1,5 +1,6 @@
 package services;
 
+import utils.Regex;
 import utils.WrongFormatException;
 import models.*;
 
@@ -12,16 +13,16 @@ import static utils.ReadAndWrite.writeFile;
 import static utils.Regex.*;
 
 public class FacilityServiceImpl extends Facility implements IService {
-    public static final String VL_PATH = "src\\data\\villa.csv";
-    public static final String RO_PATH = "src\\data\\room.csv";
-    public static final String HO_PATH = "src\\data\\house.csv";
-    File fileVl = new File(VL_PATH);
-    File fileRo = new File(RO_PATH);
-    File fileHo = new File(HO_PATH);
-    public static Map<Facility, Integer> facilityList = new LinkedHashMap<>();
-    public static Map<Facility, Integer> mapRO = readFici(RO_PATH);
-    public static Map<Facility, Integer> mapHO = readFici(HO_PATH);
-    public static Map<Facility, Integer> mapVL = readFici(VL_PATH);
+    public static final String FACILITY_PATH = "src\\data\\facility.csv";
+    private static final String REGEX_ID = "^SV(VL|HO|RO)\\d{4}$";
+    private static final String REGEX_NAME = "^[A-Z](\\w+\\s?)*$";
+    private static final String REGEX_AREA = "^([3-9][1-9]|[1-9]\\d{2,}).?\\d*$";
+    private static final String REGEX_INT = "^[1-9]|[1][0-9]+$";
+    private static final String REGEX_PERSON = "^[1-9]|[1][0-9]$";
+    private static final String REGEX_CHOICE = "^[1-3]$";
+    File file = new File(FACILITY_PATH);
+    Map<Facility, Integer> facilityList = readFici(FACILITY_PATH);
+    static Scanner scanner = new Scanner(System.in);
 
 
     public static void writeFici(Map<Facility, Integer> facilityIntegerMap, String filePath, boolean append) {
@@ -48,23 +49,23 @@ public class FacilityServiceImpl extends Facility implements IService {
             temp = string.split(",");
             switch (temp.length) {
                 case 7:
-                    Facility facility = new Room(temp[0], Double.parseDouble(temp[1]),
-                            Double.parseDouble(temp[2]), Integer.parseInt(temp[3]), temp[4],
-                            temp[5]);
-                    map.put(facility, Integer.parseInt(temp[6]));
+                    Facility facility = new Room(temp[0], temp[1], Double.parseDouble(temp[2]),
+                            Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), temp[5],
+                            temp[6]);
+                    map.put(facility, Integer.parseInt(temp[7]));
 
                     break;
                 case 8:
-                    Facility facility1 = new House(temp[0], Double.parseDouble(temp[1]),
-                            Double.parseDouble(temp[2]), Integer.parseInt(temp[3]), temp[4],
-                            temp[5], Integer.parseInt(temp[6]));
-                    map.put(facility1, Integer.parseInt(temp[7]));
+                    Facility facility1 = new House(temp[0], temp[1], Double.parseDouble(temp[2]),
+                            Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), temp[5],
+                            temp[6], Integer.parseInt(temp[7]));
+                    map.put(facility1, Integer.parseInt(temp[8]));
                     break;
                 case 9:
-                    Facility facility2 = new Villa(temp[0], Double.parseDouble(temp[1]),
-                            Double.parseDouble(temp[2]), Integer.parseInt(temp[3]), temp[4], temp[5],
-                            Double.parseDouble(temp[6]), Integer.parseInt(temp[7]));
-                    map.put(facility2, Integer.parseInt(temp[8]));
+                    Facility facility2 = new Villa(temp[0], temp[1], Double.parseDouble(temp[2]),
+                            Double.parseDouble(temp[3]), Integer.parseInt(temp[4]), temp[5], temp[6],
+                            Double.parseDouble(temp[7]), Integer.parseInt(temp[8]));
+                    map.put(facility2, Integer.parseInt(temp[9]));
                     break;
                 default:
                     throw new IllegalStateException("Lỗi: " + string.length());
@@ -73,62 +74,7 @@ public class FacilityServiceImpl extends Facility implements IService {
         return map;
     }
 
-
-    public static String themTieuChuan() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập tiêu chuẩn của phòng");
-        String tieuChuan = scanner.nextLine();
-        return tieuChuan;
-    }
-
-    public static double themHoBoi() {
-        Scanner scanner = new Scanner(System.in);
-        double hoBoi = 0.0;
-        boolean flag;
-        do {
-            try {
-                flag = true;
-                System.out.println("Nhập diện tích hồ bơi: ");
-                hoBoi = Double.parseDouble(scanner.nextLine());
-                checkDienTich(hoBoi);
-            } catch (WrongFormatException | NumberFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (flag);
-        return hoBoi;
-    }
-
-
-    public static int themTang() {
-        Scanner scanner = new Scanner(System.in);
-        int tang = 0;
-        boolean flag;
-        do {
-            try {
-                flag = true;
-                System.out.println("Nhập số tầng");
-                tang = Integer.parseInt(scanner.nextLine());
-                checkTang(tang);
-            } catch (WrongFormatException | NumberFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (flag);
-        return tang;
-    }
-
-    public static String themDV() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Thêm dịch vụ miễn phí");
-        String dv = scanner.nextLine();
-        return dv;
-    }
-
     public void displayMaintenance() {
-        facilityList.putAll(mapHO);
-        facilityList.putAll(mapRO);
-        facilityList.putAll(mapVL);
         for (Map.Entry<Facility, Integer> duyetMap : facilityList.entrySet()) {
             if (duyetMap.getValue() >= 5) {
                 System.out.printf("Dịch vụ cần bảo trì: " + duyetMap.getKey().toString() + "\n");
@@ -138,109 +84,108 @@ public class FacilityServiceImpl extends Facility implements IService {
 
     @Override
     public void hienThi() {
-        facilityList.putAll(mapHO);
-        facilityList.putAll(mapRO);
-        facilityList.putAll(mapVL);
-        for (Map.Entry<Facility, Integer> duyetMap : facilityList.entrySet()) {
-            System.out.println(duyetMap.toString());
+        for (Map.Entry<Facility, Integer> map : facilityList.entrySet()) {
+            System.out.println(map.getKey().toString() + "," + map.getValue());
         }
     }
 
-
     @Override
     public void them() {
-        Scanner scanner = new Scanner(System.in);
-        boolean flag;
-        int choice = 1;
-        do {
-            try {
-                flag = true;
-                System.out.println("Chọn hạng mục cần thêm: \n1:Room,\n" +
-                        " 2: House,\n" +
-                        " 3: Villa");
-                choice = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (!flag);
-        String tenPhong = null;
-        do {
-            try {
-                System.out.println("Nhập loại phòng");
-                tenPhong = scanner.nextLine();
-                checkFaci(tenPhong);
-            } catch (NumberFormatException | WrongFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (!flag);
-        double dienTich = 0;
-        do {
-            try {
-                System.out.println("Diện tích sử dụng");
-                dienTich = Double.valueOf(scanner.nextLine());
-                checkDienTich(dienTich);
-            } catch (NumberFormatException | WrongFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (!flag);
-        double chiPhi = 0;
-        do {
-            try {
-                System.out.println("Nhập chi phí thuê");
-                chiPhi = Double.valueOf(scanner.nextLine());
-                checkChiPhi(chiPhi);
-            } catch (NumberFormatException | WrongFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (!flag);
-        int soLNguoi = 0;
-        do {
-            try {
-                System.out.println("Nhập số lượng người ở");
-                soLNguoi = Integer.parseInt(scanner.nextLine());
-                checkConNguoi(soLNguoi);
-            } catch (NumberFormatException | WrongFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (!flag);
-        String kieuThue = null;
-        do {
-            try {
-                System.out.println("Nhập kiểu thuê");
-                kieuThue = scanner.nextLine();
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                flag = false;
-            }
-        } while (!flag);
+        System.out.println("Thêm loại phòng facility: " +
+                " 1:Room,\n" +
+                " 2: House,\n" +
+                " 3: Villa");
+        int choice = Integer.parseInt(inputChoice());
         switch (choice) {
             case 1:
-                Facility room = new Room(tenPhong, dienTich, chiPhi, soLNguoi,
-                        kieuThue, themDV());
-                fileRo.delete();
-                mapRO.put(room, 0);
-                writeFici(mapRO, RO_PATH, true);
+                Facility facility1 = new Room(inputId(), inputServiceName(), Double.parseDouble(inputArea()),
+                        Double.parseDouble(inputCostRent()), Integer.parseInt(inputPersonNumber()),
+                        inputTypeRent(), inputFreeService());
+                file.delete();
+                facilityList.put(facility1, 0);
+                writeFici(facilityList, FACILITY_PATH, true);
                 break;
             case 2:
-                Facility facility2 = new House(tenPhong, dienTich, chiPhi, soLNguoi,
-                        kieuThue, themTieuChuan(), themTang());
-                fileHo.delete();
-                mapHO.put(facility2, 0);
-                writeFici(mapHO, HO_PATH, true);
+                Facility facility2 = new House(inputId(), inputServiceName(), Double.parseDouble(inputArea()),
+                        Double.parseDouble(inputCostRent()), Integer.parseInt(inputPersonNumber()),
+                        inputTypeRent(), inputStandard(), Integer.parseInt(inputFloor()));
+                file.delete();
+                facilityList.put(facility2, 0);
+                writeFici(facilityList, FACILITY_PATH, true);
                 break;
             case 3:
-                Facility facility3 = new Villa(tenPhong, dienTich, chiPhi, soLNguoi,
-                        kieuThue, themTieuChuan(), themHoBoi(), themTang());
-                fileVl.delete();
-                mapVL.put(facility3, 0);
-                writeFici(mapVL, VL_PATH, true);
-                break;
+                Facility facility3 = new Villa(inputId(), inputServiceName(), Double.parseDouble(inputArea()),
+                        Double.parseDouble(inputCostRent()), Integer.parseInt(inputPersonNumber()),
+                        inputTypeRent(), inputStandard(), Double.parseDouble(inputPoolArea()), Integer.parseInt(inputFloor()));
+                file.delete();
+                facilityList.put(facility3, 0);
+                writeFici(facilityList, FACILITY_PATH, true);
         }
+    }
+    private String inputChoice() {
+        System.out.println("Enter choice: ");
+        String choice = scanner.nextLine();
+        return checkRegex(choice, REGEX_CHOICE, "Only input 1 or 2 or 3");
+    }
+
+    private String inputId() {
+        System.out.println("Enter id: ");
+        String id = scanner.nextLine();
+        return checkRegex(id, REGEX_ID, "Wrong format, please input like: SVVL1001");
+    }
+
+    private String inputServiceName() {
+        System.out.println("Enter Service name: ");
+        String serviceName = scanner.nextLine();
+        return checkRegex(serviceName, REGEX_NAME, "Wrong format, first word is capital");
+    }
+
+    private String inputArea() {
+        System.out.println("Enter area ");
+        String area = scanner.nextLine();
+        return checkRegex(area, REGEX_AREA, "Area >30");
+    }
+
+    private String inputPersonNumber() {
+        System.out.println("Enter person number ");
+        String personNumber = scanner.nextLine();
+        return checkRegex(personNumber, REGEX_PERSON, "Area have to better than 20");
+    }
+
+    private String inputCostRent() {
+        System.out.println("Enter cost rent ");
+        String costRent = scanner.nextLine();
+        return checkRegex(costRent, REGEX_INT, "Cost rent  have to positive");
+    }
+
+    private String inputTypeRent() {
+        System.out.println("Enter cost type of rent ");
+        String typeOfRent = scanner.nextLine();
+        return checkRegex(typeOfRent, REGEX_NAME, "Wrong format, first word is capital");
+    }
+
+    private String inputStandard() {
+        System.out.println("Enter add Standard: ");
+        String standard = scanner.nextLine();
+        return checkRegex(standard, REGEX_NAME, "Wrong format, first word is capital");
+    }
+
+    private String inputPoolArea() {
+        System.out.println("Enter pool area: ");
+        String poolArea = scanner.nextLine();
+        return checkRegex(poolArea, REGEX_AREA, "Area >30");
+    }
+
+    private String inputFloor() {
+        System.out.println("Enter number of floor: ");
+        String numberOfFloor = scanner.nextLine();
+        return checkRegex(numberOfFloor, REGEX_PERSON, " Number of floor have to positive");
+    }
+
+    public String inputFreeService() {
+        System.out.println("Enter free service: ");
+        String freeService = scanner.nextLine();
+        return checkRegex(freeService, REGEX_NAME, "Wrong format, first word is capital");
     }
 
     @Override

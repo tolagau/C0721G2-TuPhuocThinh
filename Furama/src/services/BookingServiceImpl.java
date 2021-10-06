@@ -15,7 +15,12 @@ import static utils.ReadAndWrite.writeFile;
 public class BookingServiceImpl implements IService {
 
     private static TreeSet<Booking> listBook = new TreeSet<>(new BookingComparator());
-     static final String BOOKING_PATH = "src\\data\\booking.csv";
+    static final String BOOKING_PATH = "src\\data\\booking.csv";
+    File file = new File(BOOKING_PATH);
+    File fileFacility = new File(FACILITY_PATH);
+    Set<Booking> bookingList = readBook(BOOKING_PATH);
+    static Map<Facility, Integer> facilityList = readFici(FACILITY_PATH);
+    static List<Customer> customer = readCus(CUSTUMER_PATH);
 
     public static void writeBook(TreeSet<Booking> bookings, String filePath, boolean append) {
         List<String> str = new ArrayList<>();
@@ -29,7 +34,7 @@ public class BookingServiceImpl implements IService {
         List<String> str = readFile(filePath);
         TreeSet<Booking> treeSet = new TreeSet<>(new BookingComparator());
         for (String string : str) {
-            List<Customer> customer = readCus(CUSTUMER_PATH);
+
             String[] temp = string.split(",");
             Customer customer1 = new Customer();
             for (Customer cus : customer) {
@@ -37,13 +42,6 @@ public class BookingServiceImpl implements IService {
                     customer1 = cus;
                 }
             }
-            Map<Facility, Integer> facilityList = new LinkedHashMap<>();
-            Map<Facility, Integer> mapRO = readFici(RO_PATH);
-            Map<Facility, Integer> mapHO = readFici(HO_PATH);
-            Map<Facility, Integer> mapVL = readFici(VL_PATH);
-            facilityList.putAll(mapHO);
-            facilityList.putAll(mapRO);
-            facilityList.putAll(mapVL);
             Facility facility = null;
             for (Map.Entry<Facility, Integer> mapFaci : facilityList.entrySet()) {
                 if (mapFaci.getKey().getTenDV().equals(temp[4])) {
@@ -72,13 +70,6 @@ public class BookingServiceImpl implements IService {
         List<Customer> listCustomer = readCus("src\\data\\customer.csv");
         customerService.hienThi();
         FacilityServiceImpl facilityService = new FacilityServiceImpl();
-        Map<Facility, Integer> facilityList = new LinkedHashMap<>();
-        Map<Facility, Integer> mapRO = readFici(RO_PATH);
-        Map<Facility, Integer> mapHO = readFici(HO_PATH);
-        Map<Facility, Integer> mapVL = readFici(VL_PATH);
-        facilityList.putAll(mapHO);
-        facilityList.putAll(mapRO);
-        facilityList.putAll(mapVL);
         facilityService.hienThi();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Thêm mới Booking");
@@ -110,27 +101,11 @@ public class BookingServiceImpl implements IService {
         String loaiDv = scanner.nextLine();
         Booking booking = new Booking(id, bd, kt, customer1, facility, loaiDv);
         listBook.add(booking);
-        writeBook(listBook,BOOKING_PATH,true);
+        writeBook(listBook, BOOKING_PATH, true);
         hienThi();
     }
-    public static void tangValue(Facility facility){
-        Map<Facility, Integer> facilityList = new LinkedHashMap<>();
-        Map<Facility, Integer> mapRO = readFici(RO_PATH);
-        Map<Facility, Integer> mapHO = readFici(HO_PATH);
-        Map<Facility, Integer> mapVL = readFici(VL_PATH);
-        facilityList.putAll(mapHO);
-        facilityList.putAll(mapRO);
-        facilityList.putAll(mapVL);
-        for (Facility key : facilityList.keySet()) {
-            if(key instanceof Villa){
-                facilityList.put(key,((Integer)(facilityList.get(key))+1));
-            } else if(key instanceof House){
-                facilityList.put(key,((Integer)(facilityList.get(key))+1));
-            }else if(key instanceof Room){
-                facilityList.put(key,((Integer)(facilityList.get(key))+1));
-            }
-        }
-    }
+
+
     @Override
     public void sua() {
     }

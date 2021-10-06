@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 
 public abstract class Facility {
+    private String idDV;
     private String tenDV;
     private double dienTich;
     private double chiPhi;
@@ -12,12 +13,21 @@ public abstract class Facility {
     public Facility() {
     }
 
-    public Facility(String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue) {
+    public Facility(String idDV, String tenDV, double dienTich, double chiPhi, int soLuongNguoi, String kieuThue) {
+        this.idDV = idDV;
         this.tenDV = tenDV;
         this.dienTich = dienTich;
         this.chiPhi = chiPhi;
         this.soLuongNguoi = soLuongNguoi;
         this.kieuThue = kieuThue;
+    }
+
+    public String getIdDV() {
+        return idDV;
+    }
+
+    public void setIdDV(String idDV) {
+        this.idDV = idDV;
     }
 
     public String getTenDV() {
@@ -63,7 +73,8 @@ public abstract class Facility {
     @Override
     public String toString() {
         return "Facility{" +
-                "tenDV='" + tenDV + '\'' +
+                "idDV='" + idDV + '\'' +
+                ", tenDV='" + tenDV + '\'' +
                 ", dienTich=" + dienTich +
                 ", chiPhi=" + chiPhi +
                 ", soLuongNguoi=" + soLuongNguoi +
@@ -72,6 +83,7 @@ public abstract class Facility {
     }
 
     public String getInfo() {
-        return getTenDV() + "," + getDienTich() + "," + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() + ",";
+        return getIdDV() + "," + getTenDV() + "," + getDienTich() + ","
+                + getChiPhi() + "," + getSoLuongNguoi() + "," + getKieuThue() + ",";
     }
 }
