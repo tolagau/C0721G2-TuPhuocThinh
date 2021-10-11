@@ -22,6 +22,7 @@ public class Menu {
             hamPhu("1.  Thêm mới khách hàng ");
             hamPhu("2.  Hiển thị thông tin khách hàng ");
             hamPhu("3.  Tìm kiếm thông tin khách hàng ");
+            hamPhu("6.  Tìm kiếm thông tin khách hàng ");
             hamPhu("4.  Hóa đơn  ");
             hamPhu("5.  Exit                ");
             hamPhu("Mời chọn chức năng: ");
@@ -119,6 +120,9 @@ public class Menu {
                     }
                     break;
                 }
+                case 6:
+                    khachHang.xoa();
+                    break;
                 case 5:
                     System.exit(0);
 

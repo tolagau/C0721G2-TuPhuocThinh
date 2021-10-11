@@ -60,7 +60,7 @@ public class HoaDon {
     }
 
     public double getTinhTien() {
-        if (person.getIdPerson().contains("VN")) {
+        if (person instanceof NguoiVN) {
             if (soLuong < ((NguoiVN)person).getDinhMuc()) {
                 return this.soLuong * this.donGia;
             } else {
@@ -84,6 +84,6 @@ public class HoaDon {
     }
 
     public String getInfo() {
-        return maHoaDon + "," + person + "," + ngayKhoiTao + "," + soLuong + "," + donGia + "," + getTinhTien();
+        return maHoaDon + "," + person.getIdPerson() + "," + ngayKhoiTao + "," + soLuong + "," + donGia + "," + getTinhTien();
     }
 }

@@ -57,7 +57,8 @@ public class HoaDonImpl implements Service {
             System.out.println(str.toString());
         }
     }
-//if(id <10) {
+
+//    if(id <10) {
 //        idReceipt = "MHD-00"+(Integer.parseInt(temp[1]) +1);
 //    }else if(id<100) {
 //        idReceipt = "MHD-0"+(Integer.parseInt(temp[1]) +1);
@@ -70,17 +71,14 @@ public class HoaDonImpl implements Service {
         khachHang.hienThi();
         System.out.println("Nhập các thông tin của hóa đơn");
         System.out.println("--------------------------------");
+        //-------------------tạo id tự động---------------------------
         String[] temp = hoaDonList.get(hoaDonList.size() - 1).getMaHoaDon().split("-");
         int i = Integer.parseInt(temp[1]) + 1;
         String idHD = "MHD-00" + i;
-        System.out.println("Nhập mã khách hàng");
-        String idKH = scanner.nextLine();
-        Person person = new Person();
-        for (Person person1 : personList) {
-            if (idKH.equals(person1.getIdPerson())) {
-                person.setName(idKH);
-            }
-        }
+        //--------------------------------------------
+        System.out.println("Nhập thứ tự khách hàng để lấy mã khách hàng");
+        int index = Integer.parseInt(scanner.nextLine());
+        Person person = personList.get(index - 1);
         System.out.println("Nhập ngày tạo hóa đơn");
         String ngayTao = scanner.nextLine();
         System.out.println("Số lượng tiêu thụ kWH");
@@ -88,6 +86,8 @@ public class HoaDonImpl implements Service {
         System.out.println("Đơn giá");
         double donGia = Double.parseDouble(scanner.nextLine());
         HoaDon hoaDon = new HoaDon(idHD, person, ngayTao, soLuong, donGia);
+        File file = new File(HD_PATH);
+        file.delete();
         hoaDonList.add(hoaDon);
         writeHD(hoaDonList, HD_PATH, true);
     }

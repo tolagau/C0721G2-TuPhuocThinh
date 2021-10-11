@@ -79,7 +79,6 @@ public class KhachHangImpl implements Service {
         int choice = Integer.parseInt(scanner.nextLine());
         switch (choice) {
             case 1: {
-
                 String idKH = inputID();
                 System.out.println("Nhập họ tên khách hàng:");
                 String name = scanner.nextLine();
@@ -112,11 +111,12 @@ public class KhachHangImpl implements Service {
     public static String getType() {
         int choice;
         String type = "";
+
         List<String> stringList = readFile(TYPE_PATH);
         System.out.println("Choice type of customer: " +
                 " 1:LKH-001,Sinh Hoat \n" +
                 " 2:LKH-002,Kinh doanh\n" +
-                " 3:LKH-003,Sản xuất\n: ");
+                " 3:LKH-003,Sản xuất: ");
         choice = Integer.parseInt(scanner.nextLine());
         switch (choice) {
             case 1:
@@ -151,10 +151,29 @@ public class KhachHangImpl implements Service {
     }
 
     private String inputID() {
-        System.out.println("Nhập mã khách hàng: ");
-        return Regex.regexData(scanner.nextLine(), CHECK_MA_KH,
-                "Bạn đã nhập sai định dạng mã khách hàng,bạn cần nhập lại theo định dạng KHXX-YYYYY");
+        boolean check = true;
+        String id = "";
+        while (check) {
+            System.out.println("Nhập mã khách hàng: ");
+            id = Regex.regexData(scanner.nextLine(), CHECK_MA_KH,
+                    "Bạn đã nhập sai định dạng mã khách hàng,bạn cần nhập lại theo định dạng KHXX-YYYYY");
+            for (int i = 0; i < personList.size(); i++) {
+                if (id.equals(personList.get(i).getIdPerson())) {
+                    System.out.println("ID bạn nhập bị trùng");
+                    check = true;
+                    break;
+                }
+                check = false;
+            }
+        }
+        return id;
     }
+
+//    private String inputID(){
+//        System.out.println("Nhập mã khách hàng: ");
+//       return Regex.regexData(scanner.nextLine(),CHECK_MA_KH,
+//               "Bạn đã nhập sai định dạng mã khách hàng,bạn cần nhập lại theo định dạng KHXX-YYYYY");
+//    }
 
 
     @Override
@@ -163,7 +182,6 @@ public class KhachHangImpl implements Service {
                 "1: Người Việt Nam\n" +
                 "2: Người nước ngoài");
         int choice = Integer.parseInt(scanner.nextLine());
-
         switch (choice) {
             case 1: {
                 hienThi();
@@ -180,11 +198,11 @@ public class KhachHangImpl implements Service {
                         personList.get(i).setName(name);
                         ((NguoiVN) personList.get(i)).setLoaiKH(loaiKH);
                         ((NguoiVN) personList.get(i)).setDinhMuc(dinhMuc);
-
                     }
                 }
-
-
+                file.delete();
+                writeNguoi(personList, KH_PATH, true);
+                break;
             }
             case 2: {
                 hienThi();
@@ -200,6 +218,9 @@ public class KhachHangImpl implements Service {
                         ((NguoiNN) personList.get(i)).setQuocTich(quocTich);
                     }
                 }
+                file.delete();
+                writeNguoi(personList, KH_PATH, true);
+                break;
             }
         }
 
@@ -228,12 +249,27 @@ public class KhachHangImpl implements Service {
 
     @Override
     public void xoa() {
-        System.out.println("Nhập mã khách hàng cần xóa: ");
-        String idDele = scanner.nextLine();
-        for (int i = 0; i < personList.size(); i++) {
-            if (personList.get(i).getIdPerson().equals(idDele)) {
-                personList.remove(i);
+        hienThi();
+        System.out.println("Nhập id cần xóa: ");
+        String idDelete = scanner.nextLine();
+        boolean check = true;
+        while (check) {
+            System.out.println("Mày có chắc xóa không?" +
+                    " 1. delete " +
+                    " 2. return menu ");
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    for (int i = 0; i < personList.size(); i++) {
+                        if (personList.get(i).getIdPerson().equals(idDelete)) {
+                            personList.remove(personList.get(i));
+                            file.delete();
+                            writeNguoi(personList, KH_PATH, true);
+                        }
+                    }
+                    break;
             }
+            break;
         }
         hienThi();
     }
