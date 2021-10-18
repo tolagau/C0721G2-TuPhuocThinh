@@ -70,7 +70,10 @@ insert KhachHang(maKH,maLoai,tenKH,ngaysinh,diachi) values
 (103,4,'Nguyen Anh', '1965-10-20', 'Quang Nam'),
 (104,4,'Nguyen Trung', '1988-11-20', 'Quang Nam'),
 (105,1,'Nguyen Thinh', '1989-10-20', 'Ha Noi'),
-(106,1,'Nguyen Tung', '1965-10-20', 'Da Nang');
+(106,1,'Nguyen Tung', '1965-10-20', 'Da Nang'),
+(107,1,'Nguyen Tinh', '1965-10-20', 'Quang Ngai'),
+(108,3,'Nguyen A', '1965-10-20', 'Vinh'),
+(109,1,'Nguyen The', '1965-10-20', 'Vinh');
 
 create table DichVuDiKem (
 	maDVDK int primary key auto_increment,
@@ -145,7 +148,11 @@ insert HopDong values
 	(6,103,106,105,'2021-08-15','2021-09-18',400,800),
     (7,103,106,105,'2019-02-24','2021-03-18',400,800),
     (8,103,106,105,'2019-05-24','2021-03-18',400,800),
-    (9,101,106,105,'2019-03-02','2021-03-18',400,800);
+    (9,101,106,105,'2019-03-02','2021-03-18',400,800),
+	(10,103,106,105,'2018-05-24','2021-03-18',400,800),
+    (11,101,106,105,'2018-03-02','2021-03-18',400,800),
+	(12,103,106,null,'2019-05-24','2021-03-18',400,800),
+    (13,101,106,null,'2019-03-02','2021-03-18',400,800);
 create table HopDongChiTiet (
 	maHDCT int primary key auto_increment,
 	maDVDK int,
@@ -209,10 +216,98 @@ select v.maDichVu, v.tenDichVu, v.dienTich, v.chiPhi, loaidichvu.tenLoaiDV, hopd
 from dichvu v 
 join hopdong on hopdong.maDichVu = v.maDichVu
 join loaidichvu on loaidichvu.maLoaiDV = v.maLoaiDV
-where year(hopdong.checkIn) = '2019' and (month(hopdong.checkIn) between 1 and 3)
+where year(hopdong.checkIn) = '2019' and (month(hopdong.checkIn) between 1 and 3);
 
+#7 7.Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, TenLoaiDichVu của tất cả các loại dịch vụ đã từng được Khách hàng đặt phòng trong năm 2018 
+#nhưng chưa từng được Khách hàng đặt phòng  trong năm 2019.
 
+ select hopdong.* ,kieuthue.tenKieuThue
+ from hopdong
+ right join dichvu  on hopdong.maDichVu = dichvu.maDichVu
+ right join kieuthue  on kieuthue.maKieuThue = dichvu.maKieuThue
+ where (year(hopdong.checkIn) = '2018') 
+ and hopdong.maHopDong
+ not in (
+ select hopdong.maHopDong
+from hopdong 
+ right join dichvu  on hopdong.maDichVu = dichvu.maDichVu
+ right join kieuthue  on kieuthue.maKieuThue = dichvu.maKieuThue
+ where (year(hopdong.checkIn) = '2019'));
 
+# 8.Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoThenKhachHang không trùng nhau.
+# Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên
+
+-- cách 1
+ select tenKH
+ from khachhang 
+ left join hopdong on khachhang.maKH = hopdong.maKH
+ union
+select tenKH
+from khachhang
+left join hopdong  on khachhang.maKH = hopdong.maKH;
+
+-- cách 2
+select distinct tenKH
+from khachhang;
+
+ -- cách 3
+ 
+ 
+ # 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
+ 
+ 
+--  select (dichvu.chiPhi + sum(hopdongchitiet.soLuong * dichvudikem.gia)) as TongTien
+--  from hopdong
+-- join dichvu on dichvu.maDichVu = hopdong.maDichVu
+-- join hopdongchitiet on hopdongchitiet.maHopDong = hopdong.maHopDong
+-- join dichvudikem on hopdongchitiet.maDVDK = dichvudikem.maDVDK
+-- group by hopdong.maHopDong 
+-- having (year(hopdong.checkIn) = '2019');
+  -- Đang bị lỗi having chưa biết fix làm s cả :(
+  
+  # 10.	Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm. 
+  #Kết quả hiển thị bao gồm IDHopDong, NgayLamHopDong, NgayKetthuc, TienDatCoc, SoLuongDichVuDiKem 
+  #(được tính dựa trên việc count các IDHopDongChiTiet).
+  
+ 
+
+select  hopdong.maHopDong, dichvu.tenDichVu, hopdong.checkIn, hopdong.checkOut, hopdong.tienCoc,
+		count(hopdong.maHopDong) as SoDichVuDiKem
+from hopdong
+join dichvu on dichvu.maDichVu = hopdong.maDichVu
+join hopdongchitiet on hopdongchitiet.maHopDong = hopdong.maHopDong
+join dichvudikem on dichvudikem.maDVDK = hopdongchitiet.maDVDK
+group by hopdong.maHopDong;
+ 
+ # 11.	Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng có TenLoaiKhachHang là “Diamond” và có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.
+ 
+ select dichvudikem.tenDVDK, hopdong.maKH, khachhang.tenKH, khachhang.maLoai, khachhang.diachi
+from hopdong
+join hopdongchitiet on hopdongchitiet.maHopDong = hopdong.maHopDong
+join dichvudikem on dichvudikem.maDVDK = hopdongchitiet.maDVDK
+join khachhang on hopdong.maKH = hopdong.maKH
+where khachhang.maLoai = '1' and (diachi like 'Quang Ngai' or diachi like 'Vinh');
+-- group by ????
+ -- Dữ liệu đang bị trùng lặp nhờ tutor giúp đỡ
+ 
+ # 12 Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết), 
+ #TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
+ 
+ select hopdong.maHopDong, nhanvien.tenNV, khachhang.tenKH, khachhang.sdt, dichvu.tenDichVu, hopdong.tienCoc
+		, hopdong.checkIn, dichvudikem.tenDVDK , count(dichvudikem.maDVDK) as SoDichVuDiKem
+from dichvu
+join hopdong on dichvu.maDichVu = hopdong.maHopDong
+join nhanvien on nhanvien.maNhanVien = hopdong.maNhanVien
+join khachhang on hopdong.maKH = hopdong.maKH
+left join hopdongchitiet on hopdongchitiet.maHopDong = hopdong.maHopDong
+left join dichvudikem on dichvudikem.maDVDK = hopdongchitiet.maDVDK
+where year(hopdong.checkIn) = '2019' and month(hopdong.checkIn) between 10 and 12 
+and not exists (
+select hopdong.checkIn
+from hopdong
+where (dichvu.maDichVu = hopdong.maHopDong) and (year(hopdong.checkIn) = 2019 and month(hopdong.checkIn) between 1 and 6)
+)
+group by hopdong.maHopDong;
 
 
 
