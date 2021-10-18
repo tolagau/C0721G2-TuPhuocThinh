@@ -293,36 +293,83 @@ where khachhang.maLoai = '1' and (diachi like 'Quang Ngai' or diachi like 'Vinh'
  # 12 Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết), 
  #TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
  
- select hopdong.maHopDong, nhanvien.tenNV, khachhang.tenKH, khachhang.sdt, dichvu.tenDichVu, hopdong.tienCoc
-		, hopdong.checkIn, dichvudikem.tenDVDK , count(dichvudikem.maDVDK) as SoDichVuDiKem
+select hopdong.maHopDong, nhanvien.tenNV, khachhang.tenKH, khachhang.sdt, dichvu.tenDichVu, hopdong.tienCoc
+		, hopdong.checkIn, dichvudikem.tenDVDK , count(dichvudikem.maDVDK) as SoLuongDichVuDikem
 from dichvu
-join hopdong on dichvu.maDichVu = hopdong.maHopDong
-join nhanvien on nhanvien.maNhanVien = hopdong.maNhanVien
-join khachhang on hopdong.maKH = hopdong.maKH
+join hopdong on dichvu.maDichVu = hopdong.maDichVu
+join nhanvien on nhanvien.maNV = hopdong.maNV
+join khachhang on khachhang.maKH = hopdong.maKH
 left join hopdongchitiet on hopdongchitiet.maHopDong = hopdong.maHopDong
 left join dichvudikem on dichvudikem.maDVDK = hopdongchitiet.maDVDK
-where year(hopdong.checkIn) = '2019' and month(hopdong.checkIn) between 10 and 12 
+where year(hopdong.checkIn) = 2019 and month(hopdong.checkIn) between 10 and 12 
 and not exists (
 select hopdong.checkIn
 from hopdong
-where (dichvu.maDichVu = hopdong.maHopDong) and (year(hopdong.checkIn) = 2019 and month(hopdong.checkIn) between 1 and 6)
+where (hopdong.maDichVu = dichvu.maDichVu) and (year(hopdong.checkIn) = 2019 and month(hopdong.checkIn) between 1 and 6)
 )
 group by hopdong.maHopDong;
 
 
+# 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
+#(Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
 
 
 
+# 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+#Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung
 
+select dichvudikem.tenDVDK, hopdong.maHopDong, dichvu.tenDichVu, count(dichvudikem.maDVDK)
+from dichvudikem
+join hopdongchitiet on dichvudikem.maDVDK = hopdongchitiet.maDVDK
+join hopdong on hopdong.maHopDong = hopdongchitiet.maHDCT
+join dichvu on dichvu.maDichVu = hopdong.maDichVu
+group by dichvudikem.maDVDK
+having count(dichvudikem.maDVDK) = 1;
 
+# 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, SoDienThoai, DiaChi
+#  mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
 
+select nhanvien.maNV, nhanvien.tenNV ,nhanvien.maTD, nhanvien.diachi, nhanvien.sdt
+, hopdong.maHopDong, bophan.tenBoPhan, count(nhanvien.maNV)
+from nhanvien
+join hopdong on hopdong.maNV = nhanvien.maNV
+join bophan on bophan.maBoPhan = nhanvien.maBoPhan
+where (year(hopdong.checkIn) between 2018 and 2019)
+group by nhanvien.maNV
+having count(nhanvien.maNV)<=3;
 
+# 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
 
+delete from nhanvien
+where not exists (
+select nhanvien.maNV
+from hopdong 
+where hopdong.maNV = nhanvien.maNV and year(hopdong.checkIn) between 2017 and 2019
+);
 
+# 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
+#chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.
 
+SET SQL_SAFE_UPDATES = 0;
+update khachhang
+set khachhang.maKH = 1
+where khachhang.maKH in (
+select *
+from (select khachhang.maKH
+from khachhang
+join hopdong on hopdong.maKH = khachhang.maKH
+where year(hopdong.checkIn) = 2019 and khachhang.maKH = 2
+group by khachhang.maKH
+having sum(tongtien) > 100)
+tdlTmp
+);
+# 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).
 
+delete
+ from hopdong
+ where not year(checkIn) between 2016 and 2021;
 
-
+# 19.Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
 
 
 
