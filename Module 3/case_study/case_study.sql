@@ -252,18 +252,22 @@ select distinct ten_Khach_Hang
 from Khach_Hang;
 
  -- cách 3
+ select ten_Khach_Hang
+ from khach_hang
+ group by ten_Khach_Hang;
+ 
+ # 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng 
+ #trong năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
  
  
- # 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
- 
- 
---  select (Dich_Vu.chi_phi + sum(Hop_Dong_Chi_Tiet.so_luong * Dich_Vu_Di_Kem.gia)) as tong_tien
---  from Hop_Dong
--- join Dich_Vu on Dich_Vu.ma_dich_vu = Hop_Dong.ma_dich_vu
--- join Hop_Dong_Chi_Tiet on Hop_Dong_Chi_Tiet.ma_hop_dong = Hop_Dong.ma_hop_dong
--- join Dich_Vu_Di_Kem on Hop_Dong_Chi_Tiet.ma_dvdk = Dich_Vu_Di_Kem.ma_dvdk
--- group by Hop_Dong.ma_hop_dong 
--- having (year(Hop_Dong.check_in) = '2019');
+ select (Dich_Vu.chi_phi + sum(Hop_Dong_Chi_Tiet.so_luong * Dich_Vu_Di_Kem.gia)) as tong_tien
+ from Hop_Dong
+join Dich_Vu on Dich_Vu.ma_dich_vu = Hop_Dong.ma_dich_vu
+join Hop_Dong_Chi_Tiet on Hop_Dong_Chi_Tiet.ma_hop_dong = Hop_Dong.ma_hop_dong
+join Dich_Vu_Di_Kem on Hop_Dong_Chi_Tiet.ma_dvdk = Dich_Vu_Di_Kem.ma_dvdk
+#where (year(Hop_Dong.check_in) = '2019')
+group by Hop_Dong.ma_hop_dong;
+#having (year(Hop_Dong.check_in) = '2019');
   -- Đang bị lỗi having chưa biết fix làm s cả :(
   
   # 10.	Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm. 
@@ -288,8 +292,7 @@ join Hop_Dong_Chi_Tiet on Hop_Dong_Chi_Tiet.ma_hop_dong = Hop_Dong.ma_hop_dong
 join Dich_Vu_Di_Kem on Dich_Vu_Di_Kem.ma_dvdk = Hop_Dong_Chi_Tiet.ma_dvdk
 join Khach_Hang on Hop_Dong.ma_Khach_Hang = Hop_Dong.ma_Khach_Hang
 where Khach_Hang.ma_loai_Khach_Hang = '1' and (dia_chi like 'Quang Ngai' or dia_chi like 'Vinh');
--- group by ????
- -- Dữ liệu đang bị trùng lặp nhờ tutor giúp đỡ
+
  
  # 12 Hiển thị thông tin IDHop_Dong, TenNhan_Vien, ten_Khach_Hangach_hang, SoDienThoaiKhach_Hang, ten_dich_vu, so_luongDich_Vu_Di_Kem (được tính dựa trên tổng Hợp đồng chi tiết), 
  #TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
@@ -313,12 +316,17 @@ group by Hop_Dong.ma_hop_dong;
 
 # 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
 #(Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
-	select * sum(so_luong) as Tong
+	select Dich_Vu_Di_Kem.*, sum(so_luong) as Tong
     from Dich_Vu_Di_Kem
+	join Hop_Dong_Chi_Tiet on Hop_Dong_Chi_Tiet.ma_DVDK = Dich_Vu_Di_Kem.ma_DVDK
     join Hop_Dong on Hop_Dong.ma_hop_dong = Hop_Dong_Chi_Tiet. ma_hop_dong
-    join Hop_Dong_Chi_Tiet on Hop_Dong_Chi_Tiet.ma_DVDK = Dich_Vu_Di_Kem.ma_DVDK
+    group by Hop_Dong_Chi_Tiet.so_luong having Tong >= all
+    (select sum(so_luong) 
+    from Dich_Vu_Di_Kem
+	join Hop_Dong_Chi_Tiet on Hop_Dong_Chi_Tiet.ma_DVDK = Dich_Vu_Di_Kem.ma_DVDK
+    join Hop_Dong on Hop_Dong.ma_hop_dong = Hop_Dong_Chi_Tiet. ma_hop_dong
     group by Hop_Dong_Chi_Tiet.so_luong
-
+    );
 
 # 14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
 #Thông tin hiển thị bao gồm IDHop_Dong, ten_loai_Khach_HangDich_Vu, ten_dich_vu_Di_Kem, SoLanSuDung
@@ -345,7 +353,6 @@ having count(Nhan_Vien.ma_nhan_vien)<=3;
 
 # 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
 
-	#đúng
 -- SET FOREIGN_KEY_CHECKS=0;
 -- delete 
 -- from Nhan_Vien
@@ -411,7 +418,26 @@ SET SQL_SAFE_UPDATES = 1;
 select Nhan_Vien.*, Khach_Hang.*
 from Khach_Hang
 join Hop_Dong on Hop_Dong.ma_khach_hang = Khach_Hang.ma_khach_hang
-join Nhan_Vien on Nhan_Vien.ma_nhan_vien = Hop_Dong.ma_nhan_vien
+join Nhan_Vien on Nhan_Vien.ma_nhan_vien = Hop_Dong.ma_nhan_vien;
+
+#21. Tạo khung nhìn có tên là V_NHANVIEN để lấy được thông tin của tất cả các nhân viên có địa chỉ là “Hải Châu” 
+# và đã từng lập hợp đồng cho 1 hoặc nhiều Khách hàng bất kỳ  
+# với ngày lập hợp đồng là “12/12/2019”
+
+drop view if exists V_NHANVIEN;
+
+create view V_NHANVIEN as
+select *
+from Nhan_Vien
+join Hop_Dong on Hop_Dong.ma_nhan_vien = Nhan_Vien.ma_nhan_vien
+where Hop_Dong.check_in = "2019-12-12"
+
+WITH CHECK OPTION;
+
+
+
+
+
 
 
 

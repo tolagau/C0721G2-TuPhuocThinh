@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        #wrapper {
+            width: 800px;
+            margin: auto;
+            background-color: #fff0d1;
+        }
+
+        #Header {
+            width: 800px;
+            height: 50px;
+            background-color: darkslateblue;
+            color: white;
+        }
+
+        #Menu {
+            width: 800px;
+            height: 30px;
+            background-color: #d31f32;
+            text-align: center;
+        }
+
+        #Left {
+            width: 200px;
+            height: 400px;
+            background-color: #50d1ff;
+            color: #5938ff;
+            font-size: 20px;
+            text-align: center;
+            float: left;
+            content: initial;
+        }
+
+        #Content {
+            width: 600px;
+            height: 400px;
+            background-color: whitesmoke;
+            float: left;
+        }
+
+        h5 {
+            text-align: left;
+            font-size: 15px;
+            padding-left: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            height: 20px;
+            vertical-align: middle;
+            padding-top: 10px;
+        }
+        p {
+            padding: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <div id="Header">
+        <h1>Những mẩu chuyện cười ngắn hài hước khiến bạn cười mãi</h1>
+    </div>
+    <div id="Menu"><p>Tổng hợp những mẩu chuyện cười ngắn hài hước, chuyện tình hài hước</p></div>
+    <div id="Left">
+        <h5 onclick="story1()">Chạy nước gì</h5>
+        <br>
+        <h5 onclick="story2()">Tính Tuổi</h5>
+        <br>
+    </div>
+    <div id="Content">
+        <p id="story"></p>
+    </div>
+
+</div>
+<script>
+
+    function story1() {
+        document.getElementById("story").innerText = "Trong giờ sinh vật giảng về con ngựa.\n" +
+            "Cô giáo: con ngựa chạy nhanh thì gọi là gì?\n" +
+            "Vova: thưa cô nuớc đại ạ.\n" +
+            "Cô giáo:thế con ngựa chạy chậm thì gọi là gì?\n" +
+            "Vova: thưa cô nước….tiểu ạ"
+    }
+
+    function story2() {
+        document.getElementById("story").innerText =
+            "Bố Vôva mua một cái nhà máy nhỏ sản xuất giò và nói với Vôva:\n" +
+            "\n" +
+            "- Nếu nhét 1 con cừu vào đây thì ta sẽ nhận được 9 thanh giò. Hai thanh nộp cho nhà nước, giữ lại 7 thanh cho mình. Hiểu rồi chứ, Vôva?\n" +
+            "\n" +
+            "- Chưa hiểu.\n" +
+            "\n" +
+            "- Chỗ này nhét con cừu, chỗ này cho ra cục giò. 2 cục nộp cho nhà nước, 7 cục để lại. Hiểu chưa?\n" +
+            "\n" +
+            "- Khó hiểu quá. Thế có cái máy nào chỉ làm ngược lại không bố?\n" +
+            "\n" +
+            "- Có. Đó là mẹ mày ấy."
+    }
+</script>
+</body>
+</html>
