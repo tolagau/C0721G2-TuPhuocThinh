@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .col-1 {
+            width: 8.33%;
+        }
+
+        .col-2 {
+            width: 16.66%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.33%;
+        }
+
+        .col-5 {
+            width: 41.66%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.33%;
+        }
+
+        .col-8 {
+            width: 66.66%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33%;
+        }
+
+        .col-11 {
+            width: 91.66%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 5px;
+        }
+
+        @media only screen and (max-width: 768px) {
+
+            [class*="col-"] {
+                width: 100%;
+            }
+        }
+
+        .row::after {
+            clear: both;
+            display: block;
+            content: "";
+        }
+
+        .header-title {
+            background-color: black;
+            color: white;
+            font-size: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2px;
+            margin: 5px;
+            background-color: black;
+            color: #CDCDCD;
+        }
+
+        .right {
+            text-align: center;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0px;
+            height: 200px;
+        }
+
+        .left {
+            height: 150px;
+        }
+
+        .mid {
+            text-align: center;
+            background-color: #CDCDCD;
+        }
+
+        .content {
+            background-color: burlywood;
+        }
+
+        .header-title ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-title div ul li {
+            color: white;
+            width: 100px;
+            float: left;
+            text-align: center;
+        }
+
+        .header-title div ul {
+            color: white;
+            width: 100px;
+            float: left;
+            text-align: center;
+        }
+
+        .header-title ul a {
+            width: 100px;
+            display: block;
+            text-decoration: none;
+            color: #5e5d5b;
+            text-align: center;
+            font-size: 1.2em;
+            line-height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="row header-title">
+    <div class="col-1">Logo</div>
+    <div class="col-1">Home</div>
+    <div class="col-1">About</div>
+    <div class="col-1">Projects</div>
+    <div class="col-1">Contact</div>
+    <div class="col-6"></div>
+    <div class="col-1">Log Out</div>
+</div>
+<div class="content">
+    <div class="row left">
+        <div class="col-3">
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Link</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Link</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Link</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Link</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mid">
+            <div class="row">
+                <div class="12">
+                    <p>Nội dung nè
+                        NÓNG: NHIỀU TÀI KHOẢN FACEBOOK BỊ KHÓA KHÔNG RÕ LÝ DO
+                        Mới đây, nhiều người bất ngờ khi đăng nhập vào FB và nhận được thông báo "Tài khoản đã bị khóa".
+                        Hiện vẫn chưa rõ lỗi này do nguyên nhân gì.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 right">
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Phải</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Phải</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Phải</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="">Phải</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2014 Monday Times. All rights reserved.</p>
+</footer>
+</body>
+</html>
