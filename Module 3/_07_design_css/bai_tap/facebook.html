@@ -2,14 +2,244 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Face book</title>
+    <style>
+        .col-1 {
+            width: 8.33%;
+        }
+
+        .col-2 {
+            width: 16.66%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.33%;
+        }
+
+        .col-5 {
+            width: 41.66%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.33%;
+        }
+
+        .col-8 {
+            width: 66.66%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33%;
+        }
+
+        .col-11 {
+            width: 91.66%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 5px;
+        }
+
+        .row:after {
+            clear: both;
+            display: block;
+            content: "";
+        }
+
+        .header {
+            background-color: white;
+            font-family: Arial;
+            font-size: 28pt;
+        }
+
+        .left {
+            background-color: whitesmoke;
+            font-family: Arial;
+            font-size: 20pt;
+            float: left;
+            padding: 10px 5px;
+        }
+
+        .content {
+            background-color: whitesmoke;
+            font-family: Arial;
+            font-size: 20pt;
+            float: left;
+            padding: 5px;
+        }
+
+        .status {
+            margin: 5px 0;
+            background-color: white;
+            font-family: Arial;
+            font-size: 20pt;
+            padding: 5px 10px 5px 10px;
+        }
+
+        .page-content {
+            margin: 5px 0;
+            background-color: white;
+            font-family: Arial;
+            font-size: 20pt;
+            padding: 5px 10px 5px 10px;
+        }
+
+        #menu {
+            padding: 10px 5px;
+        }
+
+        .right {
+            background-color: whitesmoke;
+            font-family: Arial;
+            font-size: 20pt;
+            float: left;
+            padding: 10px 5px;
+        }
+
+        ul, li {
+            display: inline-table;
+            padding: 5px 0;
+            font-size: 10px;
+            margin: auto;
+        }
+
+        img {
+            /*padding: 5px 0;*/
+            text-align: center;
+        }
+        .p {
+            font-size: 15pt;
+        }
+
+        p {
+            font-family: Arial;
+            font-size: 10px;
+        }
+
+    </style>
 </head>
 <body>
-    <div>
-
+<div class="header col-3">
+    <div class="col-4">
+        <img src="image/face_icon.png" style="width: 40px; height: 40px">
     </div>
-<div>
+    <div class="col-8">
+        <img src="image/482631.png" style="width: 30px; height: 30px">
+    </div>
+</div>
+<div class="header col-6">
+    <div class="col-3">
+        <img src="image/home.png" style="width: 30px; height: 30px">
+    </div>
+    <div class="col-3" style="padding-right: 5px">
+        <img src="image/movie.png" style="width: 30px; height: 30px">
+    </div>
+    <div class="col-3" style="padding-right: 5px">
+        <img src="image/group.png" style="width: 30px; height: 30px">
+    </div>
 
+    <div class="col-3" style="padding-right: 5px">
+        <img src="image/other.png" style="width: 30px; height: 30px">
+    </div>
+</div>
+<div class="header col-3">
+    <div class="col-12">
+        <div class="col-3">
+            <img src="image/2815456.png" style="width: 25px; height: 25px">
+        </div>
+        <div class="col-3" style="padding-right: 5px">
+            <img src="image/mess.png" style="width: 25px; height: 25px">
+        </div>
+        <div class="col-3" style="padding-right: 5px">
+            <img src="image/bell.png" style="width: 25px; height: 25px">
+        </div>
+
+        <div class="col-3" style="padding-right: 5px">
+            <img src="image/acc.png" style="width: 25px; height: 25px">
+        </div>
+    </div>
+</div>
+
+
+</div>
+<div class="col-3 left">
+    <div class="col-12 p">
+        <p>Facebooker</p><br>
+        <p>Bạn Bè</p><br>
+        <p>Đã Lưu</p><br>
+        <p>Nhóm</p><br>
+        <p>Maketplace</p><br>
+        <p>Watch</p><br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+</div>
+<div class="content col-6 row">
+    <div class="status">
+        <div class="col-1"> <img src="image/person.png" style="width: 25px; height: 25px"></div>
+        <div class="col-11"><p><input type="text" placeholder="Bạn đang nghĩ gì thế?"></p></div>
+        <ul>
+            <li><p>Video trực tiếp</p></li>
+            <li style="padding-left: 15px"><p>Ảnh/Video</p></li>
+            <li style="padding-left: 15px"><p>Cảm xúc/Hoạt động</p></li>
+        </ul>
+    </div>
+    <div class="page-content col-12">
+        <p style="font-weight: bold; color: cornflowerblue">Bảo Ngọc</p>
+        <p>
+            Chờ 1 người để xem status của người ấy (xem trạng thái... suy nghĩ người đó có gì thay đổi ko thôi) Chờ 1
+            người online chỉ mong người đó nhìn thấy nick mình sáng nhưng ko hy vọng người đó vào hỏi thăm. Chờ 1 người
+            online ...có lúc chỉ để thấy họ sáng nick mà mình tắt nick.
+        </p>
+    </div>
+    <div class="page-content col-12">
+        <p style="font-weight: bold; color: cornflowerblue">Khánh Thy</p>
+        <img src="image/nguoi_la.jpg" width="256px">
+        <p>
+            Gặp một người xa lạ bỗng nhớ một người, gặp lại một người quen bỗng thấy mình xa lạ. Chẳng có loại tẩy nào
+            có thể xoá sạch được những gì đã có. Và chẳng có loại bút nào có thể vẽ lại những gì đã mất!
+        </p><br>
+    </div>
+</div>
+<div class="right col-3">
+    <div class="col-12">
+        <p style="font-weight: bold; font-size: 12pt">Được tài trợ</p><br>
+        <p style="font-weight: bold; font-size: 12pt">Người liên hệ</p><br>
+        <p>Hoàng Dương</p><br>
+        <p>Châu Tấn</p><br>
+        <p>Nguyệt Nhi</p><br>
+        <p>Tú Trinh</p><br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
 </div>
 </body>
 </html>
