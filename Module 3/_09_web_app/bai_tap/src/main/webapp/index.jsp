@@ -21,6 +21,7 @@
     <input type="text" name="txtDiscount" placeholder="Nhập chiết khấu"> <br>
     <input type="submit" id="submit" value="Tính toán">
 
+
   </form>
   </body>
 </html>

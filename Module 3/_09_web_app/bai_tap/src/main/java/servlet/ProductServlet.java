@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ProductServlet", urlPatterns = "/index")
+@WebServlet(name = "ProductServlet", value = "/index")
 public class ProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         double gia  = Double.parseDouble(request.getParameter("txtGia"));
