@@ -5,7 +5,7 @@ import bean.Product;
 import java.util.List;
 
 public interface IProductRepository {
-    void save(int id, Product customer);
+    void save(Product product);
 
     void update(int id, Product product);
 
@@ -13,7 +13,7 @@ public interface IProductRepository {
 
     Product findById(int id);
 
-    Product findByName(int name);
+    List<Product> findByName(String name);
 
     List<Product> findAll();
 }

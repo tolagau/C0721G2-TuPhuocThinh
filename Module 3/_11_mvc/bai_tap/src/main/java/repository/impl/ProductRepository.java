@@ -15,15 +15,14 @@ public class ProductRepository implements IProductRepository {
         productMap.put(6,new Product(6,"Iphone 8", 10000000, "128Mg", "Apple"));
 
     }
-
     @Override
-    public void save(int id, Product product) {
-        productMap.put(id, product);
+    public void save(Product product) {
+        productMap.put(product.getId(), product);
     }
 
     @Override
     public void update(int id, Product product) {
-        productMap.put(id,product);
+        productMap.put(id, product);
     }
 
     @Override
@@ -37,12 +36,18 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product findByName(int name) {
-        return productMap.get(name);
+    public List< Product > findByName(String name) {
+        ArrayList< Product > productList = new ArrayList();
+        for (Map.Entry< Integer, Product > map : productMap.entrySet()) {
+            if (map.getValue().getName().contains(name)) {
+                productList.add(map.getValue());
+            }
+        }
+        return productList;
     }
 
     @Override
-    public List<Product> findAll() {
+    public List< Product > findAll() {
         return new ArrayList<>(productMap.values());
     }
 }

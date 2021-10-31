@@ -1,28 +1,28 @@
 package bean;
 
 public class Product {
-    private Integer id;
+    private int id ;
     private String name;
-    private int price;
-    private String moTa;
-    private String make;
+    private double price;
+    private String description;
+    private String brand;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, int price, String moTa, String make) {
+    public Product(int id, String name, double price, String description, String brand) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.moTa = moTa;
-        this.make = make;
+        this.description = description;
+        this.brand = brand;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,27 +34,27 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public String getMoTa() {
-        return moTa;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getMake() {
-        return make;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setMake(String make) {
-        this.make = make;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }
