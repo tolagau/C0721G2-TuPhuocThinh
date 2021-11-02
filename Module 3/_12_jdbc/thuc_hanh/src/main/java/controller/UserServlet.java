@@ -44,11 +44,11 @@ public class UserServlet extends HttpServlet {
     private void searchCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         String country = request.getParameter("country");
-        List<User> users = userDAO.findCountry(country);
+        List<User> listUser = userDAO.findCountry(country);
         RequestDispatcher requestDispatcher;
         try {
-            request.setAttribute("listSearch",users);
-            requestDispatcher = request.getRequestDispatcher("search-country.jsp");
+            request.setAttribute("listUser",listUser);
+            requestDispatcher = request.getRequestDispatcher("user/search-country.jsp");
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
@@ -75,7 +75,7 @@ public class UserServlet extends HttpServlet {
                     deleteUser(request, response);
                     break;
                 case "search":
-                    showSearch(request,response);
+                    //showSearch(request,response);
                 default:
                     listUser(request, response);
                     break;
@@ -85,11 +85,12 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void showSearch(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/search.jsp");
-        dispatcher.forward(request, response);
-    }
+//    private void showSearch(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//       // request.setAttribute();
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/search-country.jsp");
+//        dispatcher.forward(request, response);
+//    }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
