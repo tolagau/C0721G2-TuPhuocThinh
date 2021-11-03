@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Furama Resort</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        * {
+            margin: auto;
+            padding: 0px 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <img src="https://suno.vn/blog/wp-content/uploads/2014/12/nike-lich-su-thiet-ke-logo.jpg" width="7%">
+        </div>
+        <div class="col-lg-2">
+            <p>Nguyễn Văn A</p>
+        </div>
+    </div>
+
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Employee
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+                        <li><a class="dropdown-item" href="#">List All</a></li>
+                        <li><a class="dropdown-item" href="#">Create Employee</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Customer
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                        <li><a class="dropdown-item" href="#">List All</a></li>
+                        <li><a class="dropdown-item" href="#">Create Customer</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-3" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Service
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown-3">
+                        <li><a class="dropdown-item" href="#">List All</a></li>
+                        <li><a class="dropdown-item" href="#">Create Service</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-4" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Contract
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown-4">
+                        <li><a class="dropdown-item" href="#">List All</a></li>
+                        <li><a class="dropdown-item" href="#">Create Contract</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2  m-auto p-1">
+            <p>Item 1</p>
+            <p>Item 2</p>
+            <p>Item 3</p>
+        </div>
+        <div class="col-lg-10">
+            <div class="container-fluid">
+                <h3>Create new employee</h3>
+                <div>
+                    <form class="col-10  m-auto" method="post">
+                        <div class="form-group col-12">
+                            <label class="col-12 float-left mt-1" for="exampleInputPosition">Customer type:</label>
+                            <select name="id_customer_type" id="exampleInputPosition"
+                                    class="form-control col-12 float-left">
+                                <option>Chose option ...</option>
+                                <c:forEach var="item" items="${requestScope['customerType']}">
+                                    <option value="${item.getId()}"> ${item.getId()} - ${item.getName()}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <label class="col-12 float-left" for="exampleInputVao">Tên khách hàng:</label>
+                            <input type="text" name="name" class="form-control col-12 float-left mt-2"
+                                   id="exampleInputVao" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group col-12">
+                            <label class="col-12 float-left" for="exampleInputRa">Id Card:</label>
+                            <input type="text" name="idCard" class="form-control col-12 float-left mt-2"
+                                   id="exampleInputRa" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group col-12">
+                            <label class="col-12 float-left" for="exampleInputLyDo">SDT:</label>
+                            <input type="text" name="phone" class="form-control col-12 float-left mt-2"
+                                   id="exampleInputLyDo" placeholder="Enter Name">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary float-right">Create</button>
+                        <a href="">
+                            <button type="button" class="btn btn-info float-right">Back</button>
+                        </a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid bg-success m-auto text-light ">
+            <div class="row">
+                <div align="center">
+                    <p class="fs-6">Mọi nội dung tại đây © 2005 – 2021 Công ty TNHH Tư nhân Agoda. Bảo Lưu Mọi Quyền.
+                        Agoda.com
+                        là thành viên của Tập đoàn Booking Holdings, nhà cung cấp dịch vụ du lịch trực tuyến & các dịch
+                        vụ có liên quan hàng đầu thế giới.</p>
+                </div>
+            </div>
+
+        </div>
+
+</body>
+<script src="js/bootstrap.js"></script>
+</html>
