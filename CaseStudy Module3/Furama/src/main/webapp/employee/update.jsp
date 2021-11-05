@@ -110,52 +110,52 @@
                             <div class="form-group col-12">
                                 <label class="col-12 ">Id:</label>
                                 <input type="text" name="id" class="form-control col-12  mt-2"
-                                       value="${customer.getId()}" readonly>
+                                       value="${employee.getId()}" readonly>
                             </div>
 
                             <div class="form-group col-12">
                                 <label class="" for="a">Name:</label>
                                 <input id="a" type="text" name="name" class="form-control col-12  mt-2"
-                                       value="${customer.getName()}">
+                                       value="${employee.getName()}">
                             </div>
                             <div class="form-group col-12">
                                 <label class="col-12 float-left">Birth Day:</label>
                                 <input type="text" name="idCard" class="form-control col-12  mt-2"
-                                       value="${customer.getBirthDay()}">
+                                       value="${employee.getBirthDay()}">
                             </div>
                             <div class="form-group col-12">
                                 <label class="col-12 float-left">Id Card:</label>
                                 <input type="text" name="idCard" class="form-control col-12  mt-2"
-                                       value="${customer.getIdCard()}">
+                                       value="${employee.getIdCard()}">
                             </div>
                             <div class="form-group col-12">
                                 <label class="col-12 float-left">Salary:</label>
-                                <input type="text" name="idCard" class="form-control col-12  mt-2"
-                                       value="${customer.getSalary()}">
+                                <input type="text" name="salary" class="form-control col-12  mt-2"
+                                       value="${employee.getSalary()}">
                             </div>
                             <div class="form-group col-12">
                                 <label class="col-12 ">Phone:</label>
                                 <input type="text" name="phone" class="form-control col-12 fmt-2"
-                                       value="${customer.getPhone()}">
+                                       value="${employee.getPhone()}">
                             </div>
                             <div class="form-group col-12">
                                 <label class="col-12 ">Email:</label>
-                                <input type="text" name="phone" class="form-control col-12 fmt-2"
-                                       value="${customer.getEmail()}">
+                                <input type="text" name="email" class="form-control col-12 fmt-2"
+                                       value="${employee.getEmail()}">
                             </div>
                             <div class="form-group col-12">
                                 <label class="col-12 ">Address:</label>
-                                <input type="text" name="phone" class="form-control col-12 fmt-2"
-                                       value="${customer.getAddress()}">
+                                <input type="text" name="address" class="form-control col-12 fmt-2"
+                                       value="${employee.getAddress()}">
                             </div>
 
 
                             <div class="form-group col-12">
                                 <label class="col-12 float-left">POSITION:</label>
-                                <select class="form-control" name="id_customer_type">
-                                    <c:forEach var="type" items="${customerType}">
+                                <select class="form-control" name="position_id">
+                                    <c:forEach var="type" items="${postitions}">
                                         <c:choose>
-                                            <c:when test="${type.id == customer.getCustomerType().getId()}">
+                                            <c:when test="${type.id == employee.getPosition().getId()}">
                                                 <option value="${type.id}" selected> ${type.name}</option>
                                             </c:when>
                                             <c:otherwise>
@@ -168,10 +168,10 @@
                             <div class="form-group col-12">
                                 <label class="col-12 float-left">EDUCATION
                                     DEGREE::</label>
-                                <select class="form-control" name="id_customer_type">
-                                    <c:forEach var="type" items="${customerType}">
+                                <select class="form-control" name="education_degree_id">
+                                    <c:forEach var="type" items="${eduList}">
                                         <c:choose>
-                                            <c:when test="${type.id == customer.getCustomerType().getId()}">
+                                            <c:when test="${type.id == employee.getEducationDegree().getId()}">
                                                 <option value="${type.id}" selected> ${type.name}</option>
                                             </c:when>
                                             <c:otherwise>
@@ -183,10 +183,10 @@
                             </div>
                             <div class="form-group col-12">
                                 <label class="col-12 float-left">DIVISION:</label>
-                                <select class="form-control" name="id_customer_type">
-                                    <c:forEach var="type" items="${customerType}">
+                                <select class="form-control" name="division_id">
+                                    <c:forEach var="type" items="${divisionList}">
                                         <c:choose>
-                                            <c:when test="${type.id == customer.getCustomerType().getId()}">
+                                            <c:when test="${type.id == employee.getDivision().getId()}">
                                                 <option value="${type.id}" selected> ${type.name}</option>
                                             </c:when>
                                             <c:otherwise>

@@ -12,15 +12,15 @@ import java.util.List;
 
 public class GetInfoEmployeeSQL {
 
+    private BaseRepository baseRepository = new BaseRepository();
 
-    public static List<Position> selectPosition() {
+    public List<Position> selectPosition() {
         List<Position> positionList = new ArrayList<>();
 
         try {
-            Statement statement = BaseRepository.connection.createStatement();
+            Statement statement = baseRepository.getConnection().createStatement();
 
-            ResultSet resultSet = statement.executeQuery("select *\n" +
-                    "from `position`");
+            ResultSet resultSet = statement.executeQuery("select * from `position`");
 
             Position position = null;
 
@@ -30,19 +30,21 @@ public class GetInfoEmployeeSQL {
                 position.setId(resultSet.getInt("position_id"));
                 position.setName(resultSet.getString("position_name"));
                 positionList.add(position);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            baseRepository.close();
         }
         return positionList;
     }
 
-    public static List<EducationDegree> selectEducationDegree() {
+    public List<EducationDegree> selectEducationDegree() throws SQLException {
         List<EducationDegree> educationDegreeList = new ArrayList<>();
         try {
-            Statement statement = BaseRepository.connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * \n" +
-                    "from education_degree;");
+            Statement statement = baseRepository.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from education_degree;");
 
             EducationDegree educationDegree = null;
             while (resultSet.next()) {
@@ -53,25 +55,30 @@ public class GetInfoEmployeeSQL {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            BaseRepository.close();
         }
         return educationDegreeList;
     }
 
-    public static List<Division> selectDivision() {
+    public List<Division> selectDivision() throws SQLException {
         List<Division> divisionList = new ArrayList<>();
         try {
-            Statement statement = BaseRepository.connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * \n" +
-                    "from division;");
+            Statement statement = baseRepository.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from division;");
             Division divisions = null;
+
             while (resultSet.next()) {
                 divisions = new Division();
                 divisions.setId(resultSet.getInt("division_id"));
                 divisions.setName(resultSet.getString("division_name"));
+                divisionList.add(divisions);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            BaseRepository.close();
         }
         return divisionList;
     }

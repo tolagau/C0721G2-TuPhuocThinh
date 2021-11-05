@@ -4,12 +4,16 @@ public class CustomerType {
     private int id;
     private String name;
 
-    public CustomerType() {
+    public CustomerType(int idType) {
     }
 
     public CustomerType(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public CustomerType() {
+
     }
 
     public int getId() {

@@ -32,4 +32,11 @@ public class EducationDegree {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "EducationDegree{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

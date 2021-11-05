@@ -31,19 +31,19 @@ public class Employee {
         this.division = division;
     }
 
-//    public Employee(String name, String birthDay, String idCard, Double salary, String phone, String email,
-//                    String address, Position position, EducationDegree educationDegree, Division division) {
-//        this.name = name;
-//        this.birthDay = birthDay;
-//        this.idCard = idCard;
-//        this.salary = salary;
-//        this.phone = phone;
-//        this.email = email;
-//        this.address = address;
-//        this.position = position;
-//        this.educationDegree = educationDegree;
-//        this.division = division;
-//    }
+    public Employee(String name, String birthDay, String idCard, Double salary, String phone, String email,
+                    String address, Position position, EducationDegree educationDegree, Division division) {
+        this.name = name;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.salary = salary;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.position = position;
+        this.educationDegree = educationDegree;
+        this.division = division;
+    }
 
     public int getId() {
         return id;

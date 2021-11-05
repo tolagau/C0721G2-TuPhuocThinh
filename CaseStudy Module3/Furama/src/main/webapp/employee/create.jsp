@@ -110,11 +110,11 @@
                             <span class="col-12 border bg-light">${requestScope["message"]}</span>
                         </c:if>
                         <form class="col-12" method="post">
-                            <div class="form-group col-12">
-                                <label class="col-12 float-left" for="exampleInputID">Employee ID:</label>
-                                <input type="text" name="id" class="form-control col-12 float-left mt-2"
-                                       id="exampleInputID" placeholder="Enter ID">
-                            </div>
+<%--                            <div class="form-group col-12">--%>
+<%--                                <label class="col-12 float-left" for="exampleInputID">Employee ID:</label>--%>
+<%--                                <input type="text" name="id" class="form-control col-12 float-left mt-2"--%>
+<%--                                       id="exampleInputID" placeholder="Enter ID">--%>
+<%--                            </div>--%>
 
                             <div class="form-group col-12">
                                 <label class="col-12 float-left" for="exampleInputName">Name Employee:</label>
@@ -151,6 +151,7 @@
                                 <input type="text" name="address" class="form-control col-12 float-left mt-2"
                                        id="exampleInputADDRESS" placeholder="Enter ADDRESS">
                             </div>
+
                             <div class="form-group col-12">
                                 <label class="col-12 float-left mt-1" for="exampleInputPosition">POSITION:</label>
                                 <select name="position_id" id="exampleInputPosition"
@@ -161,23 +162,25 @@
                                     </c:forEach>
                                 </select>
                             </div>
+
                             <div class="form-group col-12">
                                 <label class="col-12 float-left mt-1" for="exampleInputEducationDegree">EDUCATION
                                     DEGREE:</label>
                                 <select name="education_degree_id" id="exampleInputEducationDegree"
                                         class="form-control col-12 float-left">
                                     <option>Chose option ...</option>
-                                    <c:forEach var="item" items="${postitions}">
+                                    <c:forEach var="item" items="${eduList}">
                                         <option value="${item.getId()}"> ${item.getId()} - ${item.getName()} </option>
                                     </c:forEach>
                                 </select>
                             </div>
+
                             <div class="form-group col-12">
                                 <label class="col-12 float-left mt-1" for="exampleInputDivision">DIVISION:</label>
                                 <select name="division_id" id="exampleInputDivision"
                                         class="form-control col-12 float-left">
                                     <option>Chose option ...</option>
-                                    <c:forEach var="item" items="${postitions}">
+                                    <c:forEach var="item" items="${divisionList}">
                                         <option value="${item.getId()}"> ${item.getId()} - ${item.getName()} </option>
                                     </c:forEach>
                                 </select>

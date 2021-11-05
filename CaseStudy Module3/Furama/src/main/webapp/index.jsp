@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Furama Resort</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap413/css/bootstrap.css">
     <style>
         * {
             margin: auto;
@@ -139,5 +139,5 @@
 </div>
 
 </body>
-<script src="bootstrap/js/bootstrap.js"></script>
+<script src="bootstrap413/js/bootstrap.js"></script>
 </html>

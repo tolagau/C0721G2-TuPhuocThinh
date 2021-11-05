@@ -4,28 +4,26 @@ import java.util.Date;
 
 public class Customer {
     private int id;
+    private CustomerType customerType;
     private String name;
     private String birthday;
     private String gender;
     private String idCard;
     private String phoneNum;
     private String email;
-    private CustomerType customerType;
     private String address;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, String birthday, String gender, String idCard,
-                    String phoneNum, String email, CustomerType customerType, String address) {
-        this.id = id;
+    public Customer(CustomerType customerType, String name, String birthday, String gender, String idCard, String phoneNum, String email, String address) {
+        this.customerType = customerType;
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
         this.idCard = idCard;
         this.phoneNum = phoneNum;
         this.email = email;
-        this.customerType = customerType;
         this.address = address;
     }
 
@@ -35,6 +33,14 @@ public class Customer {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
     }
 
     public String getName() {
@@ -85,14 +91,6 @@ public class Customer {
         this.email = email;
     }
 
-    public CustomerType getCustomerType() {
-        return customerType;
-    }
-
-    public void setCustomerType(CustomerType customerType) {
-        this.customerType = customerType;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -100,5 +98,4 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
-
 }
