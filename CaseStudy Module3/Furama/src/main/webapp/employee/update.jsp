@@ -11,8 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Furama Resort</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../DataTables/DataTables-1.11.3/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="../bootstrap413/css/bootstrap.css">
+    <link rel="stylesheet" href="../datatables/css/dataTables.bootstrap.css">
     <style>
         * {
             margin: auto;
@@ -220,7 +220,8 @@
 </body>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../jquery/jquery-3.5.1.min.js"></script>
-<script src="../DataTables/DataTables-1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="../DataTables/DataTables-1.11.3/js/dataTables.bootstrap5.js"></script>
+<script src="../bootstrap413/js/bootstrap.min.js"></script>
+<script src="../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../datatables/js/dataTables.bootstrap.min.js"></script>
 
 </html>

@@ -78,14 +78,15 @@ public class CustomerServlet extends HttpServlet {
         List<CustomerType> customerTypeList = getinfoCustomerTypeSQL.selectAll();
         request.setAttribute("typeList",customerTypeList);
 
-        Customer customerList = customerRepository.selectCustomer(id);
-        request.setAttribute("listCus",customerList);
+
+        Customer customer = customerRepository.selectCustomer(id);
+        request.setAttribute("customer",customer);
         request.getRequestDispatcher("customer/update.jsp").forward(request,response);
 
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-
+        int id = Integer.parseInt(request.getParameter("id"));
         int idType = Integer.parseInt(request.getParameter("id_customer_type"));
         String name = request.getParameter("name");
         String birth = request.getParameter("birthday");
@@ -94,10 +95,11 @@ public class CustomerServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        Customer listAdd = new Customer(new CustomerType(idType),name,birth,gender,idCard,phone,email,address);
+
+        Customer listAdd = new Customer(id,new CustomerType(idType),name,birth,gender,idCard,phone,email,address);
+
         customerRepository.updateCustomer(listAdd);
-        request.setAttribute("message", "Đã thêm thành công");
-        request.getRequestDispatcher("customer/create.jsp").forward(request, response);
+        showList(request,response);
 
     }
 
@@ -106,6 +108,7 @@ public class CustomerServlet extends HttpServlet {
         List<CustomerType> customerTypeList = getinfoCustomerTypeSQL.selectAll();
         request.setAttribute("customerType", customerTypeList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer/create.jsp");
+
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

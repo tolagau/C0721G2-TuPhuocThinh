@@ -19,6 +19,12 @@ public class EmployeeRepository implements IEmployee {
     private GetInfoEmployeeSQL getInfoEmployeeSQL = new GetInfoEmployeeSQL();
     BaseRepository baseRepository = new BaseRepository();
 
+
+
+
+
+
+
     @Override
     public List<Employee> selectAllEmployee() {
 
@@ -83,6 +89,7 @@ public class EmployeeRepository implements IEmployee {
         }
         return employee;
     }
+
 
     @Override
     public void insertEmployee(Employee employee) {

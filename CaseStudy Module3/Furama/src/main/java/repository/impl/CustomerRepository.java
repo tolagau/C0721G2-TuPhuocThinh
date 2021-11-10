@@ -69,19 +69,30 @@ public class CustomerRepository implements ICustomer {
         }
 
         return customer;
-
-
+    }
+    public List<Customer> searName (String name){
+        List<Customer> customerList = selectAllCustomer();
+        Customer customer = null;
+        for (Customer customer1 : customerList) {
+            if (customer1.equals(name)) {
+                customer = customer1;
+                customerList.add(customer);
+            }
+        }
+       return customerList;
     }
 
     @Override
     public void insertCustomer(Customer customer) {
         try {
             PreparedStatement preparedStatement = baseRepository.getConnection().prepareStatement
-                    ("insert into employee values(?,?,?,?,?,?,?,?");
-            preparedStatement.setString(1, String.valueOf(customer.getCustomerType().getId()));
+                    ("INSERT INTO  customer(customer_type_id,customer_name,customer_birthday,customer_gender, " +
+                            " customer_id_card,customer_phone,customer_email,customer_address) VALUES \n " +
+                            "( ?, ?, ?,?, ?, ?,?,?);");
+            preparedStatement.setInt(1, Integer.parseInt(String.valueOf(customer.getCustomerType().getId())));
             preparedStatement.setString(2, customer.getName());
             preparedStatement.setString(3, customer.getBirthday());
-            preparedStatement.setString(4, customer.getGender());
+            preparedStatement.setInt(4, Integer.parseInt(customer.getGender()));
             preparedStatement.setString(5, customer.getIdCard());
             preparedStatement.setString(6, customer.getPhoneNum());
             preparedStatement.setString(7, customer.getEmail());
@@ -98,18 +109,19 @@ public class CustomerRepository implements ICustomer {
     public void updateCustomer(Customer customer) {
         try {
             PreparedStatement preparedStatement = baseRepository.getConnection().prepareStatement
-                    ("update customer set `customer_type_id` = ?,customer_name= ?, birthday=? " +
-                            " gender=?,id_card=?, email=?, address=? phone=? where customer_id = ?;");
-            preparedStatement.setString(1, String.valueOf(customer.getCustomerType().getId()));
+                    ("update customer\n" +
+                            "set customer_type_id = ?,customer_name = ?, customer_birthday =? ,customer_gender = ?,customer_id_card =? , customer_phone =  ? , customer_email= ?, customer_address = ? \n" +
+                            "where customer_id = ?;");
+            preparedStatement.setInt(1, Integer.parseInt(String.valueOf(customer.getCustomerType().getId())));
             preparedStatement.setString(2, customer.getName());
             preparedStatement.setString(3, customer.getBirthday());
-            preparedStatement.setString(4, customer.getGender());
+            preparedStatement.setInt(4, Integer.parseInt(customer.getGender()));
             preparedStatement.setString(5, customer.getIdCard());
             preparedStatement.setString(6, customer.getPhoneNum());
             preparedStatement.setString(7, customer.getEmail());
             preparedStatement.setString(8, customer.getAddress());
             preparedStatement.setInt(9, customer.getId());
-            preparedStatement.executeLargeUpdate();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

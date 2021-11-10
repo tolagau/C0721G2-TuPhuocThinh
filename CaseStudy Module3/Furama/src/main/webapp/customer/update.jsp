@@ -112,9 +112,25 @@
                                 <input type="text" name="id" class="form-control col-12  mt-2"
                                        value="${customer.getId()}" readonly>
                             </div>
+
                             <div class="form-group col-12">
-                                <label class="col-12 float-left">Type:</label>
-                                <select class="form-control" name="id_customer_type">
+                                <label class="" for="a">Diện tích:</label>
+                                <input id="a" type="text" name="dientich" class="form-control col-12  mt-2"
+                                       value="${customer.getName()}">
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="col-12 float-left">Trạng thái:</label>
+                                <input type="text" name="trangthai" class="form-control col-12  mt-2"
+                                       value="${customer.getBirthDay()}">
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="col-12 float-left">Tầng:</label>
+                                <input type="text" name="tang" class="form-control col-12  mt-2"
+                                       value="${customer.getGender()}">
+                            </div>
+                            <div class="form-group col-12">
+                                <label class="col-12 float-left">Loại mặt bằng:</label>
+                                <select class="form-control" name="loai_mat_bang">
                                     <c:forEach var="type" items="${typeList}">
                                         <c:choose>
                                             <c:when test="${type.id == customer.getCustomerType().getId()}">
@@ -127,46 +143,27 @@
                                     </c:forEach>
                                 </select>
                             </div>
-
                             <div class="form-group col-12">
-                                <label class="" for="a">Name:</label>
-                                <input id="a" type="text" name="name" class="form-control col-12  mt-2"
-                                       value="${customer.getName()}">
-                            </div>
-                            <div class="form-group col-12">
-                                <label class="col-12 float-left">Birth Day:</label>
-                                <input type="text" name="idCard" class="form-control col-12  mt-2"
-                                       value="${customer.getBirthDay()}">
-                            </div>
-                            <div class="form-group col-12">
-                                <label class="col-12 float-left">Gender:</label>
-                                <input type="text" name="salary" class="form-control col-12  mt-2"
-                                       value="${customer.getGender()}">
-                            </div>
-                            <div class="form-group col-12">
-                                <label class="col-12 float-left">Id Card:</label>
-                                <input type="text" name="idCard" class="form-control col-12  mt-2"
+                                <label class="col-12 float-left">mô tả chi tiết:</label>
+                                <input type="text" name="mota" class="form-control col-12  mt-2"
                                        value="${customer.getIdCard()}">
                             </div>
 
                             <div class="form-group col-12">
-                                <label class="col-12 ">Phone:</label>
-                                <input type="text" name="phone" class="form-control col-12 fmt-2"
+                                <label class="col-12 ">Giá cho thuê:</label>
+                                <input type="text" name="gia" class="form-control col-12 fmt-2"
                                        value="${customer.getPhoneNum()}">
                             </div>
                             <div class="form-group col-12">
-                                <label class="col-12 ">Email:</label>
-                                <input type="text" name="email" class="form-control col-12 fmt-2"
+                                <label class="col-12 ">Ngày bắt đầu:</label>
+                                <input type="text" name="ngaybatdau" class="form-control col-12 fmt-2"
                                        value="${customer.getEmail()}">
                             </div>
                             <div class="form-group col-12">
-                                <label class="col-12 ">Address:</label>
-                                <input type="text" name="address" class="form-control col-12 fmt-2"
+                                <label class="col-12 ">Ngày kết thúc:</label>
+                                <input type="text" name="ngayketthuc" class="form-control col-12 fmt-2"
                                        value="${customer.getAddress()}">
                             </div>
-
-
-
 
                             <button type="submit" class="btn btn-primary float-right">Edit</button>
                         </form>

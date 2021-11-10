@@ -5,6 +5,7 @@ public class CustomerType {
     private String name;
 
     public CustomerType(int idType) {
+        this.id = idType;
     }
 
     public CustomerType(int id, String name) {
