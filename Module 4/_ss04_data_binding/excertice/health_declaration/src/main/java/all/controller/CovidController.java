@@ -13,24 +13,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class CovidController {
 
-    @GetMapping(value = "/home")
-    public String showList(Model model) {
-        String[] genders = {"nam", "nữ"};
-
-
-        model.addAttribute("genders", genders);
-        model.addAttribute("khaibao", new KhaiBao());
+    @GetMapping("/home")
+    public String showForm(Model model){
+        model.addAttribute("medicalDeclaration" , new KhaiBao());
+        String [] nationals = {"Vietnamese", "Japanese", "English", "Korea"};
+        model.addAttribute("nationals",nationals);
+        String [] cities = {"Da Nang", "Ha Noi", "Ho Chi Minh", "Hue"};
+        model.addAttribute("cities",cities);
+        String [] districts = {"1", "2", "3", "4"};
+        model.addAttribute("districts",districts);
+        String [] wards = {"1", "2", "3"};
+        model.addAttribute("wards",wards);
+        String [] choices ={"Yes", "No"};
+        model.addAttribute("choices",choices);
         return "home";
     }
-
-    @PostMapping(value = "/info")
-    public String create(Model model, @ModelAttribute("khaibao") KhaiBao khaiBao,
-                         RedirectAttributes redirectAttributes) {
-
-        // khaiBao = new KhaiBao();
-        model.addAttribute("name", khaiBao);
-        model.addAttribute("dateOfBirth",khaiBao);
-        model.addAttribute("",khaiBao);
-        return "info";
+    @PostMapping("/info")
+    public ModelAndView showInfo(@ModelAttribute("medicalDeclaration") KhaiBao khaiBao){
+        ModelAndView modelAndView = new ModelAndView("show",
+                "medicalDeclaration", khaiBao);
+        System.out.println(khaiBao.toString());
+        return modelAndView;
     }
 }

@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ConvertController {
     @GetMapping("")
     public String showForm() {
-        return "customers/form";
+        return "list";
     }
     @PostMapping ("")
     public String showResult(@RequestParam double usd, Model model) {
         double vnd = usd * 22000;
         model.addAttribute("vnd", vnd);
-        return "customers/form";
+        return "list";
     }
 }
