@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.util.Regex;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -101,9 +102,8 @@ public class User implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         User user = (User) target;
-//        if (user.firstName.matches()) {
-//            errors.addAllErrors("name","name.invalidFormat");
-
-
+        if (!user.firstName.matches(Regex.NAME_REGEX)){
+            errors.rejectValue("name","name.invalidFormat");
+        }
     }
 }
