@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Xóa câu hỏi</title>
+</head>
+<body>
+<form th:action="@{/crud/delete}" th:object="${question}" th:method="POST">
+    <h3>Are you sure delete this movies?</h3>
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table class="table">
+        <tr>
+            <td>Id:</td>
+            <td th:text="${question.id}"></td>
+        </tr>
+        <tr>
+            <td>Title:</td>
+            <td th:text="${question.title}"></td>
+        </tr>
+        <tr>
+            <td>Loại câu hỏi:</td>
+            <td th:text="${question.questionType.name}"></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </td>
+            <td>
+                <a href="/crud" type="button" class="btn btn-primary">Back</a>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

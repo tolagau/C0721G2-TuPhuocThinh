@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<!--Header-->
+<!--Aside-->
+<div class="container-fluid">
+    <div class="row">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <a class="btn btn-sm btn-outline-primary" href="/crud/create" role="button">Create new employee</a>
+                <!--                <th:block th:if="${message}">-->
+                <!--                    <p th:text="${message}"></p>-->
+                </th:block>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <form style="float:right" action="/crud/search" method="post">
+                            <label>Search by name</label>
+                            <input type="text" th:name="phim">
+                            <!--, th:value="${phim}">-->
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Search</button>
+                        </form>
+                    </div>
+                    <!--                    <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle">-->
+                    <!--                        This week-->
+                    <!--                    </button>-->
+                    <!--                                    <form>-->
+                    <!--                                        <select onchange="this.form.submit()" th:name="positionId" th:value="positionId"-->
+                    <!--                                                class="form-select form-select-md mb-3" aria-label=".form-select-lg example">-->
+                    <!--                                            <option value="">Choose position</option>-->
+                    <!--                                            <th:block th:each="position : ${positionList}">-->
+                    <!--                                                <option th:value="${position.id}" th:text="${position.name}"></option>-->
+                    <!--                                            </th:block>-->
+                    <!--                                        </select>-->
+                    <!--                                    </form>-->
+                </div>
+            </div>
+            <h5>List Suất Chiếu</h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm fs-6">
+                    <thead>
+                    <tr style="height: 50px" class="text-center bg-dark text-light text-decoration-none">
+                        <th><a class="text-center text-light text-decoration-none">Id</a></th>
+                        <th class="text-center"><a class="text-center text-light text-decoration-none">Name</a></th>
+                        <th class="text-center"><a class="text-center text-light text-decoration-none">Ngày chiếu</a>
+                        </th>
+                        <th class="text-center"><a class="text-center text-light text-decoration-none">Số lượng</a></th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="suatChieu : ${suatChieuList.content}">
+                        <tr>
+                            <td class="text-center" th:text="${suatChieu.id}"></td>
+                            <td class="text-center" th:text="${suatChieu.phim.name}"></td>
+                            <td class="text-center" th:text="${suatChieu.dateNow}"></td>
+                            <td class="text-center" th:text="${suatChieu.quantity}"></td>
+                            <td class="text-center">
+                                <a class="btn btn-outline-primary btn-sm" href="#"
+                                   role="button">Edit</a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-sm btnDeleteEmployee">Delete
+                                </button>
+                                <input type="hidden" th:value="${suatChieu.id}">
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="modalId" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                    </tbody>
+                </table>
+                <div class="float-end">
+                    <a class="btn btn-outline-primary btn-sm" role="button" th:if="${suatChieuList.hasPrevious()}"
+                       th:href="@{/crud(page=${suatChieuList.number - 1})}">
+                        <!--th:href="@{/employee(page=${employeePage.number -1})}">-->
+                        Privious
+                    </a>
+                    <a class="btn btn-outline-primary btn-sm" role="button" th:if="${suatChieuList.hasNext()}"
+                       th:href="@{/crud(page=${suatChieuList.number + 1})}">
+                        <!--th:href="@{/employee(page=${employeePage.number +1 })}">-->
+                        Next
+                    </a>
+                    <th:block th:each="pageNo: ${#numbers.sequence(1,suatChieuList.totalPages)}">
+                        <!--    Vòng lặp hiển thị tất cả các trong hiện có-->
+                        <a class="btn btn-outline-primary btn-sm" role="button" th:href="@{crud(page=${pageNo - 1})}"
+                           th:text="${pageNo}"></a>
+                    </th:block>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<!--Footer-->
+<!--<div th:replace="~{/layout2::footer}"></div>-->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        console.log("helo")
+        $(".btnDeleteEmployee").click(function () {
+            console.log($(this).next().val());
+            $.ajax({
+                type: "GET",
+                url: "/crud/delete/" + $(this).next().val(),
+                data: "HTML",
+                success: function (data) {
+
+                    $(".modal-body").html(data);
+                    $("#modalId").modal("show")
+                }
+            })
+        })
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>movies-detail</title>
+</head>
+<body>
+<h2 class="text-center">Xem chi tiết câu hỏi </h2>
+<form th:action="@{/crud/detail}" th:object="${question}" th:method="POST">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table class="table">
+        <tr>
+            <td>Id:</td>
+            <td th:text="${question.id}"></td>
+        </tr>
+        <tr>
+            <td>Tiêu đề:</td>
+            <td th:text="${question.title}"></td>
+        </tr>
+        <tr>
+            <td>Nội dung:</td>
+            <td th:text="${question.questions}"></td>
+        </tr>
+        <tr>
+            <td>Phản hồi:</td>
+            <td th:text="${question.answer}"></td>
+        </tr>
+        <tr>
+            <td>Loại câu hỏi:</td>
+            <td th:text="${question.questionType.name}"></td>
+        </tr>
+        <tr>
+            <td>Ngày đăng:</td>
+            <td th:text="${question.date_create}"></td>
+        </tr>
+        <tr>
+            <td>Tình trạng:</td>
+            <td th:text="${question.status}"></td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

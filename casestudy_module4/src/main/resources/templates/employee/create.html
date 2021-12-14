@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+
+<body>
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <th:block th:include="fragments/sidebar"></th:block>
+    <!-- Main Panel -->
+    <div class="main-panel">
+        <th:block th:include="fragments/navbar"></th:block>
+        <!-- Begin Page Content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <form th:action="@{/employee/create}" method="post" th:object="${createEmployee}">
+                            <input type="hidden" th:field="*{id}">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="title" style="color: gold">Name</label>
+                                    <input type="text" class="form-control" id="title" placeholder="name"
+                                           th:field="*{name}">
+                                    <small th:errors="*{name}"></small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="quantity" style="color: gold">Day of birth</label>
+                                    <input type="date" class="form-control" id="quantity" placeholder="birth"
+                                           th:field="*{birthday}">
+                                    <small th:errors="*{birthday}"></small>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="idCard" style="color: gold">ID Card</label>
+                                    <input type="text" class="form-control" id="idCard" placeholder="id card"
+                                           th:field="*{idCard}">
+                                    <small th:errors="*{idCard}"></small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="salary" style="color: gold">Salary</label>
+                                    <input type="text" class="form-control" id="salary" placeholder=""
+                                           th:field="*{salary}">
+                                    <small th:errors="*{salary}"></small>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="phone" style="color: gold">Phone</label>
+                                    <input type="text" class="form-control" id="phone" placeholder=""
+                                           th:field="*{phone}">
+                                    <small th:errors="*{phone}"></small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email" style="color: gold">Email</label>
+                                    <input type="text" class="form-control" id="email" placeholder=" "
+                                           th:field="*{email}">
+                                    <small th:errors="*{email}"></small>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label style="color: gold">Position</label>
+                                    <select th:field="*{position}" class="form-select form-select-md mb-3"
+                                            aria-label=".form-select-lg example">
+                                        <option value="">Choose position</option>
+                                        <th:block th:each="position : ${positionList}">
+                                            <option th:value="${position.id}" th:text="${position.name}"></option>
+                                            <!--<span style="color: red" th:if="${#fields.hasErrors('categorise')}" th:errors="*{categorise}"></span>-->
+                                        </th:block>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label style="color: gold">Division</label>
+                                    <select th:field="*{division}" class="form-select form-select-md mb-3"
+                                            aria-label=".form-select-lg example">
+                                        <option value="">Choose position</option>
+                                        <th:block th:each="divi : ${divisionList}">
+                                            <option th:value="${divi.id}" th:text="${divi.name}"></option>
+                                            <!--<span style="color: red" th:if="${#fields.hasErrors('categorise')}" th:errors="*{categorise}"></span>-->
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label style="color: gold">Position</label>
+                                    <select th:field="*{educationDegree}" class="form-select form-select-md mb-3"
+                                            aria-label=".form-select-lg example">
+                                        <option value="">Choose position</option>
+                                        <th:block th:each="edu : ${educationDegreeList}">
+                                            <option th:value="${edu.id}" th:text="${edu.name}"></option>
+                                            <!--<span style="color: red" th:if="${#fields.hasErrors('categorise')}" th:errors="*{categorise}"></span>-->
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Add employee</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+
+        </div>
+        <th:block th:include="fragments/footer"></th:block>
+
+        <!-- /.content -->
+    </div>
+    <!-- End of Main Panel -->
+</div>
+
+<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

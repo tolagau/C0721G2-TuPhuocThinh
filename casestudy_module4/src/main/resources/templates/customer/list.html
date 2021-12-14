@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<style>
+
+    .modal-backdrop{
+        z-index: -1;
+    }
+
+</style>
+<body>
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <th:block th:include="fragments/sidebar"></th:block>
+    <!-- Main Panel -->
+    <div class="main-panel">
+        <th:block th:include="fragments/navbar"></th:block>
+        <!-- Begin Page Content -->
+        <a href="/customer/create">Create</a>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <table class="table table-striped">
+                            <thead class="thead-light">
+                            <tr style="color: gold">
+                                <th scope="col">ID</th>
+                                <th scope="col">Name Cus</th>
+                                <th scope="col">Day of birth</th>
+                                <th scope="col">ID Card</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr th:each="cus : ${listCustomer}">
+                                <th scope="row" th:text="${cus.id}"></th>
+                                <td th:text="${cus.name}"></td>
+                                <td th:text="${cus.birthday}"></td>
+                                <td th:text="${cus.idCard}"></td>
+                                <td th:text="${cus.gender}"></td>
+                                <td th:text="${cus.phone}"></td>
+                                <td th:text="${cus.email}"></td>
+                                <td th:text="${cus.address}"></td>
+                                <td th:text="${cus.customerType.name}"></td>
+                                <td class="text-center">
+                                    <a th:href="@{/customer/edit/{id}(id=${cus.id})}"
+                                       class="btn btn-primary">Edit</a>
+                                </td>
+                                <td class="text-center">
+
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            th:data-target="'#target'+${cus.id}">
+                                        delete
+                                    </button>
+                                </td>
+                                </td>
+                                <div class="modal fade" th:id="'target'+${cus.id}" tabindex="-1"
+                                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Do you want to
+                                                    delete?</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <th:block th:text=" bạn có muốn xóa ${cus.name}">
+                                                </th:block>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="button" class="btn btn-secondary">
+                                                    <a th:href="@{customer/delete/{id}(id=${cus.id})}">delete</a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="float-end">
+                            <a class="btn btn-outline-primary btn-sm" role="button"
+                               th:if="${listCustomer.hasPrevious()}"
+                               th:href="@{/customer(page=${listCustomer.number -1})}">
+                                Previous
+                            </a>
+                            <a class="btn btn-outline-primary btn-sm" role="button" th:if="${listCustomer.hasNext()}"
+                               th:href="@{/customer(page=${listCustomer.number +1 })}">
+                                Next
+                            </a>
+                            <th:block th:each="pageNo: ${#numbers.sequence(0,listCustomer.totalPages - 1)}">
+                                <!--    Vòng lặp hiển thị tất cả các trong hiện có-->
+                                <a class="btn btn-outline-primary btn-sm" role="button"
+                                   th:href="@{/customer(page = ${pageNo})}"
+                                   th:text="${pageNo}"></a>
+                            </th:block>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+
+        </div>
+        <th:block th:include="fragments/footer"></th:block>
+
+        <!-- /.content -->
+    </div>
+    <!-- End of Main Panel -->
+</div>
+
+<th:block th:include="fragments/scripts"></th:block>
+<script>
+    $(document).ready(function () {
+        $(".btnDeleteEmployee").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/employee/delete" + $(this).next().val(),
+                data: "HTML",
+                success: function (data) {
+                    $(".modal-body").html(data)
+                    $("#modalId").modal("show")
+
+                }
+            })
+        })
+    });
+</script>
+</body>
+
+</html>
