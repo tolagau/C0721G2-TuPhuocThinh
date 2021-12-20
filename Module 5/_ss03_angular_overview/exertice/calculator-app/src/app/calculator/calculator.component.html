@@ -1,0 +1,18 @@
+<p>calculator works!</p>
+
+
+<div>
+  <label>Số A </label>
+  <input type="text" [(ngModel)]="soA">
+</div>
+<div>
+  <label>Số A </label>
+  <input type="text" [(ngModel)]="soB">
+</div>
+<div>
+  <button (click)="cong()">Cộng</button>
+  <button (click)="tru()">Trừ</button>
+  <button (click)="nhan()">Nhân</button>
+  <button (click)="chia()">Chia</button>
+</div>
+<div>{{ketQua}}</div>
