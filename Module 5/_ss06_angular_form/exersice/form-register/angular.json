@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-name-card": {
+    "form-register": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-name-card",
+            "outputPath": "dist/form-register",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-name-card:build"
+            "browserTarget": "form-register:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-name-card:build:production"
+              "browserTarget": "form-register:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-name-card:build"
+            "browserTarget": "form-register:build"
           }
         },
         "test": {
@@ -110,19 +110,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-name-card:serve"
+            "devServerTarget": "form-register:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-name-card:serve:production"
+              "devServerTarget": "form-register:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-name-card",
+  "defaultProject": "form-register",
   "cli": {
-    "analytics": "33197f86-9947-4a63-8eff-f252fbd0d187"
+    "analytics": "0c5d929f-6b41-4e25-bfcd-3955c097c88d"
   }
 }
