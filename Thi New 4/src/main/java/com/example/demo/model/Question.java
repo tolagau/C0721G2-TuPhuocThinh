@@ -22,8 +22,8 @@ public class Question {
     private String title;
 
     @Column(name = "questions", columnDefinition = "VARCHAR(255)")
-//    @NotBlank(message = "Không được bỏ trổng phần nội dung")
-//    @Size(min = 10,max = 500,message = "Nội dung bạn nhập không được ngắn hơn 10 ký tự hoặc dài hơn 500 ký tự")
+    @NotBlank(message = "Không được bỏ trổng phần nội dung")
+    @Size(min = 10,max = 500,message = "Nội dung bạn nhập không được ngắn hơn 10 ký tự hoặc dài hơn 500 ký tự")
     private String questions;
 
     @Column(name = "answer", columnDefinition = "VARCHAR(255)")
